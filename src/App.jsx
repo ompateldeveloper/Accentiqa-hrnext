@@ -1,8 +1,9 @@
-import Sidebar from "./components/Sidebar"
+import Signin from "./pages/Signin"
 
 function App() {
     return (
-        <div className="">
+        <div>
+            <Signin/>
         </div>
     )
 }
