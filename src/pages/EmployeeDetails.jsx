@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 const EmployeeDetails = () => {
-    const [allowed,setAllowed] = useState();
     const [formData,setFormData]=useState({
         empSeries:"",
         probationPeriod:"",
@@ -22,6 +21,7 @@ const EmployeeDetails = () => {
         allow:null
 
     })
+    const [errors, setErrors] = useState({});
     const changeHandle=(e)=>{
         const {name,value,checked}=e.target
         
@@ -37,6 +37,18 @@ const EmployeeDetails = () => {
                 ...formData,
                 [name]:value
             })
+        }
+        //Validation
+        //Validation For name
+        const newErrors = { ...errors };
+        if (name === 'name') {
+          if (!value.trim()) {
+            newErrors.username = 'Username is required';
+          } else if (value.length < 3) {
+            newErrors.username = 'Username must be at least 3 characters long';
+          } else {
+            delete newErrors.username;
+          }
         }
        
     }
