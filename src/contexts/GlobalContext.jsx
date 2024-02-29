@@ -1,0 +1,20 @@
+import { createContext, useContext, useState } from "react"
+
+const GlobalContext = createContext(); 
+export default function GlobalContextProvider({children}) {
+    const [tabs, setTabs] = useState('Home');
+
+    const values = {
+        tabs,
+        setTabs
+    }
+    return (
+        <GlobalContext.Provider value={values}>
+            {children}
+        </GlobalContext.Provider>
+    )
+}
+export function useGlobalContext(){
+    const context = useContext(GlobalContext);
+    return context
+}
