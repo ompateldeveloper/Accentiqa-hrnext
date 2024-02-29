@@ -117,7 +117,7 @@ const EmployeeDetails = () => {
               className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="empNo"
               name="empNo"
-              type="number"
+              type="text"
               placeholder=""
               value={formData.empNo}
               onChange={changeHandle}
@@ -216,7 +216,7 @@ const EmployeeDetails = () => {
               className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="mobileNo"
               name="mobileNo"
-              type="number"
+              type="text"
               placeholder=" "
               value={formData.mobileNo}
               onChange={changeHandle}
@@ -236,7 +236,8 @@ const EmployeeDetails = () => {
             <input
               className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="aadharNo"
-              type="number"
+              name="aadharNo"
+              type="text"
               placeholder=" "
               value={formData.aadharNo}
               onChange={changeHandle}
@@ -299,7 +300,7 @@ const EmployeeDetails = () => {
               className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="emergencyNo"
               name="emergencyNo"
-              type="number"
+              type="text"
               placeholder=" "
               value={formData.emergencyNo}
               onChange={changeHandle}
@@ -319,7 +320,7 @@ const EmployeeDetails = () => {
             <div className="relative">
               <select
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="reportingMg" onChange={changeHandle}
+                id="reportingMg" name="reportingMg" onChange={changeHandle}
               >
                 <option value="">---Select---</option>
                 <option value="New Mexico">New Mexico</option>
@@ -370,7 +371,7 @@ const EmployeeDetails = () => {
             <div className="relative">
               <select
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="status" onChange={changeHandle}
+                id="status" name="status" onChange={changeHandle}
               >
                 <option value="">---Select---</option>
                 <option value="New Mexico">New Mexico</option>
