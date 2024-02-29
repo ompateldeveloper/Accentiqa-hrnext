@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import { Route, Routes } from 'react-router-dom'
-
 import AddEmployee from './AddEmployee/Index'
 
 export default function Dashboard() {
@@ -12,7 +11,6 @@ export default function Dashboard() {
 
             <div className="flex ">
                 <Sidebar />
-
                 <div className="routeswrapper ml-80 mt-20 p-2 w-full">
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
@@ -20,7 +18,6 @@ export default function Dashboard() {
                             <AddEmployee/>
                         </>} />
                         <Route path='/add-employee' element={<>addEmployee</>} />
-                        <Route path='/employee-details' element={<EmployeeDetails/>} />
                     </Routes>
                 </div>
 
