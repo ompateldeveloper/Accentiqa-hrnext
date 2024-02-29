@@ -13,20 +13,20 @@ function App() {
                 <Route path={'*'} element={<Navigate to='/404' />} />
                 <Route path={'/dashboard/*'} element={<Dashboard/>} />
 
-                <Route path={"/dashboard"} element={
+                <Route path={"/dashboard/*"} element={
                     !user ?
                         <Navigate to="/signin" replace />
                         :
                         <Dashboard />
                 } />
-                <Route path={"/ "} element={
+                <Route path={"/signin"} element={
                     user ?
-                        <Navigate to="/dashboard" replace />
+                        <Navigate to="/dashboard/*" replace />
                         : <Signin />
                 } />
                 <Route path={"/signup"} element={
                     user ?
-                        <Navigate to="/dashboard" replace />
+                        <Navigate to="/dashboard/*" replace />
                         : <Signup />
                 } />
 
