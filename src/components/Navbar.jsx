@@ -4,7 +4,7 @@ import { Bell, Settings, User } from 'lucide-react';
 
 export default function Navbar () {
     return (
-        <div className='fixed w-full flex justify-between  items-center  bg-gray-50 font-medium py-4  border-b'>
+        <div className='fixed w-full h-20 flex justify-between  items-center  bg-gray-50 font-medium py-4  border-b'>
             <div className='flex items-center gap-2 mx-4 bg-blue-500 p-2 rounded-md' >
                 <img className='h-8' src={acqlogo} alt='' />
                 <div className="logo-name text-2xl text-white  font-serif font-bold">ACCENTIQA</div>
