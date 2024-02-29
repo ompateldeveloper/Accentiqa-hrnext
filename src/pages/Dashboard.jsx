@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import { Route, Routes } from 'react-router-dom'
-
+import EmployeeDetails from './EmployeeDetails'
 export default function Dashboard() {
     return (
         <div>
@@ -15,6 +15,7 @@ export default function Dashboard() {
                         <Route path='*' element={<Dashboard404/>} />
                         <Route path='/' element={<>addEmployee</>} />
                         <Route path='/add-employee' element={<>addEmployee</>} />
+                        <Route path='/employee-details' element={<EmployeeDetails/>} />
                     </Routes>
                 </div>
 
