@@ -10,7 +10,7 @@ export default function Dashboard() {
 
             <div className="flex ">
                 <Sidebar />
-                <div className="routeswrapper ml-80 mt-20 p-2">
+                <div className="routeswrapper  ml-80 mt-20 p-2">
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
                         <Route path='/' element={<>
