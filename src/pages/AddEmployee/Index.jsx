@@ -1,6 +1,7 @@
 import React, { startTransition, useEffect, useState } from 'react'
 import { cn } from '../../lib/utils';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
+import EmployeeDetails from '../EmployeeDetails';
 
 export default function AddEmployee() {
     const [tabs,setTabs] = useState(0);
@@ -18,6 +19,7 @@ export default function AddEmployee() {
     const prevTab = ()=>{
         if(tabs>0){
             setTabs(prev=>prev-1)
+            console.log(tabs);
         }
     }
     return (
@@ -33,7 +35,7 @@ export default function AddEmployee() {
 
             </div>
             <div className="w-full">
-                <TabsContent tab={tabs} tabIndex={0}>0</TabsContent>
+                <TabsContent tab={tabs} tabIndex={0}><EmployeeDetails/></TabsContent>
                 <TabsContent tab={tabs} tabIndex={1}>1</TabsContent>
                 <TabsContent tab={tabs} tabIndex={2}>2</TabsContent>
                 <TabsContent tab={tabs} tabIndex={3}>3</TabsContent>

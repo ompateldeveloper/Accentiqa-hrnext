@@ -34,9 +34,10 @@ export const useFormValidation = (initialState, validate) => {
     // Perform final validation before submitting the form
     const validationErrors = validate(formData);
     setErrors(validationErrors);
-
+ 
     if (Object.keys(validationErrors).length === 0) {
       // Form is valid, proceed with submission
+      console.log(formData)
       console.log("Form is valid. Submitting...");
     } else {
       console.log("Form has validation errors.");

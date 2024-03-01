@@ -61,7 +61,7 @@ const EmployeeDetails = () => {
     const errors = {};
     //Validation For empSeries
     if (!values.empSeries.trim()) {
-      errors.empSeries = "Number is required";
+      errors.empSeries = "Please select an option";
     }
     //Validation For empSeries
     if (!values.probationPeriod.trim()) {
@@ -122,6 +122,32 @@ const EmployeeDetails = () => {
       errors.emergencyNo = "Mobile number is required";
     } else if (!/^\d{1,10}$/.test(values.emergencyNo)) {
       errors.emergencyNo = "Please provide 10 digits";
+    }
+    //Validation For reportingMg
+    if (!values.reportingMg.trim()) {
+      errors.reportingMg = "Please select an option";
+    }
+    //Validation For fathersName
+    if (!values.fathersName.trim()) {
+      errors.fathersName = "Name is required";
+    } else if (values.fathersName.length < 3) {
+      errors.fathersName = "Name must be at least 3 characters long";
+    }
+    //Validation For status
+    if (!values.status.trim()) {
+      errors.status = "Please select an option";
+    }
+
+    //Validation For spouseName
+    if (!values.spouseName.trim()) {
+      errors.spouseName = "Name is required";
+    } else if (values.spouseName.length < 3) {
+      errors.spouseName = "Name must be at least 3 characters long";
+    }
+
+     //Validation For DOJ
+     if (!values.doj.trim()) {
+      errors.doj = "Date Of Joining is required";
     }
     return errors;
   };
@@ -512,6 +538,11 @@ const EmployeeDetails = () => {
                 <option value="Missouri">Missouri</option>
                 <option value="Texas">Texas</option>
               </select>
+              {errors.reportingMg && (
+                <span className="text-xs text-right absolute text-red-700">
+                  {errors.reportingMg}
+                </span>
+              )}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
                   className="fill-current h-4 w-4"
@@ -532,15 +563,22 @@ const EmployeeDetails = () => {
                 Father's Name
               </label>
             </div>
-            <input
-              className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="fathersName"
-              name="fathersName"
-              type="text"
-              placeholder=" "
-              value={formData.fathersName}
-              onChange={changeHandle}
-            />
+            <div className="w-full">
+              <input
+                className="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="fathersName"
+                name="fathersName"
+                type="text"
+                placeholder=" "
+                value={formData.fathersName}
+                onChange={changeHandle}
+              />
+              {errors.fathersName && (
+                <span className="text-xs text-right absolute text-red-700">
+                  {errors.fathersName}
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
@@ -565,6 +603,11 @@ const EmployeeDetails = () => {
                 <option value="Missouri">Missouri</option>
                 <option value="Texas">Texas</option>
               </select>
+              {errors.status && (
+                <span className="text-xs text-right absolute text-red-700">
+                  {errors.status}
+                </span>
+              )}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
                   className="fill-current h-4 w-4"
@@ -585,15 +628,22 @@ const EmployeeDetails = () => {
                 Spouse Name
               </label>
             </div>
-            <input
-              className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="spouseName"
-              name="spouseName"
-              type="text"
-              placeholder=" "
-              value={formData.spouseName}
-              onChange={changeHandle}
-            />
+            <div className="w-full">
+              <input
+                className="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="spouseName"
+                name="spouseName"
+                type="text"
+                placeholder=" "
+                value={formData.spouseName}
+                onChange={changeHandle}
+              />
+              {errors.spouseName && (
+                <span className="text-xs text-right absolute text-red-700">
+                  {errors.spouseName}
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
@@ -606,8 +656,9 @@ const EmployeeDetails = () => {
                 Date Of Joining
               </label>
             </div>
+            <div className="w-full">
             <input
-              className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="doj"
               name="doj"
               type="date"
@@ -615,6 +666,12 @@ const EmployeeDetails = () => {
               value={formData.doj}
               onChange={changeHandle}
             />
+              {errors.doj && (
+                <span className="text-xs text-right absolute text-red-700">
+                  {errors.doj}
+                </span>
+              )}
+              </div>
           </div>
           <div className="grid grid-cols-2 items-center "></div>
         </div>
@@ -653,7 +710,7 @@ const EmployeeDetails = () => {
           </div>
         </div>
 
-        <div className="actions mb-10">
+        {/* <div className="actions mb-10">
           <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4">
             Previous
           </button>
@@ -663,7 +720,7 @@ const EmployeeDetails = () => {
           <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
             Cancel
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );
