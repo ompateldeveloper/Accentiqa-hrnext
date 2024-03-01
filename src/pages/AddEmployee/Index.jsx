@@ -1,7 +1,7 @@
 import React, { startTransition, useEffect, useState } from 'react'
 import { cn } from '../../lib/utils';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import EmployeeDetails from '../EmployeeDetails';
+import EmployeeDetails from './EmployeeDetails';
 
 export default function AddEmployee() {
     const [tabs,setTabs] = useState(0);
@@ -35,10 +35,18 @@ export default function AddEmployee() {
 
             </div>
             <div className="w-full">
-                <TabsContent tab={tabs} tabIndex={0}><EmployeeDetails/></TabsContent>
-                <TabsContent tab={tabs} tabIndex={1}>1</TabsContent>
-                <TabsContent tab={tabs} tabIndex={2}>2</TabsContent>
-                <TabsContent tab={tabs} tabIndex={3}>3</TabsContent>
+                <TabsContent tab={tabs} tabIndex={0}>
+                    <EmployeeDetails/>
+                </TabsContent>
+                <TabsContent tab={tabs} tabIndex={1}>
+
+                </TabsContent>
+                <TabsContent tab={tabs} tabIndex={2}>
+
+                </TabsContent>
+                <TabsContent tab={tabs} tabIndex={3}>
+
+                </TabsContent>
             </div>
             <div className="page-nav flex items-center gap-2">
                 <Button secondary onClick={()=>prevTab()} disabled={tabs==0} iconleft={<ArrowLeft className='h-5'/>}>Previous</Button>
