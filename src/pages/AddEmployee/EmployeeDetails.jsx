@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useFormValidation } from "../../hooks/useFormValidation";
+import { ChevronDown } from "lucide-react";
 const EmployeeDetails = () => {
   const [initialState, setinitialState] = useState({
     empSeries: "",
@@ -161,7 +162,7 @@ const EmployeeDetails = () => {
                 Basic Information
               </p>
       <form className="employee-form" onSubmit={handleSubmit}>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -189,13 +190,7 @@ const EmployeeDetails = () => {
                 </span>
               )}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                <ChevronDown className="h-4"/>
               </div>
             </div>
           </div>
@@ -227,7 +222,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -281,7 +276,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -335,7 +330,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -389,7 +384,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -443,7 +438,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -519,7 +514,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -584,7 +579,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -649,7 +644,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -678,7 +673,7 @@ const EmployeeDetails = () => {
           </div>
           <div className="grid grid-cols-2 items-center "></div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <input
@@ -698,7 +693,7 @@ const EmployeeDetails = () => {
           </div>
           <div className="grid grid-cols-2 items-center "></div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right"></div>
             <a href="#" className="text-blue-700 text-2xs font-bold mb-4" text-xs>Employee Onboarding Policy</a>
@@ -713,17 +708,6 @@ const EmployeeDetails = () => {
           </div>
         </div>
 
-        {/* <div className="actions mb-10">
-          <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4">
-            Previous
-          </button>
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded  mr-4">
-            Next
-          </button>
-          <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
-            Cancel
-          </button>
-        </div> */}
       </form>
     </div>
   );
