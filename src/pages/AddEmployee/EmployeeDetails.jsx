@@ -167,7 +167,7 @@ const EmployeeDetails = () => {
             <div className="text-right">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mr-2"
-                for="empSerie"
+                for="empSeries"
               >
                 Employee Number Series
               </label>
