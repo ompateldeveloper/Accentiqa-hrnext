@@ -16,7 +16,7 @@ export default function Sidebar() {
     })
 
     return (
-        <div className={cn('h-screen fixed flex mt-[81px]')}>
+        <div className={cn('h-[calc(100vh-80px)] fixed flex mt-20')}>
             <div className="fixed-panel w-16  bg-[#5872E3] text-white">
                 <TabsList>
                     <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Home'} selectTab={selectTab} icon={<Home/>}></TabsTrigger>
