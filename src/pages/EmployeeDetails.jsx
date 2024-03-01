@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useFormValidation } from "../hooks/useFormValidation";
+import { ChevronDown } from "lucide-react";
 const EmployeeDetails = () => {
   const [initialState, setinitialState] = useState({
     empSeries: "",
@@ -158,7 +159,7 @@ const EmployeeDetails = () => {
   return (
     <div className="container mx-auto px-2 employee-details ">
       <form className="employee-form" onSubmit={handleSubmit}>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -186,13 +187,7 @@ const EmployeeDetails = () => {
                 </span>
               )}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                <ChevronDown className="h-4"/>
               </div>
             </div>
           </div>
@@ -224,7 +219,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -278,7 +273,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -332,7 +327,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -386,7 +381,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -440,7 +435,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -516,7 +511,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -581,7 +576,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -646,7 +641,7 @@ const EmployeeDetails = () => {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <label
@@ -675,7 +670,7 @@ const EmployeeDetails = () => {
           </div>
           <div className="grid grid-cols-2 items-center "></div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right">
               <input
@@ -695,7 +690,7 @@ const EmployeeDetails = () => {
           </div>
           <div className="grid grid-cols-2 items-center "></div>
         </div>
-        <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right"></div>
             <a href="#">Employee Onboarding Policy</a>
