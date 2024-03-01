@@ -6,14 +6,11 @@ export const useFormValidation = (initialState, validate) => {
 
   const changeHandle = (e) => {
     const { name, value, checked } = e.target;
-
     if (e.target.type === "checkbox") {
       setFormData({
         ...formData,
         allow: e.target.checked,
       });
-      console.log(checked);
-      // setAllowed(checked)
     } else {
       setFormData({
         ...formData,

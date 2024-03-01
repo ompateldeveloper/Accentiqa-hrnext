@@ -251,7 +251,7 @@ const EmployeeDetails = () => {
             error={errors.aadharNo}
           />
           <FormElements.Input
-            label="EMERGENCY CONTACT NAME"
+            label="Emergency Contact Name"
             type="text"
             name="emergencyName"
             value={formData.emergencyName}

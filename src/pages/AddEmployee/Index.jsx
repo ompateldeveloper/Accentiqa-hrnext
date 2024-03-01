@@ -4,6 +4,9 @@ import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import EmployeeDetails from './EmployeeDetails';
 import Button from '../../components/ui/Button';
 import * as FormElements from '../../components/ui/FormElements';
+import Statutoryinfo from './Statutoryinfo';
+import Payment from './Payment';
+import Employeeposition from './Employeeposition';
 
 export default function AddEmployee() {
     const [tabs, setTabs] = useState(0);
@@ -41,31 +44,13 @@ export default function AddEmployee() {
                     <EmployeeDetails />
                 </TabsContent>
                 <TabsContent tab={tabs} tabIndex={1}>
-                    <div className="grid grid-cols-2 gap-2">
-
-                        <FormElements.Input label='First Name' type='' />
-                        <FormElements.Input label='Last Name' type='' />
-                    </div>
-                    <FormElements.Select label='Select' selected={'merc'} optionsArray={[
-                        { value: 'audi', title: 'Audi cars' },
-                        { value: 'merc', title: 'Mercideez benz cars' },
-                    ]} />
-
-                    <FormElements.Checkbox label='Agree' />
-                    <FormElements.RadioGroup className='flex items-center gap-2'>
-                        <FormElements.Radio name='gender' value='male' label='Male' />
-                        <FormElements.Radio name='gender' value='female' label='Female' />
-                        <FormElements.Radio name='gender' value='others' label='Others' />
-                    </FormElements.RadioGroup>
-
-
-
+                    <Employeeposition/>
                 </TabsContent>
                 <TabsContent tab={tabs} tabIndex={2}>
-
+                    <Statutoryinfo/>
                 </TabsContent>
                 <TabsContent tab={tabs} tabIndex={3}>
-
+                    <Payment/>
                 </TabsContent>
             </div>
             <div className="page-nav flex items-center  gap-2 m-4">
