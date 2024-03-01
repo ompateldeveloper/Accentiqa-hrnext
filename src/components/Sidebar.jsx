@@ -1,12 +1,10 @@
-import React, { useCallback, useState, useTransition } from 'react'
+import React, { startTransition, useCallback } from 'react'
 import useMediaQuery from '../hooks/useMediaQuery'
 import { cn } from "../lib/utils"
 import { Eye,HandCoins, Home, UserPlus} from 'lucide-react';
 import { useGlobalContext } from '../contexts/GlobalContext';
 export default function Sidebar() {
-    const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
-    const [isPending, startTransition] = useTransition()
     const { tabs, setTabs } = useGlobalContext();
 
     const selectTab = useCallback((nextTab) => {
@@ -16,7 +14,7 @@ export default function Sidebar() {
     })
 
     return (
-        <div className={cn('h-[calc(100vh-80px)] fixed flex mt-20')}>
+        <div className={cn('h-[calc(100vh-80px)] fixed flex mt-20 bg-white z-20 duration-100 lg:-translate-x-full')}>
             <div className="fixed-panel w-16  bg-[#5872E3] text-white">
                 <TabsList>
                     <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Home'} selectTab={selectTab} icon={<Home/>}></TabsTrigger>
