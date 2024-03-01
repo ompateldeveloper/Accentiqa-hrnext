@@ -2,23 +2,25 @@ import React, { startTransition, useEffect, useState } from 'react'
 import { cn } from '../../lib/utils';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import EmployeeDetails from './EmployeeDetails';
+import Button from '../../components/ui/Button';
+import * as FormElements from '../../components/ui/FormElements';
 
 export default function AddEmployee() {
-    const [tabs,setTabs] = useState(0);
+    const [tabs, setTabs] = useState(0);
 
     const selectTab = (newtab) => {
-        startTransition(()=>{
+        startTransition(() => {
             setTabs(newtab)
         })
     }
-    const nextTab = ()=>{
-        if(tabs<4){
-            setTabs(prev=>prev+1)
+    const nextTab = () => {
+        if (tabs < 4) {
+            setTabs(prev => prev + 1)
         }
     }
-    const prevTab = ()=>{
-        if(tabs>0){
-            setTabs(prev=>prev-1)
+    const prevTab = () => {
+        if (tabs > 0) {
+            setTabs(prev => prev - 1)
             console.log(tabs);
         }
     }
@@ -36,9 +38,27 @@ export default function AddEmployee() {
             </div>
             <div className="w-full">
                 <TabsContent tab={tabs} tabIndex={0}>
-                    <EmployeeDetails/>
+                    <EmployeeDetails />
                 </TabsContent>
                 <TabsContent tab={tabs} tabIndex={1}>
+                    <div className="grid grid-cols-2 gap-2">
+
+                        <FormElements.Input label='First Name' type='' />
+                        <FormElements.Input label='Last Name' type='' />
+                    </div>
+                    <FormElements.Select label='Select' selected={'merc'} optionsArray={[
+                        { value: 'audi', title: 'Audi cars' },
+                        { value: 'merc', title: 'Mercideez benz cars' },
+                    ]} />
+
+                    <FormElements.Checkbox label='Agree' />
+                    <FormElements.RadioGroup className='flex items-center gap-2'>
+                        <FormElements.Radio name='gender' value='male' label='Male' />
+                        <FormElements.Radio name='gender' value='female' label='Female' />
+                        <FormElements.Radio name='gender' value='others' label='Others' />
+                    </FormElements.RadioGroup>
+
+
 
                 </TabsContent>
                 <TabsContent tab={tabs} tabIndex={2}>
@@ -48,33 +68,18 @@ export default function AddEmployee() {
 
                 </TabsContent>
             </div>
-            <div className="page-nav flex items-center gap-2">
-                <Button secondary onClick={()=>prevTab()} disabled={tabs==0} iconleft={<ArrowLeft className='h-5'/>}>Previous</Button>
-                <Button secondary onClick={()=>nextTab()} disabled={tabs==3} iconright={<ArrowRight className='h-5'/>}>Next</Button>
-                <Button iconleft={<Check/>}>Finish</Button>
-                <Button secondary >Cancel</Button>
+            <div className="page-nav flex items-center  gap-2 m-4">
+                <Button secondary onClick={() => prevTab()} disabled={tabs == 0} iconleft={<ArrowLeft className='h-5' />}>Previous</Button>
+                <Button secondary onClick={() => nextTab()} disabled={tabs == 3} iconright={<ArrowRight className='h-5' />}>Next</Button>
+                {tabs == 3 && <Button iconleft={<Check />}>Finish</Button>}
+                <Button secondary className=' border-red-700 text-red-700 bg-red-100 '>Cancel</Button>
             </div>
         </div>
     )
 }
 
 
-function Button(props){
-    const {iconleft,iconright,children,className,secondary} = props;
-    return(
-        <button {...props} className={cn(
-            'flex items-center border-[3px] rounded-md px-2 py-1 group font-semibold disabled:saturate-0 ',
-            secondary?"bg-theme-2 bg-opacity-0 hover:bg-opacity-40 border-theme-1 text-theme-1 active:bg-opacity-65"
-            :"bg-theme-1 border-theme-1 text-white hover:border-opacity-10 hover:bg-opacity-90 active:bg-opacity-80 ",
-            className)}
-        >
 
-            {iconleft&&iconleft}
-            {children}
-            {iconright&&iconright}
-        </button>
-    )
-}
 
 function TabsList(props) {
     const { className, children } = props;
@@ -88,13 +93,13 @@ function TabsList(props) {
 
 
 function TabsTrigger(props) {
-    const { tab, selectTab, tabIndex, icon ,active} = props;
+    const { tab, selectTab, tabIndex, icon, active } = props;
     return (
         <button
             onClick={() => selectTab(tabIndex)}
-            className={cn('p-2 flex items-center justify-center duration-200',props.className, tab === tabIndex && (active || "border-b-blue-500"))}
+            className={cn('p-2 flex items-center justify-center duration-200', props.className, tab === tabIndex && (active || "border-b-blue-500"))}
         >
-            {icon&&icon}
+            {icon && icon}
             {props.children}
         </button>
     )
