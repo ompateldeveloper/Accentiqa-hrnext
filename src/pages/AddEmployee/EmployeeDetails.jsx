@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFormValidation } from "../hooks/useFormValidation";
+import { useFormValidation } from "../../hooks/useFormValidation";
 const EmployeeDetails = () => {
   const [initialState, setinitialState] = useState({
     empSeries: "",
@@ -157,6 +157,9 @@ const EmployeeDetails = () => {
   );
   return (
     <div className="container mx-auto px-2 employee-details ">
+      <p className="block tracking-wide text-gray-700 text-2xs font-bold mr-2 mb-4" >
+                Basic Information
+              </p>
       <form className="employee-form" onSubmit={handleSubmit}>
         <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
@@ -370,7 +373,7 @@ const EmployeeDetails = () => {
             </div>
             <div className="w-full">
               <input
-                className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="mobileNo"
                 name="mobileNo"
                 type="text"
@@ -398,7 +401,7 @@ const EmployeeDetails = () => {
             </div>
             <div className="w-full">
               <input
-                className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="aadharNo"
                 name="aadharNo"
                 type="text"
@@ -500,7 +503,7 @@ const EmployeeDetails = () => {
             </div>
             <div className="w-full">
               <input
-                className="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="w-full appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="emergencyNo"
                 name="emergencyNo"
                 type="text"
@@ -698,7 +701,7 @@ const EmployeeDetails = () => {
         <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-1 ">
           <div className="grid grid-cols-2 items-center my-3">
             <div className="text-right"></div>
-            <a href="#">Employee Onboarding Policy</a>
+            <a href="#" className="text-blue-700 text-2xs font-bold mb-4" text-xs>Employee Onboarding Policy</a>
           </div>
           <div className="grid grid-cols-2 items-center ">
             <button
