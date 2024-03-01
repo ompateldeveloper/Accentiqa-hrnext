@@ -2,18 +2,25 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import { Route, Routes } from 'react-router-dom'
+import AddEmployee from './AddEmployee/Index'
+import useMediaQuery from '../hooks/useMediaQuery'
+import { cn } from '../lib/utils'
 
 export default function Dashboard() {
+    const isLargeScreen = useMediaQuery('(max-width: 1024px)');
+
     return (
         <div>
             <Navbar />
 
             <div className="flex ">
                 <Sidebar />
-                <div className="routeswrapper ml-80 p-2">
+                <div className={cn("routeswrapper mt-20 p-2 w-full",!isLargeScreen&&"ml-80")}>
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
-                        <Route path='/' element={<>addEmployee</>} />
+                        <Route path='/' element={<>
+                            <AddEmployee/>
+                        </>} />
                         <Route path='/add-employee' element={<>addEmployee</>} />
                     </Routes>
                 </div>
@@ -29,7 +36,6 @@ function Dashboard404() {
     })
     return (
         <div className='container'>
-            You are on wrong route , be real okay
         </div>
     )
 }
