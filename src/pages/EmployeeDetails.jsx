@@ -710,17 +710,6 @@ const EmployeeDetails = () => {
           </div>
         </div>
 
-        {/* <div className="actions mb-10">
-          <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4">
-            Previous
-          </button>
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded  mr-4">
-            Next
-          </button>
-          <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
-            Cancel
-          </button>
-        </div> */}
       </form>
     </div>
   );
