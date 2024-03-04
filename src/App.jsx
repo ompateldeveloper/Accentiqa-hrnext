@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Signin from "./pages/Auth/Signin";
+import Popup from"./components/Popup";
+import EmployeePop from "./components/EmployeePop";
 // import Signup from "./pages/Auth/Signup";
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
                     !user ?
                         <Navigate to="/signin" replace />
                         :
-                        <Dashboard />
+                        //  <Dashboard />
+                       <EmployeePop />
+                        // <Popup />
                 } />
                 <Route path={"/signin"} element={
                     user ?
