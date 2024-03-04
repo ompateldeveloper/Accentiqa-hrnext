@@ -2,13 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-.employee-form input,.employee-form select{
-    height:35px;padding:2px
-}
-.employee-form .column{
-    width:50%!important
-}
-#required::after{
-    content: "*";color: red; font-size: 18px;
 
-}

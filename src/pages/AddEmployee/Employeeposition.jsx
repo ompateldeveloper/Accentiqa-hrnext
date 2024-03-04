@@ -1,75 +1,119 @@
-import React from 'react'
-import edit from "../assets/edit.png"
+import React, { useState } from "react";
+import * as FormElements from "../../components/ui/FormElements";
+import { useFormValidation } from "../../hooks/useFormValidation";
+export default function Employeeposition({form}) {
+  const {formData, errors, changeHandle, handleSubmit } = form
 
-const Employeeposition = () => {
+  const onSubmit = (data) =>{
+     console.log(data)
+  }
+ 
+
   return (
-    <div>
-        <h1 className='text-xl font-semibold ml-10 mt-5 '>Step 2: Employee Position</h1>
-        <div className='flex flex-col gap-3  mt-10 ml-32'>
-
-            <div className='flex' >
-            <label className='text-[#282828] font-semibold '>Grade</label><select className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[136px] w-56'>
-                <option value="" disable="true" hidden>Select Grade</option>
-                </select><img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-                
-            </div>
-            <div className='flex' >
-            <label className=' font-semibold '>Cost Center</label><select className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[96px] w-56'>
-                <option value="" disable="true"  hidden>Select Cost Center</option></select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex'>
-            <label className=' font-semibold' id="required">Designation</label><select 
-            className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm w-56 ml-[93px] '>
-                <option value="" disable="true"  hidden>Select Designation</option></select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex'>
-            <label className=' font-semibold' id="required">Location</label><select className=' border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[118px] w-56'>
-                <option value="" disable="true"  hidden>Select Location</option></select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex '>
-            <label className=' font-semibold' id="required">Division</label><select className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[122px] w-56'>
-                <option value="" disable="true"  hidden>Select Division</option></select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex'>
-            <label className=' font-semibold '>Department</label><select className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[92px] w-56'>
-                <option value="" disable="true"  hidden>Select Department</option></select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex'>
-            <label className=' font-semibold '>Attendance Shift</label><select className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[59px] w-56'>
-                <option value="" disable="true"  hidden>Select Attendance Shift</option></select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex'>
-            <label className=' font-semibold '>Project</label><select className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[129px] w-56'>
-                <option value="" disable="true"  hidden>Select Project</option>
-                <option value="null">Null</option>
-                
-                </select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex'>
-            <label className=' font-semibold '>Project Allocation Date</label><input type="date" className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[13px] w-56' placeholder='Project' />
-            
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
-            <div className='flex'>
-            <label className=' font-semibold '>Attendance Shift</label><select className='border-zinc-500 hover:border-[#5872E3] border-2 rounded-sm ml-[59px] w-56'>
-                <option value="" disable="true"  hidden>Select Attendance Shift</option></select>
-                <img className='w-4 h-4 ml-2 mt-1 cursor-pointer' src={edit} alt="edit"/>
-            </div>
+    <div className="container mx-auto px-2 employee-details">
+      <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
+        Employee Position
+      </p>
+      <form className="employee-form" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
+          <FormElements.Select
+            label="Grade"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="grade"
+            value={formData.grade}
+            onChange={changeHandle}
+            error={errors.grade}
+          />
+          <FormElements.Select
+            label="Cost Center"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="costCenter"
+            value={formData.costCenter}
+            onChange={changeHandle}
+            error={errors.costCenter}
+          />
         </div>
-        <div className='flex gap-1 mt-10 ml-10'>
-        <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow ">Previous</button>
-        <button type='submit' className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded  ">Next</button>
-        <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-2 border border-red-500 hover:border-transparent rounded">Cancel</button>
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
+          <FormElements.Select
+            label="Designation"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="designation"
+            value={formData.designation}
+            onChange={changeHandle}
+            error={errors.designation}
+          />
+          <FormElements.Select
+            label="Location"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="location"
+            value={formData.location}
+            onChange={changeHandle}
+            error={errors.location}
+          />
         </div>
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
+          <FormElements.Select
+            label="Division"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="division"
+            value={formData.division}
+            onChange={changeHandle}
+            error={errors.division}
+          />
+          <FormElements.Select
+            label="Department"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="department"
+            value={formData.department}
+            onChange={changeHandle}
+            error={errors.department}
+          />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
+          <FormElements.Select
+            label="Attendance Shift"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="shift"
+            value={formData.shift}
+            onChange={changeHandle}
+            error={errors.shift}
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4"
+        >
+          Submit
+        </button>
+      </form>
     </div>
-  )
+  );
 }
-
-export default Employeeposition
