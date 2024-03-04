@@ -1,168 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import { ChevronDown } from "lucide-react";
 import * as FormElements from "../../components/ui/FormElements";
-const EmployeeDetails = () => {
-  const [initialState, setinitialState] = useState({
-    empSeries: "",
-    probationPeriod: "",
-    empNo: "",
-    confirmDate: "",
-    name: "",
-    email: "",
-    dob: "",
-    mobileNo: "",
-    aadharNo: "",
-    emergencyName: "",
-    gender: "",
-    emergencyNo: "",
-    reportingMg: "",
-    fathersName: "",
-    status: "",
-    spouseName: "",
-    doj: "",
-    allow: null,
-  });
-  // const changeHandle=(e)=>{
-  //     const {name,value,checked}=e.target
+const EmployeeDetails = ({form}) => {
+  const {formData, errors, changeHandle, handleSubmit } = form
 
-  //     if(e.target.type==="checkbox"){
-  //         setFormData({
-  //             ...formData,
-  //             allow: e.target.checked
-  //         })
-  //         console.log(checked);
-  //         // setAllowed(checked)
-  //     } else {
-  //         setFormData({
-  //             ...formData,
-  //             [name]:value
-  //         })
-  //     }
-  //     //Validation
-  //     //Validation For name
-  //     const newErrors = { ...errors };
-  //     if (name === 'name') {
-  //       if (!value.trim()) {
-  //         newErrors.name = 'Username is required';
-  //       } else if (value.length < 3) {
-  //         newErrors.name = 'Username must be at least 3 characters long';
-  //       } else {
-  //         delete newErrors.name;
-  //       }
-  //     }
-  //    // Update validation errors
-  // setErrors(newErrors);
 
-  // }
-  // const submitForm=(e)=>{
-  //     e.preventDefault()
-  //     console.log(formData)
-  // }
-  const validate = (values) => {
-    const errors = {};
-    //Validation For empSeries
-    if (!values.empSeries.trim()) {
-      errors.empSeries = "Please select an option";
-    }
-    //Validation For empSeries
-    if (!values.probationPeriod.trim()) {
-      errors.probationPeriod = "Number is required";
-    }
-    //Validation For empNo
-    if (!values.empNo.trim()) {
-      errors.empNo = "Number is required";
-    }
-    //Validation For confirmDate
-    if (!values.confirmDate.trim()) {
-      errors.confirmDate = "Date is required";
-    }
-    //Validation For name
-    if (!values.name.trim()) {
-      errors.name = "Name is required";
-    } else if (values.name.length < 3) {
-      errors.name = "Name must be at least 3 characters long";
-    }
-    //Validation For email
-    if (!values.email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-      errors.email = "Invalid email address";
-    }
-    //Validation For DOB
-    if (!values.dob.trim()) {
-      errors.dob = "Date Of Birth is required";
-    }
+  const onSubmit = (data) =>{
+    console.log("new")
+ }
 
-    // Validation For mobileNo
-    if (!values.mobileNo.trim()) {
-      errors.mobileNo = "Mobile number is required";
-    } else if (!/^\d{1,10}$/.test(values.mobileNo)) {
-      errors.mobileNo = "Please provide 10 digits";
-    }
-
-    // validation For aadharNo
-    if (!values.aadharNo.trim()) {
-      errors.aadharNo = "Aadhar number is required";
-    } else if (!/^\d{12}$/.test(values.aadharNo)) {
-      errors.aadharNo = "Invalid Aadhar number";
-    }
-
-    //Validation For emergencyName
-    if (!values.emergencyName.trim()) {
-      errors.emergencyName = "Name is required";
-    } else if (values.emergencyName.length < 3) {
-      errors.emergencyName = "Name must be at least 3 characters long";
-    }
-
-    // validation For gender
-    if (!values.gender) {
-      errors.gender = "Please select a gender";
-    }
-    // Validation For emergencyNo
-    if (!values.emergencyNo.trim()) {
-      errors.emergencyNo = "Mobile number is required";
-    } else if (!/^\d{1,10}$/.test(values.emergencyNo)) {
-      errors.emergencyNo = "Please provide 10 digits";
-    }
-    //Validation For reportingMg
-    if (!values.reportingMg.trim()) {
-      errors.reportingMg = "Please select an option";
-    }
-    //Validation For fathersName
-    if (!values.fathersName.trim()) {
-      errors.fathersName = "Name is required";
-    } else if (values.fathersName.length < 3) {
-      errors.fathersName = "Name must be at least 3 characters long";
-    }
-    //Validation For status
-    if (!values.status.trim()) {
-      errors.status = "Please select an option";
-    }
-
-    //Validation For spouseName
-    if (!values.spouseName.trim()) {
-      errors.spouseName = "Name is required";
-    } else if (values.spouseName.length < 3) {
-      errors.spouseName = "Name must be at least 3 characters long";
-    }
-
-    //Validation For DOJ
-    if (!values.doj.trim()) {
-      errors.doj = "Date Of Joining is required";
-    }
-    return errors;
-  };
-  const { formData, errors, changeHandle, handleSubmit } = useFormValidation(
-    initialState,
-    validate
-  );
   return (
     <div className="container mx-auto px-2 employee-details ">
       <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
         Basic Information
       </p>
-      <form className="employee-form" onSubmit={handleSubmit}>
+      <form className="employee-form"  >
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
             label="Employee Number Series"
@@ -261,9 +114,9 @@ const EmployeeDetails = () => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.RadioGroup className="flex items-center gap-2 " label="Gender" error={errors.gender}>
-            <FormElements.Radio name="gender" value="male" label="Male" onChange={changeHandle} />
-            <FormElements.Radio name="gender" value="female" label="Female" onChange={changeHandle}/>
-            <FormElements.Radio name="gender" value="others" label="Others" onChange={changeHandle}/>
+            <FormElements.Radio name="gender" checked={formData.gender==='male'} value="male" label="Male" onChange={changeHandle} />
+            <FormElements.Radio name="gender" checked={formData.gender==='female'} value="female" label="Female" onChange={changeHandle}/>
+            <FormElements.Radio name="gender" checked={formData.gender==='others'} value="others" label="Others" onChange={changeHandle}/>
           </FormElements.RadioGroup>
           <FormElements.Input
             label="Emergency Contact Number"
@@ -339,21 +192,9 @@ const EmployeeDetails = () => {
           <a
               href="#"
               className="text-blue-700 text-2xs font-bold my-5"
-              text-xs
             >
               Employee Onboarding Policy
             </a>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-1 ">
-        
-          <div className="grid grid-cols-2 items-center ">
-            <button
-              type="submit"
-              className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4"
-            >
-              Submit
-            </button>
-          </div>
         </div>
       </form>
     </div>

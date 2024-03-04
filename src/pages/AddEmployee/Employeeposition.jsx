@@ -1,45 +1,13 @@
 import React, { useState } from "react";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
-export default function Employeeposition() {
-  const initialState = {
-    grade: "",
-    costCenter: "",
-    designation: "",
-    location: "",
-    division: "",
-    department: "",
-    shift: "",
-  };
-  const validate = (values) => {
-    const errors = {};
-    if (!values.grade.trim()) {
-      errors.grade = "Please select an option";
-    }
-    if (!values.costCenter.trim()) {
-      errors.costCenter = "Please select an option";
-    }
-    if (!values.designation.trim()) {
-      errors.designation = "Please select an option";
-    }
-    if (!values.location.trim()) {
-      errors.location = "Please select an option";
-    }
-    if (!values.division.trim()) {
-      errors.division = "Please select an option";
-    }
-    if (!values.department.trim()) {
-      errors.department = "Please select an option";
-    }
-    if (!values.shift.trim()) {
-      errors.shift = "Please select an option";
-    }
-    return errors;
-  };
-  const { formData, errors, changeHandle, handleSubmit } = useFormValidation(
-    initialState,
-    validate
-  );
+export default function Employeeposition({form}) {
+  const {formData, errors, changeHandle, handleSubmit } = form
+
+  const onSubmit = (data) =>{
+     console.log(data)
+  }
+ 
 
   return (
     <div className="container mx-auto px-2 employee-details">
