@@ -33,18 +33,16 @@ export const useFormValidation = (initialState, onSubmit, validate) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // Perform final validation before submitting the form
-    const validationErrors = validate(formData);
+  const handleSubmit = async (e) => {
+    const validationErrors = validate(formData)
     setErrors(validationErrors);
-
     if (Object.keys(validationErrors).length === 0) {
       onSubmit(formData);
-      console.log(formData);
       console.log("Form is valid. Submitting...");
+      return true
     } else {
       console.log("Form has validation errors.");
+      return false
     }
   };
 
