@@ -118,3 +118,33 @@ export const validate1 = (values) => {
     }
     return errors;
   };
+  export const validate3 = (values) => {
+    const errors = {};
+    // PAN card number validation
+    if (!values.panNo.trim()) {
+      errors.panNo = "PAN card number is required";
+    } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(values.panNo)) {
+      errors.panNo = "Invalid PAN card number";
+    }
+    // validation For aadharNo
+    if (!values.aadharNo.trim()) {
+      errors.aadharNo = "Aadhar number is required";
+    } else if (!/^\d{12}$/.test(values.aadharNo)) {
+      errors.aadharNo = "Invalid Aadhar number";
+    }
+    // Passport number validation
+    if (!values.passportNo.trim()) {
+      errors.passportNo = "Passport number is required";
+    } else if (!/^[a-zA-Z0-9]{6,15}$/.test(values.passportNo)) {
+      errors.passportNo = "Invalid passport number";
+    }
+    return errors;
+  };
+
+  export const validate4 = (values) => {
+    const errors = {};
+    if (!values.paymentType.trim()) {
+      errors.paymentType = "Please select an option";
+    }
+    return errors;
+  };

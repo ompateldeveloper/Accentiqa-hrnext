@@ -1,38 +1,8 @@
 import React, { useState } from "react";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
-export default function Statutoryinfo() {
-  const initialState = {
-    panNo: "",
-    aadharNo: "",
-    passportNo: "",
-  };
-  const validate = (values) => {
-    const errors = {};
-    // PAN card number validation
-    if (!values.panNo.trim()) {
-      errors.panNo = "PAN card number is required";
-    } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(values.panNo)) {
-      errors.panNo = "Invalid PAN card number";
-    }
-    // validation For aadharNo
-    if (!values.aadharNo.trim()) {
-      errors.aadharNo = "Aadhar number is required";
-    } else if (!/^\d{12}$/.test(values.aadharNo)) {
-      errors.aadharNo = "Invalid Aadhar number";
-    }
-    // Passport number validation
-    if (!values.passportNo.trim()) {
-      errors.passportNo = "Passport number is required";
-    } else if (!/^[a-zA-Z0-9]{6,15}$/.test(values.passportNo)) {
-      errors.passportNo = "Invalid passport number";
-    }
-    return errors;
-  };
-  const { formData, errors, changeHandle, handleSubmit } = useFormValidation(
-    initialState,
-    validate
-  );
+export default function Statutoryinfo({form}) {
+  const {formData, errors, changeHandle, handleSubmit } = form
   return (
     <div>
       <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
@@ -67,12 +37,6 @@ export default function Statutoryinfo() {
             error={errors.passportNo}
           />
         </div>
-        <button
-          type="submit"
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4"
-        >
-          Submit
-        </button>
       </form>
     </div>
   );

@@ -182,13 +182,6 @@ const EmployeeDetails = ({form}) => {
           />
         </div>
         <div className="grid grid-cols-1 text-center gap-1 my-5">
-        <FormElements.Checkbox
-            label="Allow the employee to fill in their information"
-            name="allow"
-            value={formData.allow}
-            onChange={changeHandle}
-            error={errors.allow}
-          />
           <a
               href="#"
               className="text-blue-700 text-2xs font-bold my-5"
