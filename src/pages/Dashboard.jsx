@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import AddEmployee from './AddEmployee/Index'
 import useMediaQuery from '../hooks/useMediaQuery'
 import { cn } from '../lib/utils'
+import ViewEmployee from './ViewEmployee/Index'
 
 export default function Dashboard() {
     const isLargeScreen = useMediaQuery('(max-width: 1024px)');
@@ -22,6 +23,9 @@ export default function Dashboard() {
                             <AddEmployee/>
                         </>} />
                         <Route path='/add-employee' element={<>addEmployee</>} />
+                        <Route path='/view-employee' element={<>
+                            <ViewEmployee/>
+                        </>} />
                     </Routes>
                 </div>
 

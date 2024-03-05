@@ -95,6 +95,32 @@ export default function Employeeposition({form}) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
+            label="Project"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="project"
+            value={formData.project}
+            onChange={changeHandle}
+            error={errors.project}
+          />
+          <FormElements.Select
+            label="Project Allocation Date"
+            optionsArray={[
+              { value: "", title: "Select an Option" },
+              { value: "audi", title: "Audi cars" },
+              { value: "merc", title: "Mercideez benz cars" },
+            ]}
+            name="projectDate"
+            value={formData.projectDate}
+            onChange={changeHandle}
+            error={errors.projectDate}
+          />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
+          <FormElements.Select
             label="Attendance Shift"
             optionsArray={[
               { value: "", title: "Select an Option" },
@@ -107,12 +133,6 @@ export default function Employeeposition({form}) {
             error={errors.shift}
           />
         </div>
-        <button
-          type="submit"
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-4"
-        >
-          Submit
-        </button>
       </form>
     </div>
   );
