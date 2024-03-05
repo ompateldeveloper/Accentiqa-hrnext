@@ -2,7 +2,7 @@ import EmployeeTable from "./EmployeeTable"
 export default function ViewEmployee() {
     return (
         <div>
-            <EmployeeTable/>
+            <EmployeeTable />
         </div>
     )
 }

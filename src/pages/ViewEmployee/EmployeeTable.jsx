@@ -7,6 +7,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Edit } from "lucide-react";
 import { IconButton } from "@mui/material";
+import DialogBox from "./DialogBox";
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
@@ -48,7 +49,7 @@ const columns = [
     headerName: "Actions",
     width: 100,
     sortable: false,
-    renderCell: (params) => <BasicMenu rowData={params.row} />,
+    renderCell: (params) => <BasicMenu rowData={params.row}/>,
   },
 ];
 const rows = [
@@ -138,7 +139,6 @@ export default function EmployeeTable() {
   const [projectType, setProjectType] = useState();
   const changeHandle = (e) => {
     setProjectType(e.target.value);
-    console.log("project",projectType)
   };
   return (
     <div>
@@ -176,18 +176,22 @@ export default function EmployeeTable() {
 }
 
 export function BasicMenu({ rowData }) {
-  console.log(rowData);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [dialogOpen,setDialogOpen]= useState();
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+    setDialogOpen(true)
   };
 
   return (
     <div>
+      <DialogBox open={dialogOpen} rowData={rowData} setDialogOpen={setDialogOpen}/>  
+
       <Button
         variant="text"
         id="basic-button"
@@ -207,9 +211,12 @@ export function BasicMenu({ rowData }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Edit</MenuItem>
+        <MenuItem onClick={handleClose} >
+            Edit
+        </MenuItem>
         <MenuItem onClick={handleClose}>Delete</MenuItem>
       </Menu>
     </div>
   );
 }
+

@@ -28,6 +28,7 @@ export const useFormValidation = (initialState, onSubmit, validate) => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     const validationErrors = validate(formData);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
@@ -36,6 +37,7 @@ export const useFormValidation = (initialState, onSubmit, validate) => {
         ...formData
       })
       console.log("Form is valid. Submitting...");
+      onSubmit()
       return true;
     } else {
       console.log("Form has validation errors.");
