@@ -31,17 +31,17 @@ export const useFormValidation = (initialState, onSubmit, validate) => {
     const validationErrors = validate(formData);
     setErrors(validationErrors);
 
-    if (e.preventDefault) {
-      e.preventDefault();
-    }
+    // if (e.preventDefault) {
+    //   e.preventDefault();
+    // }
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log("data", formData);
       setNewData({
         ...formData,
       });
       console.log("Form is valid. Submitting...");
       onSubmit(formData);
+      console.log("data", formData);
       return true;
     } else {
       console.log("Form has validation errors.");
