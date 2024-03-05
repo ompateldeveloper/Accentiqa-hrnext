@@ -68,23 +68,23 @@ export const validate1 = (values) => {
   if (!values.reportingMg.trim()) {
     errors.reportingMg = "Please select an option";
   }
-  //Validation For fathersName
-  if (!values.fathersName.trim()) {
-    errors.fathersName = "Name is required";
-  } else if (values.fathersName.length < 3) {
-    errors.fathersName = "Name must be at least 3 characters long";
-  }
+  // //Validation For fathersName
+  // if (!values.fathersName.trim()) {
+  //   errors.fathersName = "Name is required";
+  // } else if (values.fathersName.length < 3) {
+  //   errors.fathersName = "Name must be at least 3 characters long";
+  // }
   //Validation For status
   if (!values.status.trim()) {
     errors.status = "Please select an option";
   }
 
-  //Validation For spouseName
-  if (!values.spouseName.trim()) {
-    errors.spouseName = "Name is required";
-  } else if (values.spouseName.length < 3) {
-    errors.spouseName = "Name must be at least 3 characters long";
-  }
+  // //Validation For spouseName
+  // if (!values.spouseName.trim()) {
+  //   errors.spouseName = "Name is required";
+  // } else if (values.spouseName.length < 3) {
+  //   errors.spouseName = "Name must be at least 3 characters long";
+  // }
 
   //Validation For DOJ
   if (!values.doj.trim()) {

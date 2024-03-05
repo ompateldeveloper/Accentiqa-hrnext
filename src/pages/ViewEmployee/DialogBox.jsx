@@ -36,7 +36,7 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
           >
             <CardContent>
               <form onSubmit={handleSubmit}>
-                <Grid container spacing={2}>
+                <Grid container spacing={0}>
                   <Grid item xs={12}>
                     <FormElements.Input
                       label="Name"

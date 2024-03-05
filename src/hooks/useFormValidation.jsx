@@ -3,14 +3,14 @@ import React, { useState } from "react";
 export const useFormValidation = (initialState, onSubmit, validate) => {
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState({});
- const [newData,setNewData]=useState({})
+  const [newData, setNewData] = useState({});
   const changeHandle = (e) => {
-    const { name, value} = e.target;
-    
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
 
     // Perform validation
     const validationErrors = validate({ ...formData, [name]: value });
@@ -28,16 +28,20 @@ export const useFormValidation = (initialState, onSubmit, validate) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
     const validationErrors = validate(formData);
     setErrors(validationErrors);
+
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+
     if (Object.keys(validationErrors).length === 0) {
       console.log("data", formData);
       setNewData({
-        ...formData
-      })
+        ...formData,
+      });
       console.log("Form is valid. Submitting...");
-      onSubmit()
+      onSubmit(formData);
       return true;
     } else {
       console.log("Form has validation errors.");
