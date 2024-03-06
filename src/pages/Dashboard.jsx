@@ -19,13 +19,9 @@ export default function Dashboard() {
                 <div className={cn("routeswrapper mt-20 p-2 w-full",!isLargeScreen&&"ml-80")}>
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
-                        <Route path='/' element={<>
-                            <AddEmployee/>
-                        </>} />
-                        <Route path='/add-employee' element={<>addEmployee</>} />
-                        <Route path='/view-employee' element={<>
-                            <ViewEmployee/>
-                        </>} />
+                        <Route path='/' element={<>dash</>} />
+                        <Route path='/add-employee' element={<AddEmployee/>} />
+                        <Route path='/view-employee' element={<ViewEmployee/>} />
                     </Routes>
                 </div>
 
@@ -40,6 +36,7 @@ function Dashboard404() {
     })
     return (
         <div className='container'>
+            dashboard 404
         </div>
     )
 }

@@ -1,9 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-.align-right {
-    display: flex !important;
-    justify-content: right !important;
-  }
