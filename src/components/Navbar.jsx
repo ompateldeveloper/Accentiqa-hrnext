@@ -37,7 +37,7 @@ export default function Navbar() {
                         "aria-labelledby": "basic-button",
                     }}
                 >
-                    <div className='mx-4 capitalize text-theme-1 font-semibold text-lg'>{user.name}</div>
+                    {user &&<div className='mx-4 capitalize text-theme-1 font-semibold text-lg'>{user.name}</div>}
                     <MenuItem onClick={handleClose} >
                         <Cog className='text-theme-text w-5 mr-2'/>
                         Setting
