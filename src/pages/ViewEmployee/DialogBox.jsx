@@ -102,8 +102,7 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
                     />
                   </Grid>
 
-                  <Grid item container rowSpacing={1}>
-                    <Grid item xs={6}>
+                  <Grid item container rowSpacing={1} className='flex items-center justify-between'>
                       <Button
                         variant="contained"
                         color="primary"
@@ -111,8 +110,6 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
                       >
                         Update
                       </Button>
-                    </Grid>
-                    <Grid item xs={6} className="align-right">
                       <Button
                         variant="contained"
                         color="error"
@@ -120,7 +117,6 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
                       >
                         Cancel
                       </Button>
-                    </Grid>
                   </Grid>
                 </Grid>
               </form>
