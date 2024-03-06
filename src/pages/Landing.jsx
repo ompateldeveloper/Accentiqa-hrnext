@@ -4,6 +4,6 @@ import Signin from './Auth/Signin'
 
 export default function Landing() {
     return (
-        <div><Signin/></div>
+        <div><Link to="/dashboard">go to dashboard</Link></div>
     )
 }
