@@ -1,69 +1,74 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
-// import { useAuthContext } from '../contexts/AuthContextProvider';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthContext';
+import * as FormElements from '../../components/ui/FormElements'
+import Button from '../../components/ui/Button';
+import { useFormValidation } from '../../hooks/useFormValidation';
+import {getUrl} from '../../components/Url'
 export default function Signin() {
-    const [details, setDetails] = useState({ email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
-    const [err, setErr] = useState("")
-    // const { dispatch } = useAuthContext()
-
-    async function handleSubmit(e) {
-        e.preventDefault()
-        let { email, password } = details
-        setIsLoading(true)
-        setErr("")
-
-
-        const response = await fetch('/api/v1/auth/signin', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        })
-        const json = await response.json()
-
-        if (!response.ok) {
-            setIsLoading(false)
-            setErr(json.error)
-            console.log(json)
-        }
-        if (response.ok) {
-            localStorage.setItem('user', JSON.stringify(json))
-            // dispatch({ type: 'LOGIN', payload: json }) 
-            setIsLoading(false)
-        }
+    const { dispatch } = useAuthContext()
+    const url = getUrl()
+    const initialState = {
+        email: "",
+        password: ""
     }
+    const onSubmit = async(values) => {
+        await axios.post(url+'/api/v1/auth/signin',formData)
+        .then((data)=>{
+            localStorage.setItem('user', JSON.stringify(data.data))
+            dispatch({ type: 'LOGIN', payload: data.data })
+        })
+        .catch((error)=>{
+            
+            console.log(error);
+        })
+        .finally(()=>{
+            console.log('finally');
+            setIsLoading(false)
+        })
+
+        setIsLoading(true)
+    }
+    function validate(values) {
+        const errors = {};
+
+        if (!values.email.trim()) {
+            errors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+            errors.email = "Invalid email address";
+        }
+        if (!values.password.trim()) {
+            errors.password = "Password is required";
+        } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/.test(values.password)) {
+            errors.password = "Weak Password";
+        }
+        return errors
+    }
+    const { formData, errors, changeHandle, handleSubmit, cleanup } = useFormValidation(initialState, onSubmit, validate)
+
     return (
         <div className=' grid grid-cols-2 overflow-hidden h-screen'>
             <div className="signin-left  bg-theme-1 h-full w-full">
-                <video className='object-cover w-full h-full'  src='https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/720p/mp4/file.mp4' loop={true} onClick={(e)=>e.target.play()} autoPlay={true}/>
+                <video className='object-cover w-full h-full' src='https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/720p/mp4/file.mp4' loop={true} onClick={(e) => e.target.play()} autoPlay={true} />
             </div>
-            <form className=' p-8 w-full ' onSubmit={handleSubmit}>
-                <div className="title m-2 my-4 text-4xl font-bold text-zinc-700">Sign In</div>
+            <div className=' p-8 w-full ' >
+                <div className="title m-2 my-4 text-4xl font-bold text-theme-text">Sign In</div>
                 <div className="m-2 font-semibold text-zinc-400">Enter your email and password to sign in!</div>
                 <div className="h-px  m-2 my-3 bg-zinc-200"></div>
-                <div className="email relative pt-6 m-2 flex flex-col-reverse gap-2">
-                    <input type="text" name="email" id="email" className=" w-full h-12 p-2 peer/email rounded-lg bg-transparent border-2 border-gray-200 focus:border-theme-1 outline-none text-gray-900 transition duration-300 " onChange={(e) => { setDetails(prev => ({ ...prev, email: e.target.value })) }} value={details.email} />
-                    <label htmlFor="email" className={" peer-focus/email:text-theme-1 text-gray-400    duration-300 select-none" + (details.email?.length ? "  " : " ")}>Email</label>
+                <FormElements.Input value={formData.email} onChange={changeHandle} error={errors.email} className='m-2 my-4' label='Email' type='email' name='email' />
+                <FormElements.Input value={formData.password} onChange={changeHandle} error={errors.password} className='m-2 my-4' label='Password' type='password' name='password' />
+
+               
+                <Button className='m-2' disabled={isLoading} onClick={handleSubmit}>Sign In</Button>
+                <div className="not-user text-gray-400 m-2 my-3 text-sm">
+                    Not a User? &nbsp;
+                    <Link to={'/signup'} className="text-violet-500" >Sign Up</Link>
                 </div>
-                <div className="password relative pt-6 m-2 mt-6 flex flex-col-reverse gap-2">
-                    <input type="password" autoComplete='on' name="password" id="password" className=" w-full h-12 p-2 peer/password bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300" onChange={(e) => { setDetails(prev => ({ ...prev, password: e.target.value })) }} value={details.password} />
-                    <label htmlFor="password" className={" peer-focus/password:text-theme-1 text-gray-400 duration-300 select-none"}>Password</label>
-                </div>
-                {err && <div className='text-sm text-red-600 px-3 capitalize '>{err}</div>}
-                <div className="forget m-2 my-6 text-sm text-theme-1 font-semibold">Forgot Password?</div>
-                <button disabled={isLoading} className=" flex items-center justify-center group self-start h-10 px-6 rounded-lg font-bold m-2 mt-8 bg-gradient-to-br from-pink-300 to-theme-1  text-white disabled:saturate-0" >
-                    <span>Sign In</span>
-                    <div className=" hidden group-disabled:grid">
-                    </div>
-                </button>
-                <div className="not-user text-gray-400 m-3 text-sm">
-                    Not User? &nbsp;
-                    {/* <Link to={'/signup'} className="text-violet-500" >Sign Up</Link> */}
-                    <a to={'/signup'} className="text-theme-1 font-semibold" >Sign Up</a>
-                </div>
-            </form>
+            </div>
+            
         </div>
     )
 }

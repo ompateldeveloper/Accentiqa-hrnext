@@ -2,11 +2,13 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Signin from "./pages/Auth/Signin";
+import { useAuthContext } from "./contexts/AuthContext";
+import Signup from "./pages/Auth/Signup";
 // import Signup from "./pages/Auth/Signup";
 
 function App() {
     // const user=null;
-    const user={};
+    const {user}=useAuthContext();
     return (
         <div className="">
             <Routes>
@@ -26,11 +28,11 @@ function App() {
                         <Navigate to="/dashboard" replace />
                         : <Signin />
                 } />
-                {/* <Route path={"/signup"} element={
+                <Route path={"/signup"} element={
                     user ?
                         <Navigate to="/dashboard" replace />
                         : <Signup />
-                } /> */}
+                } />
 
             </Routes>
         </div>
