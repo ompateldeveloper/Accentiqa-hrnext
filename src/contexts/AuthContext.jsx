@@ -8,10 +8,12 @@ const AuthContext = createContext();
 const authReducer = (state, action) => {
     switch (action.type) {
         case 'LOGIN':
-            return { user: action.payload }
+            return {...state, user: action.payload }
         case 'LOGOUT':
             localStorage.removeItem('user')
-            return { user: null }
+            return { ...state, user: null }
+        case 'LOADED':
+            return {...state, isLoading:false }
         default:
             return state
     }
@@ -19,7 +21,8 @@ const authReducer = (state, action) => {
 
 export default function AuthContextProvider({children}) {
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
+        user: null,
+        isLoading:true
     })
 
     useEffect(() => {
@@ -32,6 +35,8 @@ export default function AuthContextProvider({children}) {
         else{
             dispatch({type:'LOGOUT'})
         }
+        dispatch({type:'LOADED'})
+        
     }, [])
 
     return (
