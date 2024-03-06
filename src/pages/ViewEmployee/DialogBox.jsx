@@ -1,11 +1,11 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
-import { Grid, TextField, Button, Card, CardContent } from "@mui/material";
+import { Grid, TextField, Button, Card, CardContent, Box } from "@mui/material";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import { validateDialog } from "./validators";
 export default function DialogBox({ open, rowData, setDialogOpen }) {
-  const { formData, errors, changeHandle, handleSubmit } = useFormValidation(
+  const { formData, errors, changeHandle, handleSubmit,cleanup } = useFormValidation(
     {
       name: "",
       project: "",
@@ -15,13 +15,19 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
     },
     (values) => {
       setDialogOpen(false);
+      cleanup()
+
     },
     validateDialog
   );
+  const closeDialog = () => {
+    setDialogOpen(false);
+    cleanup()
+  };
   return (
     <Dialog
       open={open}
-      // onClose={handleClose}
+      onClose={closeDialog}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -35,8 +41,8 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
             }}
           >
             <CardContent>
-              <form onSubmit={handleSubmit}>
-                <Grid container spacing={2}>
+              <form>
+                <Grid container spacing={0}>
                   <Grid item xs={12}>
                     <FormElements.Input
                       label="Name"
@@ -96,15 +102,25 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
                     />
                   </Grid>
 
-                  <Grid item xs={12}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                    >
-                      Update
-                    </Button>
+                  <Grid item container rowSpacing={1}>
+                    <Grid item xs={6}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleSubmit}
+                      >
+                        Update
+                      </Button>
+                    </Grid>
+                    <Grid item xs={6} className="align-right">
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={closeDialog}
+                      >
+                        Cancel
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
               </form>
