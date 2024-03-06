@@ -1,9 +1,21 @@
 import React, { useState } from "react";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
+
 export default function Employeeposition({form}) {
   const {formData, errors, changeHandle, handleSubmit } = form
-
+  const [data,setData]=useState()
+  const fetchData = async () => {
+    const baseUrl = getUrl();
+    const endpoint = "/api/data"; // Example endpoint
+    const url = baseUrl + endpoint;
+    axios
+      .get(url)
+      .then((response) => {
+        setData(response.data)
+      })
+      .catch((error) => {});
+  };
   const onSubmit = (data) =>{
      console.log(data)
   }

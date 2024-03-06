@@ -5,7 +5,7 @@ import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import { validateDialog } from "./validators";
 export default function DialogBox({ open, rowData, setDialogOpen }) {
-  const { formData, errors, changeHandle, handleSubmit } = useFormValidation(
+  const { formData, errors, changeHandle, handleSubmit,cleanup } = useFormValidation(
     {
       name: "",
       project: "",
@@ -15,21 +15,19 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
     },
     (values) => {
       setDialogOpen(false);
+      cleanup()
+
     },
     validateDialog
   );
   const closeDialog = () => {
     setDialogOpen(false);
-    formData.name = "";
-    formData.project = "";
-    formData.projectDate = "";
-    formData.allocatedPro = "";
-    formData.billType = "";
+    cleanup()
   };
   return (
     <Dialog
       open={open}
-      // onClose={handleClose}
+      onClose={closeDialog}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -114,7 +112,7 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
                         Update
                       </Button>
                     </Grid>
-                    <Grid item xs={6} className='align-right'>
+                    <Grid item xs={6} className="align-right">
                       <Button
                         variant="contained"
                         color="error"
