@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 export function Input(props){
     const inputId = props.id || uuidv4();
     return(
-        <div className="flex flex-col-reverse gap-2 pb-5">
+        <div className={cn("flex flex-col-reverse gap-2 pb-5",props.className)}>
             {props.error && <p className="text-red-500 text-xs italic absolute -mb-5">{props.error}</p>}
             <input 
                 {...props} 
@@ -12,7 +12,7 @@ export function Input(props){
                 id={inputId} 
                 type={props.type||'text'} 
                 name={props.name} 
-                className={cn("w-full h-12 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300",props.className)} 
+                className={cn("w-full h-12 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300")} 
                 value={props.value} 
                 onChange={props.onChange} 
             />

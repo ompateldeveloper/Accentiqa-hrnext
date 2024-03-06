@@ -1,62 +1,110 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
-import { useAuthContext } from '../contexts/AuthContextProvider';
 import { Link } from 'react-router-dom';
-
+import { useAuthContext } from '../../contexts/AuthContext';
+import * as FormElements from '../../components/ui/FormElements'
+import Button from '../../components/ui/Button';
+import { useFormValidation } from '../../hooks/useFormValidation';
+import {getUrl} from '../../components/Url'
 export default function Signup() {
-    const [details, setDetails] = useState({ name:"", email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
-    // const { dispatch } = useAuthContext()
-    const [err, setErr] = useState("")
-
-    async function handleSubmit(e) {
-        e.preventDefault()
-        let {name, email, password } = details
-        setIsLoading(true)
-        setErr("")
-
-        const response = await fetch('/api/v1/auth/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name,email, password })
-        })
-        const json = await response.json()
-
-        if (!response.ok) {
-            setIsLoading(false)
-            setErr(json.err)
-        }
-        if (response.ok) {
-            localStorage.setItem('user', JSON.stringify(json))
-            // dispatch({ type: 'LOGIN', payload: json })
-            setIsLoading(false)
-        }
+    const { dispatch } = useAuthContext()
+    const url = getUrl()
+    const initialState = {
+        name: "",
+        email: "",
+        password: ""
     }
+    const onSubmit = async(values) => {
+        await axios.post(url+'/api/v1/auth/signup',formData)
+        .then((data)=>{
+            localStorage.setItem('user', JSON.stringify(data.data))
+            dispatch({ type: 'LOGIN', payload: data.data })
+        })
+        .catch((error)=>{
+            
+            console.log(error);
+        })
+        .finally(()=>{
+            console.log('finally');
+            setIsLoading(false)
+        })
+
+        setIsLoading(true)
+    }
+    function validate(values) {
+        const errors = {};
+        if (!values.name.trim()) {
+            errors.name = "Name is required";
+        } else if (values.name.length < 3) {
+            errors.name = "Name must be at least 3 characters long";
+        }
+        if (!values.email.trim()) {
+            errors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+            errors.email = "Invalid email address";
+        }
+        if (!values.password.trim()) {
+            errors.password = "Password is required";
+        } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/.test(values.password)) {
+            errors.password = "Weak Password";
+        }
+        return errors
+    }
+    const { formData, errors, changeHandle, handleSubmit, cleanup } = useFormValidation(initialState, onSubmit, validate)
+
+
+
+
+
+
+
+
+    // async function handleSubmit(e) {
+    //     e.preventDefault()
+    //     let { name, email, password } = details
+    //     setIsLoading(true)
+    //     setErr("")
+
+    //     const response = await fetch('/api/v1/auth/signup', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ name, email, password })
+    //     })
+    //     const json = await response.json()
+
+    //     if (!response.ok) {
+    //         setIsLoading(false)
+    //         setErr(json.err)
+    //     }
+    //     if (response.ok) {
+    //         localStorage.setItem('user', JSON.stringify(json))
+    //         dispatch({ type: 'LOGIN', payload: json })
+    //         setIsLoading(false)
+    //     }
+    // }
     return (
-        <form className=' px-8 mx-auto py-12 w-min' onSubmit={handleSubmit}>
-            <div className="title m-2 text-xl text-gray-900">Sign Up</div>
-            <div className="name relative pt-6 m-3">
-                <input type="text" name="name" id="name" className=" w-64 peer/name bg-transparent border-0 border-b-2 border-b-gray-500 focus:border-b-violet-500 outline-none text-gray-900 transition duration-300 " onChange={(e)=>{setDetails(prev=>({...prev,name:e.target.value}))}} value={details.name}/>
-                <label htmlFor="name" className={" peer-focus/name:text-violet-500 text-gray-500 absolute left-0  peer-focus/name:text-xs peer-focus/name:-translate-y-5 transition-all duration-300 select-none peer-"+(details?.name?.length ? " text-xs -translate-y-5 te ":"translate-y-0")}>Name</label>
-            </div> 
-            <div className="email relative pt-6 m-3">
-                <input type="text" name="email" id="email" className=" w-64 peer/email bg-transparent border-0 border-b-2 border-b-gray-400 focus:border-b-violet-400 outline-none text-gray-900 transition duration-300 " onChange={(e) => { setDetails(prev => ({ ...prev, email: e.target.value })) }} value={details.email} />
-                <label htmlFor="email" className={" peer-focus/email:text-violet-400 text-gray-400 absolute left-0  peer-focus/email:text-xs peer-focus/email:-translate-y-5 transition-all duration-300 select-none" + (details.email?.length ? " text-xs -translate-y-5 " : " translate-y-0")}>Email</label>
-            </div>
-            <div className="password relative pt-6 m-3 mt-6">
-                <input type="password" autoComplete='on' name="password" id="password" className=" w-64 peer/password bg-transparent border-0 border-b-2 border-b-gray-400 focus:border-b-violet-400 outline-none text-gray-900 transition duration-300" onChange={(e) => { setDetails(prev => ({ ...prev, password: e.target.value })) }} value={details.password} />
-                <label htmlFor="password" className={" peer-focus/password:text-violet-500 text-gray-400 absolute left-0  peer-focus/password:text-xs peer-focus/password:-translate-y-5 transition-all duration-300 select-none" + (details.password?.length ? " text-xs -translate-y-5 " : " translate-y-0")}>Password</label>
-            </div>
-            <button disabled={isLoading} className=" flex items-center group self-start py-2 px-6 rounded-md font-bold text-sm m-2 mt-8 bg-gradient-to-br from-pink-300 to-violet-400  text-white" >
-                <span>Sign Up</span>
-                <div className="ml-2 hidden group-disabled:grid">
+        <div className=' grid grid-cols-2 overflow-hidden h-screen'>
+
+            <div className=' p-8 w-full ' >
+                <div className="title m-2 my-4 text-4xl font-bold text-theme-text">Sign Up</div>
+                <div className="m-2 font-semibold text-zinc-400">Enter your email and password to sign in!</div>
+                <div className="h-px  m-2 my-3 bg-zinc-200"></div>
+                <FormElements.Input value={formData.name} onChange={changeHandle} error={errors.name} className='m-2 my-4' label='Full Name' type='text' name='name' />
+                <FormElements.Input value={formData.email} onChange={changeHandle} error={errors.email} className='m-2 my-4' label='Email' type='email' name='email' />
+                <FormElements.Input value={formData.password} onChange={changeHandle} error={errors.password} className='m-2 my-4' label='Password' type='password' name='password' />
+
+               
+                <Button className='m-2' disabled={isLoading} onClick={handleSubmit}>Sign Up</Button>
+                <div className="not-user text-gray-400 m-2 my-3 text-sm">
+                    Already a User? &nbsp;
+                    <Link to={'/signin'} className="text-violet-500" >Sign In</Link>
                 </div>
-            </button>
-            <div className="not-user text-gray-400 m-3 text-sm">
-                Already a User? &nbsp;
-                <Link to={'/signin'} className="text-violet-500" >Sign In</Link>
             </div>
-        </form>
+            <div className="signin-left  bg-theme-1 h-full w-full">
+                <video className='object-cover w-full h-full' src='https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/720p/mp4/file.mp4' loop={true} onClick={(e) => e.target.play()} autoPlay={true} />
+            </div>
+        </div>
     )
 }
