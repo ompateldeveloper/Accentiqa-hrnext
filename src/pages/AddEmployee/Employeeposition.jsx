@@ -55,9 +55,9 @@ export default function Employeeposition({ form }) {
             error={errors.costCenter}
           />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
-          <FormElements.Select
-            label="Designation"
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-5  ">
+          <FormElements.Select 
+            label="Designation *" 
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -69,7 +69,7 @@ export default function Employeeposition({ form }) {
             error={errors.designation}
           />
           <FormElements.Select
-            label="Location"
+            label="Location *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -83,7 +83,7 @@ export default function Employeeposition({ form }) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
-            label="Division"
+            label="Division *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -95,7 +95,7 @@ export default function Employeeposition({ form }) {
             error={errors.division}
           />
           <FormElements.Select
-            label="Department"
+            label="Department *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -109,7 +109,7 @@ export default function Employeeposition({ form }) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
-            label="Project"
+            label="Project *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -121,7 +121,7 @@ export default function Employeeposition({ form }) {
             error={errors.project}
           />
           <FormElements.Select
-            label="Project Allocation Date"
+            label="Project Allocation Date *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -135,7 +135,7 @@ export default function Employeeposition({ form }) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
-            label="Attendance Shift"
+            label="Attendance Shift *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },

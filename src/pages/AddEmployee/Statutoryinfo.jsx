@@ -10,16 +10,21 @@ export default function Statutoryinfo({form}) {
       </p>
       <form className="employee-form" onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
-          <FormElements.Input
-            label="PAN Number"
+          <FormElements.Input 
+            label="PAN Number *" 
+            // className="required"
+           
             type="text"
             name="panNo"
             value={formData.panNo}
             onChange={changeHandle}
             error={errors.panNo}
+            
+            
+            
           />
           <FormElements.Input
-            label="Aadhar Number"
+            label="Aadhar Number *"
             type="text"
             name="aadharNo"
             value={formData.aadharNo}
