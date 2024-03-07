@@ -24,6 +24,7 @@ export function Input(props){
 
 export function Select(props){
     const selectId = props.id || uuidv4();
+    const {optionsArray} = props;
     return(
         <div className="flex flex-col-reverse gap-2 pb-5">
             {props.error && <p className="text-red-500 text-xs italic absolute -mb-5">{props.error}</p>}
@@ -38,8 +39,8 @@ export function Select(props){
                 {...props} 
 
             >
-                {props?.optionsArray?.map((data,index)=>(
-                    <option key={index} className="outline-none border-none text-theme-text hover:bg-theme-2 font-semibold" value={data.value}>{data.title}</option>
+                {optionsArray?.map((data,index)=>(
+                    <option key={index} className="outline-none border-none text-theme-text hover:bg-theme-2 font-semibold" value={data.value||data.id}>{data.title||data.name}</option>
                 ))}
             </select>
             {props.label&&<label htmlFor={selectId} className="peer-focus:text-theme-1 text-gray-400 duration-300 select-none">{props.label}</label>}
