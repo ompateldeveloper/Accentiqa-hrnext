@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
 
-export default function Employeeposition({form}) {
-  const {formData, errors, changeHandle, handleSubmit } = form
-  const [data,setData]=useState()
+export default function Employeeposition({ form }) {
+  const { formData, errors, changeHandle, handleSubmit } = form;
+  const [data, setData] = useState();
   const fetchData = async () => {
     const baseUrl = getUrl();
-    const endpoint = "/api/data"; // Example endpoint
+    const endpoint = "/api/data";
     const url = baseUrl + endpoint;
     axios
       .get(url)
       .then((response) => {
-        setData(response.data)
+        setData(response.data);
       })
       .catch((error) => {});
   };
-  const onSubmit = (data) =>{
-     console.log(data)
-  }
- 
+  useEffect(()=>{
+    fetchData()
+  },[])
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="container mx-auto px-2 employee-details">

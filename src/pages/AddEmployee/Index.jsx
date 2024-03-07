@@ -17,10 +17,18 @@ import { validate1 } from "./validators";
 import { validate2 } from "./validators";
 import { validate3 } from "./validators";
 import { validate4 } from "./validators";
+import { getUrl } from "../../components/Url";
+import axios from "axios";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 export default function AddEmployee() {
   const [tabs, setTabs] = useState(1);
   const [newFormData, setNewFormData] = useState({});
+  const { user } = useAuthContext();
+
+  const baseUrl = getUrl();
+  const endpoint = "/api/v1/emp/addemployee/form1";
+  const url = baseUrl + endpoint;
   const form1 = useFormValidation(
     {
       empSeries: "",
@@ -35,13 +43,25 @@ export default function AddEmployee() {
       emergencyName: "",
       gender: "",
       emergencyNo: "",
-      reportingMg: "",
+      reportingMgId: "",
       fathersName: "",
       status: "",
       spouseName: "",
       doj: "",
     },
     (values) => {
+      axios
+        .post(url, values, {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        })
+        .then((response) => {
+          setNewFormData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     validate1
   );
@@ -53,13 +73,11 @@ export default function AddEmployee() {
       location: "",
       division: "",
       department: "",
-      project:"",
-      projectDate:"",
+      project: "",
+      projectDate: "",
       shift: "",
     },
-    (values) => {
-      
-    },
+    (values) => {},
     validate2
   );
   const form3 = useFormValidation(
@@ -68,16 +86,14 @@ export default function AddEmployee() {
       aadharNo: "",
       passportNo: "",
     },
-    (values) => {
-    },
+    (values) => {},
     validate3
   );
   const form4 = useFormValidation(
     {
       paymentType: "",
     },
-    (values) => {
-    },
+    (values) => {},
     validate4
   );
   const selectTab = (newtab) => {
@@ -90,7 +106,6 @@ export default function AddEmployee() {
       if (form1.handleSubmit()) {
         if (tabs <= 4) {
           setTabs((prev) => prev + 1);
-          
         }
       }
     }
@@ -208,21 +223,6 @@ export default function AddEmployee() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function TabsList(props) {
   const { className, children } = props;

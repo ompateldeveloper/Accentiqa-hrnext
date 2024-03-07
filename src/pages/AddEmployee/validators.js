@@ -64,9 +64,9 @@ export const validate1 = (values) => {
   } else if (!/^\d{1,10}$/.test(values.emergencyNo)) {
     errors.emergencyNo = "Please provide 10 digits";
   }
-  //Validation For reportingMg
-  if (!values.reportingMg.trim()) {
-    errors.reportingMg = "Please select an option";
+  //Validation For reportingMgId
+  if (!values.reportingMgId.trim()) {
+    errors.reportingMgId = "Please select an option";
   }
   // //Validation For fathersName
   // if (!values.fathersName.trim()) {
