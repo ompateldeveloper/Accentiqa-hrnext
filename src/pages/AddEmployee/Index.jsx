@@ -20,6 +20,7 @@ import { validate4 } from "./validators";
 import { getUrl } from "../../components/Url";
 import axios from "axios";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
 export default function AddEmployee() {
   const [tabs, setTabs] = useState(1);
   const [newFormData, setNewFormData] = useState({});
@@ -210,12 +211,14 @@ export default function AddEmployee() {
           Next
         </Button>
         {tabs == 4 && <Button iconleft={<Check />}>Finish</Button>}
-        <Button
-          secondary="true"
-          className=" border-red-700 text-red-700 bg-red-100 "
-        >
-          Cancel
-        </Button>
+        <Link to="/dashboard">
+          <Button
+            secondary="true"
+            className=" border-red-700 text-red-700 bg-red-100 "
+          >
+            Cancel
+          </Button>
+        </Link>
       </div>
     </div>
   );
