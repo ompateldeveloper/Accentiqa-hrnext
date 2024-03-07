@@ -30,13 +30,14 @@ const EmployeeDetails = ({form}) => {
             error={errors.empSeries}
           />
           <FormElements.Input
-            label="Probation Period *"
+            label="Probation Period*"
             type="number"
             className="w-32"
             name="probationPeriod"
-            value={formData.probationPeriod}
+            value={formData.probationPeriod} 
             onChange={changeHandle}
             error={errors.probationPeriod}
+            
           />
         </div>
 

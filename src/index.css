@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.required::after{
+/* .required::after{
     content: "*";
     color: red;
     font-size: 20px;
-}
+} */
