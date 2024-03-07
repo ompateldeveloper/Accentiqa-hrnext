@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
 
@@ -16,6 +16,9 @@ export default function Employeeposition({ form }) {
       })
       .catch((error) => {});
   };
+  useEffect(()=>{
+    fetchData()
+  },[])
   const onSubmit = (data) => {
     console.log(data);
   };

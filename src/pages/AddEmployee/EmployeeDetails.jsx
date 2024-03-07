@@ -131,14 +131,14 @@ const EmployeeDetails = ({form}) => {
         <FormElements.Select
             label="Reporting Manager"
             optionsArray={[
-              { value: "", title: "Select an Option" },
+              { value: 1, title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
               { value: "merc", title: "Mercideez benz cars" },
             ]}
-            name="reportingMg"
-            value={formData.reportingMg}
+            name="reportingMgId"
+            value={formData.reportingMgId}
             onChange={changeHandle}
-            error={errors.reportingMg}
+            error={errors.reportingMgId}
           />
              <FormElements.Input
             label="Father's Name"
