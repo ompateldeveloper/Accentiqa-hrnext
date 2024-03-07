@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
 
@@ -28,7 +28,6 @@ export default function Employeeposition({ form }) {
       <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
         Employee Position
       </p>
-      
       <form className="employee-form" onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
@@ -58,7 +57,7 @@ export default function Employeeposition({ form }) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
-            label="Designation"
+            label="Designation *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -81,7 +80,6 @@ export default function Employeeposition({ form }) {
             onChange={changeHandle}
             error={errors.location}
           />
-          
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
@@ -110,45 +108,6 @@ export default function Employeeposition({ form }) {
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
-          <FormElements.Select
-            label="Attendance Shift"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
-            name="shift"
-            value={formData.shift}
-            onChange={changeHandle}
-            error={errors.shift}
-          />
-          <FormElements.Select
-            label="Project"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
-            name="shift"
-            value={formData.shift}
-            onChange={changeHandle}
-            error={errors.shift}
-          />
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
-          <FormElements.Select
-            label="Project Allocated Date"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
-            name="shift"
-            value={formData.shift}
-            onChange={changeHandle}
-            error={errors.shift}
-          />
           <FormElements.Select
             label="Project *"
             optionsArray={[

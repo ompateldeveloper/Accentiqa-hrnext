@@ -79,10 +79,11 @@ export default function Navbar() {
                         { value: "Oct 2024", title: "Oct 2024" },
                         { value: "Nov 2024", title: "Nov 2024" },
                         { value: "Dec 2024", title: "Dec 2024" },
-                        { value: "2023-2024", title: "2023-2024" },
-                        { value: "2022-2023", title: "2022-2023" },
-                        { value: "2021-2022", title: "2021-2022" },
-                        { value: "2020-2021", title: "2020-2021" },
+                        
+                        { value: "2023 - 2024", title: "2023 - 2024" },
+                        { value: "2022 - 2023", title: "2022 - 2023" },
+                        { value: "2021 - 2022", title: "2021 - 2022" },
+                        { value: "2020 - 2021", title: "2020 - 2021" },
                       ]}
                     //   name="billType"
                     //   value={formData.billType}
