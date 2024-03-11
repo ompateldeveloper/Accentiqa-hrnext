@@ -35,7 +35,6 @@ export default function BreakUp() {
   };
 //Date Drop Down
   const allMonths = [
-    { name: "Select Year Range", value: "" },
     { name: "January", value: 1 },
     { name: "February", value: 2 },
     { name: "March", value: 3 },
@@ -110,7 +109,7 @@ export default function BreakUp() {
             type="button"
             className="w-[200px] bg-theme-1 font-semibold text-theme-text text-opacity-50 focus:text-opacity-100 h-12 p-2 bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none transition duration-300"
           onClick={toggleDropDown}>
-            {selectedYear || "Select Year"}
+            {selectedYear+`( ${selectedMonth} )` || "Select Year"}
           </button>
           {isDrop&&
           <div className="overflow-auto w-[200px] h-[200px] absolute bg-white border border-gray-200 rounded-lg shadow-lg">
