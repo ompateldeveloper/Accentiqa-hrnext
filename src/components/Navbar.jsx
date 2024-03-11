@@ -96,7 +96,9 @@ export default function Navbar() {
 
                 <Bell />
                 <Settings />
-                <User onClick={handleClick} />
+                <div onClick={handleClick} className="uppercase h-9 w-9 m-1 bg-theme-1 select-none flex items-center justify-center rounded-full text-white">
+                    {user && user.name.split(' ').map((str, i) => { if (i < 2) return str[0] })}
+                </div>
                 <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}
