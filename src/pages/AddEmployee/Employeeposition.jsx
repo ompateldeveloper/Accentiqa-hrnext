@@ -1,23 +1,80 @@
 import React, { useEffect, useState } from "react";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
+import { getUrl } from "../../components/Url";
+import axios from "axios";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Employeeposition({ form }) {
   const { formData, errors, changeHandle, handleSubmit } = form;
-  const [data, setData] = useState();
-  const fetchData = async () => {
-    const baseUrl = getUrl();
-    const endpoint = "/api/data";
-    const url = baseUrl + endpoint;
+
+  const {user} = useAuthContext();
+  const [department,setDepartment]= useState([]);
+  const [division,setDivision]= useState([]);
+  const [designation,setDesignation]= useState([]);
+  const [project,setProject]= useState([]);
+  const url = getUrl();
+  const fetchDept = async () => {
     axios
-      .get(url)
-      .then((response) => {
-        setData(response.data);
+      .get(url+'/api/v1/misc/departments',{
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
       })
-      .catch((error) => {});
+      .then((response) => {
+        setDepartment(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const fetchDiv = async () => {
+    axios
+      .get(url+'/api/v1/misc/divisions',{
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      })
+      .then((response) => {
+        setDivision(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const fetchDesig = async () => {
+    axios
+      .get(url+'/api/v1/misc/designations',{
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      })
+      .then((response) => {
+        setDesignation(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const fetchProj = async () => {
+    axios
+      .get(url+'/api/v1/misc/projects',{
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      })
+      .then((response) => {
+        setProject(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   useEffect(()=>{
-    fetchData()
+    fetchDept()
+    fetchDesig()
+    fetchDiv()
+    fetchProj()
   },[])
   const onSubmit = (data) => {
     console.log(data);
@@ -58,15 +115,11 @@ export default function Employeeposition({ form }) {
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
             label="Designation"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
-            name="designation"
-            value={formData.designation}
+            optionsArray={[{id:0,name:"Select an Option"},...designation]}
+            name="designationId"
+            value={formData.designationId}
             onChange={changeHandle}
-            error={errors.designation}
+            error={errors.designationId}
           />
           <FormElements.Select
             label="Location"
@@ -84,49 +137,33 @@ export default function Employeeposition({ form }) {
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
             label="Division"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
-            name="division"
-            value={formData.division}
+            optionsArray={[{id:0,name:"Select an Option"},...division]}
+            name="divisionId"
+            value={formData.divisionId}
             onChange={changeHandle}
-            error={errors.division}
+            error={errors.divisionId}
           />
           <FormElements.Select
             label="Department"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
-            name="department"
-            value={formData.department}
+            optionsArray={[{id:0,name:"Select an Option"},...department]}
+            name="departmentId"
+            value={formData.departmentId}
             onChange={changeHandle}
-            error={errors.department}
+            error={errors.departmentId}
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
             label="Project"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
-            name="project"
-            value={formData.project}
+            optionsArray={[{id:0,name:"Select an Option"},...project]}
+            name="projectId"
+            value={formData.projectId}
             onChange={changeHandle}
-            error={errors.project}
+            error={errors.projectId}
           />
-          <FormElements.Select
+          <FormElements.Input
             label="Project Allocation Date"
-            optionsArray={[
-              { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
-            ]}
+            type='date'
             name="projectDate"
             value={formData.projectDate}
             onChange={changeHandle}

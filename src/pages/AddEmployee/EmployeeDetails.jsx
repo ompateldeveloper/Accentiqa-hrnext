@@ -81,7 +81,8 @@ const EmployeeDetails = ({form}) => {
             label="Date Of Birth"
             type="date"
             name="dob"
-            value={formData.dob}
+            value="2024-03-07"
+            // value={formData.dob}
             onChange={changeHandle}
             error={errors.dob}
           />
