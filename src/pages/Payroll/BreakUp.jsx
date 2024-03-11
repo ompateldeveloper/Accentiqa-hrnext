@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { validateBreakUp } from "./validateBreakUp";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import * as FormElements from "../../components/ui/FormElements";
+import { useNavigate } from "react-router-dom";
 export default function BreakUp() {
+  const navigate = useNavigate();
   const { formData, errors, changeHandle, handleSubmit, cleanup } =
     useFormValidation(
       {
@@ -17,22 +19,76 @@ export default function BreakUp() {
         empPfCon: "",
         retirementBenefits: "",
         ctc: "",
-        empPf:"",
-        pt:"",
-        foodCoupon:"",
-        loan:"",
-        insurance:"",
-        tds:"",
-        others:""
+        empPf: "",
+        pt: "",
+        foodCoupon: "",
+        loan: "",
+        insurance: "",
+        tds: "",
+        others: "",
       },
       (values) => {},
       validateBreakUp
     );
+  const navigateTo = () => {
+    navigate("/dashboard/pay-slip", { state: { data: formData } });
+  };
+
+  // Function to generate an array of years
+  const generateYears = (startYear, endYear) => {
+    const years = [];
+    for (let year = startYear; year <= endYear; year++) {
+      years.push(year);
+    }
+    return years;
+  };
+
+  // Function to generate an array of year ranges
+  const generateYearRanges = (startYear, endYear) => {
+    const yearRanges = [];
+    for (let year = startYear; year <= endYear; year++) {
+      const nextYear = year + 1;
+      yearRanges.push(`${year}-${nextYear}`);
+    }
+    return yearRanges;
+  };
+
+  // Generate an array of individual years and year ranges from 1900 to 2100
+  const years = generateYears(1999, 2030);
+  const yearRanges = generateYearRanges(1999, 2030);
+  const options = [...years, ...yearRanges];
+
+  // Ref to select element
+  const selectRef = useRef(null);
+
   return (
     <div className="container mx-auto px-2">
       <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
         Salary Break Up
       </p>
+      <div className="flex justify-end ">
+        <div className="">
+          <label
+            htmlFor="yearSelect"
+            className="peer-focus:text-theme-1 text-gray-400 duration-300 select-none"
+          >
+            Select a Year :{" "}
+          </label>
+          <select
+            className=" bg-theme-1 font-semibold text-theme-text text-opacity-50 focus:text-opacity-100  h-12 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none transition duration-300"
+            id="yearSelect"
+            ref={selectRef}
+            style={{ height: "auto" }}
+          >
+            {options.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <form className="break-up-form">
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Input
@@ -107,8 +163,6 @@ export default function BreakUp() {
             onChange={changeHandle}
             error={errors.specialAll}
           />
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Input
             label="Monthly Gross Salary"
             type="text"
@@ -231,6 +285,15 @@ export default function BreakUp() {
             error={errors.others}
           />
         </div>
+        <button
+          onClick={() => {
+            handleSubmit();
+            navigateTo();
+          }}
+          className="bg-theme-1 hover:bg-theme-1 text-white font-bold py-2 px-4 my-10 rounded"
+        >
+          Generate Pay Slip
+        </button>
       </form>
     </div>
   );
