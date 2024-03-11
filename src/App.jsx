@@ -5,17 +5,14 @@ import Signin from "./pages/Auth/Signin";
 import { useAuthContext } from "./contexts/AuthContext";
 import Signup from "./pages/Auth/Signup";
 import { Loader, Loader2 } from "lucide-react";
+import Loading from "./components/ui/Loading";
 // import Signup from "./pages/Auth/Signup";
 
 function App() {
     // const user=null;
     const {user,isLoading}=useAuthContext();
     if(isLoading){
-        return (
-            <div className="h-screen w-screen flex items-center justify-center">
-                <Loader2 className="animate-spin "/>
-            </div>
-        )
+        return <Loading/>
     }
     return (
         <div className="">

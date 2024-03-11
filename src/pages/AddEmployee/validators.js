@@ -101,17 +101,21 @@ export const validate2 = (values) => {
   if (!values.costCenter.trim()) {
     errors.costCenter = "Please select an option";
   }
-  if (!values.designation.trim()) {
-    errors.designation = "Please select an option";
+  console.log(values.designationId);
+  if (!values.designationId.trim()) {
+    errors.designationId = "Please select an option";
   }
   if (!values.location.trim()) {
     errors.location = "Please select an option";
   }
-  if (!values.division.trim()) {
-    errors.division = "Please select an option";
+  if (!values.divisionId.trim()) {
+    errors.divisionId = "Please select an option";
   }
-  if (!values.department.trim()) {
-    errors.department = "Please select an option";
+  if (!values.departmentId.trim()) {
+    errors.departmentId = "Please select an option";
+  }
+  if (!values.projectId.trim()) {
+    errors.projectId = "Please select an option";
   }
   if (!values.shift.trim()) {
     errors.shift = "Please select an option";

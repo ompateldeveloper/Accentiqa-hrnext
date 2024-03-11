@@ -6,6 +6,8 @@ import AddEmployee from './AddEmployee/Index'
 import useMediaQuery from '../hooks/useMediaQuery'
 import { cn } from '../lib/utils'
 import ViewEmployee from './ViewEmployee/Index'
+import BreakUp from './Payroll/BreakUp'
+import PaySlip from './Payroll/PaySlip'
 
 export default function Dashboard() {
     const isLargeScreen = useMediaQuery('(max-width: 1024px)');
@@ -22,6 +24,8 @@ export default function Dashboard() {
                         <Route path='/' element={<>dash</>} />
                         <Route path='/add-employee' element={<AddEmployee/>} />
                         <Route path='/view-employee' element={<ViewEmployee/>} />
+                        <Route path='/break-up' element={<BreakUp/>} />
+                        <Route path='/pay-slip' element={<PaySlip/>} />
                     </Routes>
                 </div>
 

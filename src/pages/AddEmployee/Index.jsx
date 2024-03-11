@@ -26,9 +26,9 @@ export default function AddEmployee() {
   const [newFormData, setNewFormData] = useState({});
   const { user } = useAuthContext();
 
-  const baseUrl = getUrl();
-  const endpoint = "/api/v1/emp/addemployee/form1";
-  const url = baseUrl + endpoint;
+  const url = getUrl();
+
+
   const form1 = useFormValidation(
     {
       empSeries: "",
@@ -50,8 +50,9 @@ export default function AddEmployee() {
       doj: "",
     },
     (values) => {
+      const endpoint= "/api/v1/emp/addemployee/form1";
       axios
-        .post(url, values, {
+        .post(url+endpoint, values, {
           headers: {
             Authorization: `Bearer ${user?.token}`,
           },
@@ -67,26 +68,56 @@ export default function AddEmployee() {
   );
   const form2 = useFormValidation(
     {
+      empNo:form1?.empNo||"",
       grade: "",
       costCenter: "",
-      designation: "",
+      designationId: "",
       location: "",
-      division: "",
-      department: "",
-      project: "",
+      divisionId: "",
+      departmentId: "",
+      projectId: "",
       projectDate: "",
       shift: "",
     },
-    (values) => {},
+    (values) => {
+      const endpoint= "/api/v1/emp/addemployee/form2";
+      axios
+        .post(url+endpoint, values, {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        })
+        .then((response) => {
+          setNewFormData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     validate2
   );
   const form3 = useFormValidation(
     {
+      empNo:form1?.empNo||"",
       panNo: "",
       aadharNo: "",
       passportNo: "",
     },
-    (values) => {},
+    (values) => {
+      const endpoint= "/api/v1/emp/addemployee/form3";
+      axios
+        .post(url+endpoint, values, {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        })
+        .then((response) => {
+          setNewFormData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     validate3
   );
   const form4 = useFormValidation(
