@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useLocation } from "react-router-dom";
+import { Download } from "lucide-react";
+import Button from "../../components/ui/Button";
 export default function PaySlip() {
   const location = useLocation();
   const { data } = location.state || {}; // Accessing data safely
@@ -208,7 +210,7 @@ export default function PaySlip() {
           This is system generated payslip and does not require signature.
         </p>
       </div>
-      <button className="bg-theme-1 hover:bg-theme-1 text-white font-bold py-2 px-4 my-10 rounded" onClick={handleConvertToPDF}>Down Load PDF</button>
+      <Button iconleft={<Download className="mr-2"/>} className=" py-2 px-4 my-10 " onClick={handleConvertToPDF}>Down Load PDF</Button>
     </div>
   );
 }
