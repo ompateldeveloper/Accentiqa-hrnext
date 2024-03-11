@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 export function Input(props){
     const inputId = props.id || uuidv4();
     return(
-        <div className={cn("flex flex-col-reverse gap-2 pb-5",props.className)}>
+        <div className={cn("flex flex-col-reverse gap-2 pb-5 md:max-w-96",props.className)}>
             {props.error && <p className="text-red-500 text-xs italic absolute -mb-5">{props.error}</p>}
             <input 
                 {...props} 
@@ -26,7 +26,7 @@ export function Select(props){
     const selectId = props.id || uuidv4();
     const {optionsArray} = props;
     return(
-        <div className="flex flex-col-reverse gap-2 pb-5">
+        <div className="flex flex-col-reverse gap-2 pb-5 md:max-w-96">
             {props.error && <p className="text-red-500 text-xs italic absolute -mb-5">{props.error}</p>}
             <select 
                 id={selectId} 
@@ -87,7 +87,7 @@ export function Radio(props){
 }
 export function RadioGroup(props){
     return(
-        <div className=" justify-center  h-12 p-2 pb-5">
+        <div className=" justify-center  h-12 p-2 pb-5 md:max-w-96 mb-8">
             {props.label&&<div  className="peer-checked:text-theme-1 text-gray-400 duration-300 select-none">{props.label}</div>}
             <div className={cn("h-12 ",props.className)}>
                 {props.children}
