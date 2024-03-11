@@ -32,7 +32,7 @@ const columns = [
   },
   {
     field: "project",
-    headerName: "Project",
+    headerName: "Allocated Project",
     type: "text",
     width: 100,
     editable: true,
@@ -51,6 +51,13 @@ const columns = [
     sortable: false,
     renderCell: (params) => <BasicMenu rowData={params.row}/>,
   },
+  {
+    field: "isbillable",
+    headerName: "Project Type",
+    type: "text",
+    width: 100,
+    editable: true,
+  },
 ];
 const rows = [
   {
@@ -60,6 +67,7 @@ const rows = [
     salary: 35000,
     project: "Project A",
     projectDate: "2022-01-01",
+    isbillable:true?"Billable":"Non-Billable"
   },
   {
     id: 2,
@@ -68,6 +76,8 @@ const rows = [
     salary: 38000,
     project: "Project B",
     projectDate: "2022-01-01",
+    isbillable:false?"Billable":"Non-Billable"
+
   },
   {
     id: 3,
@@ -147,7 +157,6 @@ export default function EmployeeTable() {
         <FormElements.Select
           label="Project Type"
           optionsArray={[
-            { value: "", title: "Select an Option" },
             { value: "all", title: "All" },
             { value: "billable", title: "Billable" },
             { value: "nonBillable", title: "Non Billable" },
