@@ -85,11 +85,11 @@ export default function Signup() {
     //     }
     // }
     return (
-        <div className=' grid grid-cols-2 overflow-hidden h-screen'>
+        <div className=' grid grid-cols-2 md:flex overflow-hidden h-screen'>
 
             <div className=' p-8 w-full ' >
                 <div className="title m-2 my-4 text-4xl font-bold text-theme-text">Sign Up</div>
-                <div className="m-2 font-semibold text-zinc-400">Enter your email and password to sign in!</div>
+                <div className="m-2 font-semibold text-zinc-400">Enter your details to sign up!</div>
                 <div className="h-px  m-2 my-3 bg-zinc-200"></div>
                 <FormElements.Input value={formData.name} onChange={changeHandle} error={errors.name} className='m-2 my-4' label='Full Name' type='text' name='name' />
                 <FormElements.Input value={formData.email} onChange={changeHandle} error={errors.email} className='m-2 my-4' label='Email' type='email' name='email' />
@@ -102,7 +102,7 @@ export default function Signup() {
                     <Link to={'/signin'} className="text-violet-500" >Sign In</Link>
                 </div>
             </div>
-            <div className="signin-left  bg-theme-1 h-full w-full">
+            <div className="signin-left md:hidden bg-theme-1 h-full w-full">
                 <video className='object-cover w-full h-full' src='https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/720p/mp4/file.mp4' loop={true} onClick={(e) => e.target.play()} autoPlay={true} />
             </div>
         </div>

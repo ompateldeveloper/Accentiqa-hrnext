@@ -50,8 +50,8 @@ export default function Signin() {
     const { formData, errors, changeHandle, handleSubmit, cleanup } = useFormValidation(initialState, onSubmit, validate)
 
     return (
-        <div className=' grid grid-cols-2 overflow-hidden h-screen'>
-            <div className="signin-left  bg-theme-1 h-full w-full">
+        <div className=' grid grid-cols-2 md:flex overflow-hidden h-screen'>
+            <div className="signin-left  bg-theme-1 h-full w-full md:hidden">
                 <video className='object-cover w-full h-full' src='https://video.wixstatic.com/video/11062b_6743da5900054f1f8e69f53302930a6a/720p/mp4/file.mp4' loop={true} onClick={(e) => e.target.play()} autoPlay={true} />
             </div>
             <div className=' p-8 w-full ' >
