@@ -23,7 +23,7 @@ function App() {
                 {/* <Route path={'/dashboard/*'} element={<Dashboard/>} /> */}
 
                 <Route path={"/dashboard/*"} element={
-                    !user ?
+                    user ?
                         <Navigate to="/signin" replace />
                         :
                         <Dashboard />

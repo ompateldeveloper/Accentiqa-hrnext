@@ -118,11 +118,12 @@ export default function Employeeposition({ form }) {
             optionsArray={[{id:0,name:"Select an Option"},...designation]}
             name="designationId"
             value={formData.designationId}
+
             onChange={changeHandle}
             error={errors.designationId}
           />
           <FormElements.Select
-            label="Location"
+            label="Location *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -148,6 +149,7 @@ export default function Employeeposition({ form }) {
             optionsArray={[{id:0,name:"Select an Option"},...department]}
             name="departmentId"
             value={formData.departmentId}
+
             onChange={changeHandle}
             error={errors.departmentId}
           />
@@ -158,6 +160,7 @@ export default function Employeeposition({ form }) {
             optionsArray={[{id:0,name:"Select an Option"},...project]}
             name="projectId"
             value={formData.projectId}
+
             onChange={changeHandle}
             error={errors.projectId}
           />
@@ -172,7 +175,7 @@ export default function Employeeposition({ form }) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
-            label="Attendance Shift"
+            label="Attendance Shift *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },

@@ -18,7 +18,7 @@ const EmployeeDetails = ({form}) => {
       <form className="employee-form"  >
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Select
-            label="Employee Number Series"
+            label="Employee Number Series *"
             optionsArray={[
               { value: "", title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -30,19 +30,20 @@ const EmployeeDetails = ({form}) => {
             error={errors.empSeries}
           />
           <FormElements.Input
-            label="Probation Period"
+            label="Probation Period*"
             type="number"
             className="w-32"
             name="probationPeriod"
-            value={formData.probationPeriod}
+            value={formData.probationPeriod} 
             onChange={changeHandle}
             error={errors.probationPeriod}
+            
           />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Input
-            label="Employee No"
+            label="Employee No *"
             type="text"
             name="empNo"
             value={formData.empNo}
@@ -50,7 +51,7 @@ const EmployeeDetails = ({form}) => {
             error={errors.empNo}
           />
           <FormElements.Input
-            label="Confirmation Date"
+            label="Confirmation Date *"
             type="date"
             name="confirmDate"
             value={formData.confirmDate}
@@ -60,7 +61,7 @@ const EmployeeDetails = ({form}) => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Input
-            label="Name"
+            label="Name *"
             type="text"
             name="name"
             value={formData.name}
@@ -68,7 +69,7 @@ const EmployeeDetails = ({form}) => {
             error={errors.name}
           />
           <FormElements.Input
-            label="Email"
+            label="Email *"
             type="email"
             name="email"
             value={formData.email}
@@ -78,7 +79,7 @@ const EmployeeDetails = ({form}) => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Input
-            label="Date Of Birth"
+            label="Date Of Birth *"
             type="date"
             name="dob"
             value="2024-03-07"
@@ -87,7 +88,7 @@ const EmployeeDetails = ({form}) => {
             error={errors.dob}
           />
           <FormElements.Input
-            label="Mobile Number"
+            label="Mobile Number *"
             type="text"
             name="mobileNo"
             value={formData.mobileNo}
@@ -97,7 +98,7 @@ const EmployeeDetails = ({form}) => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Input
-            label="Aadhar Number"
+            label="Aadhar Number *"
             type="text"
             name="aadharNo"
             value={formData.aadharNo}
@@ -105,7 +106,7 @@ const EmployeeDetails = ({form}) => {
             error={errors.aadharNo}
           />
           <FormElements.Input
-            label="Emergency Contact Name"
+            label="Emergency Contact Name *"
             type="text"
             name="emergencyName"
             value={formData.emergencyName}
@@ -114,13 +115,13 @@ const EmployeeDetails = ({form}) => {
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
-          <FormElements.RadioGroup className="flex items-center gap-2 " label="Gender" error={errors.gender}>
+          <FormElements.RadioGroup className="flex items-center gap-2 " label="Gender *" error={errors.gender}>
             <FormElements.Radio name="gender" checked={formData.gender==='male'} value="male" label="Male" onChange={changeHandle} />
             <FormElements.Radio name="gender" checked={formData.gender==='female'} value="female" label="Female" onChange={changeHandle}/>
             <FormElements.Radio name="gender" checked={formData.gender==='others'} value="others" label="Others" onChange={changeHandle}/>
           </FormElements.RadioGroup>
           <FormElements.Input
-            label="Emergency Contact Number"
+            label="Emergency Contact Number *"
             type="text"
             name="emergencyNo"
             value={formData.emergencyNo}
@@ -130,7 +131,7 @@ const EmployeeDetails = ({form}) => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
         <FormElements.Select
-            label="Reporting Manager"
+            label="Reporting Manager *"
             optionsArray={[
               { value: 1, title: "Select an Option" },
               { value: "audi", title: "Audi cars" },
@@ -142,7 +143,7 @@ const EmployeeDetails = ({form}) => {
             error={errors.reportingMgId}
           />
              <FormElements.Input
-            label="Father's Name"
+            label="Father's Name *"
             type="text"
             name="fathersName"
             value={formData.fathersName}
@@ -152,11 +153,12 @@ const EmployeeDetails = ({form}) => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
         <FormElements.Select
-            label="Status"
+            label="Status *"
             optionsArray={[
               { value: "", title: "Select an Option" },
-              { value: "audi", title: "Audi cars" },
-              { value: "merc", title: "Mercideez benz cars" },
+              { value: "Confirmed", title: "Confirmed" },
+              { value: "Consultant", title: "Consultant" },
+              { value: "Probation", title: "Probation" },
             ]}
             name="status"
             value={formData.status}
@@ -164,7 +166,7 @@ const EmployeeDetails = ({form}) => {
             error={errors.status}
           />
              <FormElements.Input
-            label="Spouse Name"
+            label="Spouse Name "
             type="text"
             name="spouseName"
             value={formData.spouseName}
@@ -174,7 +176,7 @@ const EmployeeDetails = ({form}) => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
         <FormElements.Input
-            label="Date Of Joining"
+            label="Date Of Joining *"
             type="date"
             name="doj"
             value={formData.doj}
