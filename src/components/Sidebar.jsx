@@ -6,14 +6,14 @@ import { useGlobalContext } from '../contexts/GlobalContext';
 import { Link } from 'react-router-dom';
 export default function Sidebar() {
 
-    const { tabs, setTabs,sidebar,setSidebar } = useGlobalContext();
+    const { tabs, setTabs, sidebar, setSidebar } = useGlobalContext();
 
 
     // breakpoint sidebar fix
     const isLargeScreen = useMediaQuery('(min-width:1023px)')
-    useEffect(()=>{
-        if(!isLargeScreen) setSidebar(false)
-    },[isLargeScreen])
+    useEffect(() => {
+        if (!isLargeScreen) setSidebar(false)
+    }, [isLargeScreen])
 
 
     const selectTab = useCallback((nextTab) => {
@@ -23,7 +23,7 @@ export default function Sidebar() {
     })
 
     return (
-        <div className={cn('h-[calc(100vh-80px)] fixed flex mt-20 bg-white z-20 duration-100 lg:-translate-x-full',sidebar&&"lg:translate-x-0")}>
+        <div className={cn('h-[calc(100vh-80px)] fixed flex mt-20 bg-white z-20 duration-100 lg:-translate-x-full', sidebar && "lg:translate-x-0")}>
             <div className="fixed-panel w-16  bg-theme-1 text-white">
                 <TabsList>
                     <Link to='/dashboard' >
@@ -32,7 +32,9 @@ export default function Sidebar() {
                     <Link to='/dashboard/add-employee' >
                         <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Add Employee'} selectTab={selectTab} icon={<UserPlus />}></TabsTrigger>
                     </Link>
-                    <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Payroll'} selectTab={selectTab} icon={<HandCoins />}></TabsTrigger>
+                    <Link to='/dashboard/break-up' >
+                        <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Payroll'} selectTab={selectTab} icon={<HandCoins />}></TabsTrigger>
+                    </Link>
                     <Link to='/dashboard/view-employee' >
                         <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'View'} selectTab={selectTab} icon={<Eye />}></TabsTrigger>
                     </Link>
