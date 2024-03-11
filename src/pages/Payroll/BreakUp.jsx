@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { validateBreakUp } from "./validateBreakUp";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import * as FormElements from "../../components/ui/FormElements";
@@ -33,59 +33,121 @@ export default function BreakUp() {
   const navigateTo = () => {
     navigate("/dashboard/pay-slip", { state: { data: formData } });
   };
+//Date Drop Down
+  const allMonths = [
+    { name: "Select Year Range", value: "" },
+    { name: "January", value: 1 },
+    { name: "February", value: 2 },
+    { name: "March", value: 3 },
+    { name: "April", value: 4 },
+    { name: "May", value: 5 },
+    { name: "June", value: 6 },
+    { name: "July", value: 7 },
+    { name: "August", value: 8 },
+    { name: "September", value: 9 },
+    { name: "October", value: 10 },
+    { name: "November", value: 11 },
+    { name: "December", value: 12 }
+  ];
 
-  // Function to generate an array of years
-  const generateYears = (startYear, endYear) => {
-    const years = [];
-    for (let year = startYear; year <= endYear; year++) {
-      years.push(year);
-    }
-    return years;
-  };
-
-  // Function to generate an array of year ranges
   const generateYearRanges = (startYear, endYear) => {
     const yearRanges = [];
     for (let year = startYear; year <= endYear; year++) {
       const nextYear = year + 1;
-      yearRanges.push(`${year}-${nextYear}`);
+      yearRanges.push({ range: `${year}-${nextYear}`, isOpen: false });
     }
     return yearRanges;
   };
 
-  // Generate an array of individual years and year ranges from 1900 to 2100
-  const years = generateYears(1999, 2030);
   const yearRanges = generateYearRanges(1999, 2030);
-  const options = [...years, ...yearRanges];
 
-  // Ref to select element
-  const selectRef = useRef(null);
+  const toggleAccordion = (index) => {
+    const updatedYearRanges = [...yearRanges];
+    updatedYearRanges[index].isOpen = !updatedYearRanges[index].isOpen;
+    setYearRanges(updatedYearRanges);
+  };
 
+  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [yearRangesState, setYearRanges] = useState(yearRanges);
+  const [isDrop, setIsDrop] = useState(false);
+
+  const handleYearRangeSelect = (value) => {
+    setSelectedYear(value);
+    setSelectedMonth('');
+  };
+
+  const handleMonthSelect = (month) => {
+    setSelectedMonth(month);
+    setIsDrop(false)
+  };
+    console.log(selectedMonth)
+  const getMonthsForYearRange = (yearRange) => {
+    const [startYear, endYear] = yearRange.split('-').map(Number);
+    const months = [];
+    for (let year = startYear; year <= endYear; year++) {
+      const startMonth = year === startYear ? 3 : 1;
+      const endMonth = year === endYear ? 3 : 12;
+      for (let month = startMonth; month <= endMonth; month++) {
+        const monthName = allMonths[month - 1].name;
+        months.push(`${monthName} ${year}`);
+      }
+    }
+    return months;
+  };
+  const toggleDropDown=()=>{
+    setIsDrop(!isDrop)
+  }
+  console.log(selectedMonth);
   return (
     <div className="container mx-auto px-2">
       <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
         Salary Break Up
       </p>
       <div className="flex justify-end ">
-        <div className="">
-          <label
-            htmlFor="yearSelect"
-            className="peer-focus:text-theme-1 text-gray-400 duration-300 select-none"
-          >
-            Select a Year :{" "}
-          </label>
-          <select
-            className=" bg-theme-1 font-semibold text-theme-text text-opacity-50 focus:text-opacity-100  h-12 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none transition duration-300"
-            id="yearSelect"
-            ref={selectRef}
-            style={{ height: "auto" }}
-          >
-            {options.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
+        <div className="relative inline-block">
+          <button
+            type="button"
+            className="w-[200px] bg-theme-1 font-semibold text-theme-text text-opacity-50 focus:text-opacity-100 h-12 p-2 bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none transition duration-300"
+          onClick={toggleDropDown}>
+            {selectedYear || "Select Year"}
+          </button>
+          {isDrop&&
+          <div className="overflow-auto w-[200px] h-[200px] absolute bg-white border border-gray-200 rounded-lg shadow-lg">
+            {yearRangesState.map((yearRange, index) => (
+              <div key={index} className="h-auto">
+                <div
+                  className="text-zinc-600 text-md font-medium cursor-pointer px-4 py-2 hover:bg-gray-100"
+                  onClick={() => {
+                    toggleAccordion(index);
+                    handleYearRangeSelect(yearRange.range);
+                  }}
+                >
+                  {yearRange.range}
+                </div>
+                {yearRange.isOpen && (
+                  <div className="ml-2">
+                    {getMonthsForYearRange(yearRange.range).map(
+                      (month, monthIndex) => (
+                        <div
+                          key={monthIndex}
+                          className={`text-zinc-600 text-sm cursor-pointer px-2 py-1 ${
+                            selectedMonth === month ? "bg-gray-200" : ""
+                          }`}
+                          onClick={() => {
+                            handleMonthSelect(month);
+                          }}
+                        >
+                          {month}
+                        </div>
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
             ))}
-          </select>
+          </div>
+          }
         </div>
       </div>
 
