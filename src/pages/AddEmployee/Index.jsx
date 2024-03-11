@@ -25,8 +25,8 @@ export default function AddEmployee() {
   const [tabs, setTabs] = useState(1);
   const [newFormData, setNewFormData] = useState({});
   const { user } = useAuthContext();
-
   const url = getUrl();
+
 
 
   const form1 = useFormValidation(
@@ -50,9 +50,9 @@ export default function AddEmployee() {
       doj: "",
     },
     (values) => {
-      const endpoint= "/api/v1/emp/addemployee/form1";
+      const endpoint = "/api/v1/emp/addemployee/form1";
       axios
-        .post(url+endpoint, values, {
+        .post(url + endpoint, values, {
           headers: {
             Authorization: `Bearer ${user?.token}`,
           },
@@ -68,7 +68,7 @@ export default function AddEmployee() {
   );
   const form2 = useFormValidation(
     {
-      empNo:form1?.empNo||"",
+      empNo: "",
       grade: "",
       costCenter: "",
       designationId: "",
@@ -80,9 +80,9 @@ export default function AddEmployee() {
       shift: "",
     },
     (values) => {
-      const endpoint= "/api/v1/emp/addemployee/form2";
+      const endpoint = "/api/v1/emp/addemployee/form2";
       axios
-        .post(url+endpoint, values, {
+        .post(url + endpoint, values, {
           headers: {
             Authorization: `Bearer ${user?.token}`,
           },
@@ -98,15 +98,15 @@ export default function AddEmployee() {
   );
   const form3 = useFormValidation(
     {
-      empNo:form1?.empNo||"",
+      empNo: "",
       panNo: "",
       aadharNo: "",
       passportNo: "",
     },
     (values) => {
-      const endpoint= "/api/v1/emp/addemployee/form3";
+      const endpoint = "/api/v1/emp/addemployee/form3";
       axios
-        .post(url+endpoint, values, {
+        .post(url + endpoint, values, {
           headers: {
             Authorization: `Bearer ${user?.token}`,
           },
@@ -122,16 +122,42 @@ export default function AddEmployee() {
   );
   const form4 = useFormValidation(
     {
+      empNo: "",
       paymentType: "",
     },
-    (values) => {},
+    (values) => {
+      const endpoint = "/api/v1/emp/addemployee/laststep";
+      axios
+        .post(url + endpoint, values, {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        })
+        .then((response) => {
+          setNewFormData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     validate4
   );
+
+
+
+useEffect(()=>{
+  form2.formData.empNo=form1.formData.empNo;
+  form3.formData.empNo=form1.formData.empNo;
+  form4.formData.empNo=form1.formData.empNo;
+},[form1.formData.empNo])
   const selectTab = (newtab) => {
     startTransition(() => {
       setTabs(newtab);
     });
   };
+
+
+
   const nextTab = () => {
     if (tabs === 1) {
       if (form1.handleSubmit()) {
@@ -154,13 +180,7 @@ export default function AddEmployee() {
         }
       }
     }
-    if (tabs === 4) {
-      if (form4.handleSubmit()) {
-        if (tabs <= 4) {
-          setTabs((prev) => prev + 1);
-        }
-      }
-    }
+    
   };
   const prevTab = () => {
     if (tabs > 1) {
@@ -241,7 +261,7 @@ export default function AddEmployee() {
         >
           Next
         </Button>
-        {tabs == 4 && <Button iconleft={<Check />}>Finish</Button>}
+        {tabs == 4 && <Button iconleft={<Check />} onClick={form4.handleSubmit}>Finish</Button>}
         <Link to="/dashboard">
           <Button
             secondary="true"
