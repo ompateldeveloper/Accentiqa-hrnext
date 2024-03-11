@@ -23,10 +23,11 @@ function App() {
                 {/* <Route path={'/dashboard/*'} element={<Dashboard/>} /> */}
 
                 <Route path={"/dashboard/*"} element={
-                    user ?
-                        <Navigate to="/signin" replace />
-                        :
-                        <Dashboard />
+                    user 
+                    ?
+                    <Dashboard />
+                    :
+                    <Navigate to="/signin" replace />
                 } />
                 <Route path={"/signin"} element={
                     user ?
@@ -42,6 +43,7 @@ function App() {
             </Routes>
         </div>
     )
+
 }
 
 export default App
