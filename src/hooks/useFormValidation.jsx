@@ -14,7 +14,6 @@ export const useFormValidation = (initialState, onSubmit, validate) => {
 
     // Perform validation
     const validationErrors = validate({ ...formData, [name]: value });
-    console.log("valid",validationErrors[name])
     if (!validationErrors[name]) {
       const newErrors = { ...errors };
       delete newErrors[name];
