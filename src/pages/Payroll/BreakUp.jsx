@@ -26,11 +26,11 @@ export default function BreakUp() {
                 variablePay:0,
                 grossSalary: 0,
                 gratuity: 0,
-                empPfCon: 0,
+                empPfCon: 1800,
                 retirementBenefits: 0,
                 ctc: 0,
-                empPf: 0,
-                pt: 0,
+                empPf: 1800,
+                pt: 200,
                 foodCoupon: 0,
                 loan: 0,
                 insurance: 0,
@@ -44,6 +44,12 @@ export default function BreakUp() {
         if(typeof(parseInt(value))==='number'){
             formData.basicSalary=parseInt(value)!==0?parseInt(value)*0.5:0;
             formData.hra=formData.basicSalary!==0?formData.basicSalary*0.5:0;
+            formData.specialAll=parseInt(value)!==0?parseInt(value)-(formData.basicSalary+formData.hra+formData.medicalAll+formData.transportAll+formData.lta+formData.cea):0;
+            formData.grossSalary=parseInt(value)!==0?(formData.basicSalary+formData.hra+formData.medicalAll+formData.transportAll+formData.lta+formData.cea+formData.specialAll):0
+            formData.variablePay=formData.basicSalary!==0?formData.basicSalary*0.108:0;
+            formData.retirementBenefits=formData.gratuity+formData.empPfCon;
+            formData.ctc=formData.grossSalary+formData.variablePay+formData.retirementBenefits;
+            formData.takeHome=formData.grossSalary-(formData.empPf+formData.pt+formData.foodCoupon+formData.loan+formData.insurance+formData.tds+formData.others)
         }
     }
     const navigateTo = () => {
@@ -190,7 +196,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Basic Salary"
-                        type="text"
+                        type="number"
                         name="basicSalary"
                         value={formData.basicSalary}
                         onChange={changeHandle}
@@ -198,7 +204,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="HRA"
-                        type="text"
+                        type="number"
                         name="hra"
                         value={formData.hra}
                         onChange={changeHandle}
@@ -208,7 +214,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Medical Allowance"
-                        type="text"
+                        type="number"
                         name="medicalAll"
                         value={formData.medicalAll}
                         onChange={changeHandle}
@@ -216,7 +222,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="Transport Allowance"
-                        type="text"
+                        type="number"
                         name="transportAll"
                         value={formData.transportAll}
                         onChange={changeHandle}
@@ -226,7 +232,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="LTA"
-                        type="text"
+                        type="number"
                         name="lta"
                         value={formData.lta}
                         onChange={changeHandle}
@@ -234,7 +240,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="CEA"
-                        type="text"
+                        type="number"
                         name="cea"
                         value={formData.cea}
                         onChange={changeHandle}
@@ -244,7 +250,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Special Allowance"
-                        type="text"
+                        type="number"
                         name="specialAll"
                         value={formData.specialAll}
                         onChange={changeHandle}
@@ -252,7 +258,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="Monthly Gross Salary"
-                        type="text"
+                        type="number"
                         name="grossSalary"
                         value={formData.grossSalary}
                         onChange={changeHandle}
@@ -262,7 +268,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Variable Pay"
-                        type="text"
+                        type="number"
                         name="variablePay"
                         value={formData.variablePay}
                         onChange={changeHandle}
@@ -272,7 +278,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Gratuity"
-                        type="text"
+                        type="number"
                         name="gratuity"
                         value={formData.gratuity}
                         onChange={changeHandle}
@@ -280,7 +286,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="Employer PF Contribution"
-                        type="text"
+                        type="number"
                         name="empPfCon"
                         value={formData.empPfCon}
                         onChange={changeHandle}
@@ -290,7 +296,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Retirement Benefits"
-                        type="text"
+                        type="number"
                         name="retirementBenefits"
                         value={formData.retirementBenefits}
                         onChange={changeHandle}
@@ -298,7 +304,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="CTC"
-                        type="text"
+                        type="number"
                         name="ctc"
                         value={formData.ctc}
                         onChange={changeHandle}
@@ -311,7 +317,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Employee PF"
-                        type="text"
+                        type="number"
                         name="empPf"
                         value={formData.empPf}
                         onChange={changeHandle}
@@ -319,7 +325,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="PT"
-                        type="text"
+                        type="number"
                         name="pt"
                         value={formData.pt}
                         onChange={changeHandle}
@@ -329,7 +335,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Food Coupon"
-                        type="text"
+                        type="number"
                         name="foodCoupon"
                         value={formData.foodCoupon}
                         onChange={changeHandle}
@@ -337,7 +343,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="Loan"
-                        type="text"
+                        type="number"
                         name="loan"
                         value={formData.loan}
                         onChange={changeHandle}
@@ -347,7 +353,7 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Insurance"
-                        type="text"
+                        type="number"
                         name="insurance"
                         value={formData.insurance}
                         onChange={changeHandle}
@@ -355,7 +361,7 @@ export default function BreakUp() {
                     />
                     <FormElements.Input
                         label="TDS"
-                        type="text"
+                        type="number"
                         name="tds"
                         value={formData.tds}
                         onChange={changeHandle}
@@ -365,11 +371,19 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Other Deductions"
-                        type="text"
+                        type="number"
                         name="others"
                         value={formData.others}
                         onChange={changeHandle}
                         error={errors.others}
+                    />
+                      <FormElements.Input
+                        label="Monthly Take Home"
+                        type="number"
+                        name="takeHome"
+                        value={formData.takeHome}
+                        onChange={changeHandle}
+                        error={errors.takeHome}
                     />
                 </div>
                 <button
