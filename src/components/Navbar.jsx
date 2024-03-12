@@ -1,6 +1,6 @@
 import React from 'react'
 import acqlogo from "../assets/logo.svg"
-import { Bell, Cog, LogOut, MenuIcon, Settings, User } from 'lucide-react';
+import { Bell, ChevronLeft, ChevronRight, Cog, LogOut, MenuIcon, Settings, User } from 'lucide-react';
 import { Menu, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useAuthContext } from '../contexts/AuthContext';
 import { useGlobalContext } from '../contexts/GlobalContext';
@@ -9,7 +9,7 @@ import * as FormElements from "../components/ui/FormElements";
 
 export default function Navbar() {
     const { dispatch, user } = useAuthContext()
-    const { sidebar, setSidebar } = useGlobalContext()
+    const { sidebar, setSidebar,tabs } = useGlobalContext()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -19,10 +19,13 @@ export default function Navbar() {
         setAnchorEl(null);
     };
     return (
-        <div className='fixed w-full h-20 flex justify-between  items-center z-20  bg-gray-50 font-medium py-4  border-b'>
+        <div className='fixed w-full h-20 flex justify-between  items-center z-20  bg-white bg-opacity-90 backdrop-blur-sm font-medium py-4  border-b'>
             <div className='flex items-center  mx-4 lg:ml-1 logo select-none' >
                 <MenuIcon className='hidden lg:grid min-w-6 mx-4 ' onClick={() => { setSidebar(!sidebar) }} />
                 <img className='h-10 text-start  ' src={acqlogo} alt='' />
+                <div className='text-zinc-500 capitalize flex items-center'>
+                   &nbsp; <ChevronRight/> {tabs}
+                </div>
             </div>
             <div className='flex items-center gap-4 text-2xl text-zinc-700  mr-2'>
                 <FormElements.Input className='rounded-md text-xl pb-0 md:hidden' placeholder='Search' type='search' />

@@ -5,13 +5,13 @@ export default function Welcome() {
     const { user } = useAuthContext();
     return (
         <div>
-            <div className="hero flex justify-between w-full h-64 rounded-lg overflow-hidden">
+            <div className="hero flex justify-between w-full h-64 rounded-lg overflow-hidden bg-zinc-100 relative">
                 <div className="self-center m-4 ml-12">
-                    <div className="text-3xl font-semibold text-theme-1">Howdy, {user?.name}</div>
-                    <div className="span">Lets do Something Awesome 🚀</div>
+                    <div className="text-3xl font-semibold text-theme-1 truncate">Howdy, {user?.name}</div>
+                    <div className="span truncate">Lets do Something Awesome 🚀</div>
                 </div>
-                <div className="self-end">
-                    <img src={heroimage} alt="" />
+                <div className="self-end absolute inset-0">
+                    <img src={heroimage} className='w-full object-cover' alt="" />
                 </div>
             </div>
             <div className="section-01 grid grid-cols-12">
