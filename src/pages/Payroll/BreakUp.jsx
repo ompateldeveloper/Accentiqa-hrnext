@@ -1,35 +1,51 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { validateBreakUp } from "./validateBreakUp";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import * as FormElements from "../../components/ui/FormElements";
 import { useNavigate } from "react-router-dom";
+import { number } from "prop-types";
 export default function BreakUp() {
     const navigate = useNavigate();
+    const [mainSalary,setMainSalary] = useState(0);
+
+    const onSubmit = (v)=>{
+        v.basicSalary=parseInt(mainSalary)!==0?parseInt(mainSalary)*0.5:0;
+        v.hra=v.basicSalary!==0?v.basicSalary*0.5:0;
+    }
     const { formData, errors, changeHandle, handleSubmit, cleanup } =
         useFormValidation(
             {
-                basicSalary: "",
-                hra: "",
-                medicalAll: "",
-                transportAll: "",
-                lta: "",
-                cea: "",
-                grossSalary: "",
-                gratuity: "",
-                empPfCon: "",
-                retirementBenefits: "",
-                ctc: "",
-                empPf: "",
-                pt: "",
-                foodCoupon: "",
-                loan: "",
-                insurance: "",
-                tds: "",
-                others: "",
+                salary:0,
+                basicSalary:0,
+                hra: 0,
+                medicalAll: 1250,
+                transportAll: 1600,
+                specialAll:0,
+                lta: 0,
+                cea: 0,
+                variablePay:0,
+                grossSalary: 0,
+                gratuity: 0,
+                empPfCon: 0,
+                retirementBenefits: 0,
+                ctc: 0,
+                empPf: 0,
+                pt: 0,
+                foodCoupon: 0,
+                loan: 0,
+                insurance: 0,
+                tds: 0,
+                others: 0,
             },
-            (values) => { },
+            onSubmit,
             validateBreakUp
         );
+    const handleCompute = (value)=>{
+        if(typeof(parseInt(value))==='number'){
+            formData.basicSalary=parseInt(value)!==0?parseInt(value)*0.5:0;
+            formData.hra=formData.basicSalary!==0?formData.basicSalary*0.5:0;
+        }
+    }
     const navigateTo = () => {
         navigate("/dashboard/pay-slip", { state: { data: formData } });
     };
@@ -160,10 +176,14 @@ export default function BreakUp() {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Input
                         label="Enter Salary"
-                        type="text"
+                        type="number"
                         name="salary"
-                        value={formData.salary}
-                        onChange={changeHandle}
+                        value={mainSalary}
+                        onChange={(e)=>{
+                            const {value} = e.target;
+                            setMainSalary(value)
+                            handleCompute(value)
+                        }}
                         error={errors.salary}
                     />
                 </div>
