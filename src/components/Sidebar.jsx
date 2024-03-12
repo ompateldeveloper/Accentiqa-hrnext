@@ -26,16 +26,16 @@ export default function Sidebar() {
         <div className={cn('h-[calc(100vh-80px)] fixed flex mt-20 bg-white z-20 duration-100 lg:-translate-x-full', sidebar && "lg:translate-x-0")}>
             <div className="fixed-panel w-16  bg-theme-1 text-white">
                 <TabsList>
-                    <Link to='/dashboard' >
+                    <Link to='/dashboard' onClick={()=>{setSidebar(false)}}>
                         <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Home'} selectTab={selectTab} icon={<Home />}></TabsTrigger>
                     </Link>
-                    <Link to='/dashboard/add-employee' >
+                    <Link to='/dashboard/add-employee' onClick={()=>{setSidebar(false)}}>
                         <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Add Employee'} selectTab={selectTab} icon={<UserPlus />}></TabsTrigger>
                     </Link>
-                    <Link to='/dashboard/break-up' >
+                    <Link to='/dashboard/break-up' onClick={()=>{setSidebar(false)}}>
                         <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'Payroll'} selectTab={selectTab} icon={<HandCoins />}></TabsTrigger>
                     </Link>
-                    <Link to='/dashboard/view-employee' >
+                    <Link to='/dashboard/view-employee' onClick={()=>{setSidebar(false)}} >
                         <TabsTrigger className='p-4 w-full' active='bg-white text-zinc-800 ' tab={tabs} tabIndex={'View'} selectTab={selectTab} icon={<Eye />}></TabsTrigger>
                     </Link>
                 </TabsList>
