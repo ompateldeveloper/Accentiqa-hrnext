@@ -9,7 +9,8 @@ export default {
       colors:{
         'theme-1':'#5872E3',
         'theme-2':'#DDE3FF',
-        'theme-3':'#16A34A',
+        'theme-success':'#16A34A',
+        'theme-danger':'#b91c1c',
         'theme-text':'#282828',
       },
     },

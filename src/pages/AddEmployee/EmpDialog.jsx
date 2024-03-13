@@ -62,7 +62,7 @@ export default function EmpDialog({ open, handleClose, dialogUrl ,setLatch}) {
             <Card
                 style={{
                     maxWidth: 450,
-                    padding: "20px 30px",
+                    padding: "20px 5px",
                     margin: "0 auto",
                 }}
             >

@@ -9,6 +9,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 const EmployeeDetails = ({ form }) => {
     const { formData, errors, changeHandle, handleSubmit } = form
     const [reportingManager, setReportingManager] = useState([]);
+    const [autoEmp, setAutoEmp] = useState('');
     const url = getUrl();
     const {user} = useAuthContext();
 
@@ -26,8 +27,23 @@ const EmployeeDetails = ({ form }) => {
                 console.log(error);
             });
     };
+    const fetchAutoEmp = async () => {
+        axios
+            .get(url + '/api/v1/misc/empnogen', {
+                headers: {
+                    Authorization: `Bearer ${user?.token}`,
+                },
+            })
+            .then((response) => {
+                setAutoEmp(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
     useEffect(() => {
         fetchRepoMg()
+        fetchAutoEmp()
     }, [])
 
     return (
@@ -40,9 +56,8 @@ const EmployeeDetails = ({ form }) => {
                     <FormElements.Select
                         label="Employee Number Series *"
                         optionsArray={[
-                            { value: "", title: "Select an Option" },
-                            { value: "audi", title: "Audi cars" },
-                            { value: "merc", title: "Mercideez benz cars" },
+                            { value: "auto", title: "Automatic" },
+                            { value: "manual", title: "Manual" },
                         ]}
                         name="empSeries"
                         value={formData.empSeries}
@@ -66,9 +81,10 @@ const EmployeeDetails = ({ form }) => {
                         label="Employee No *"
                         type="text"
                         name="empNo"
-                        value={formData.empNo}
+                        value={formData.empSeries==='manual'?formData.empNo:autoEmp.uuid}
                         onChange={changeHandle}
                         error={errors.empNo}
+                        readOnly={formData.empSeries==='manual'?false:true}
                     />
                     <FormElements.Input
                         label="Confirmation Date *"
