@@ -43,13 +43,13 @@ export default function Navbar() {
                         "aria-labelledby": "basic-button",
                     }}
                 >
-                    <MenuItem onClick={handleClose} >
-                        <div onClick={handleClick} className="uppercase h-6 w-6 text-xs bg-theme-1 select-none flex items-center justify-center rounded-full text-white">
+                    <div className='flex w-full items-center px-4' >
+                        <div className="uppercase h-6 w-6 text-xs bg-theme-1 select-none flex items-center justify-center rounded-full text-white">
                             {user && user.name.split(' ').map((str, i) => { if (i < 2) return str[0] })}
                         </div>
                         {user && <div className='mx-2 max-w-24 truncate capitalize text-theme-1 font-semibold text-lg'>{user.name}</div>}
-                    </MenuItem>
-                    <hr />
+                    </div >
+                    <hr className='my-2'/>
                     <MenuItem onClick={handleClose} >
                         <Settings className='text-theme-text w-5 mr-2' />
                         Setting
