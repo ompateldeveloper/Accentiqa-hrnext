@@ -223,7 +223,9 @@ const EmployeeSalaryCalculator = () => {
                         </li>
                       ))}
                     </ul>
-                  ) : null}
+                  ) :  (
+                    "No hikes"
+                  )}
                 </td>
                 <td className="pl-2 pb-2 border border-slate-300">
                   {employmentDuration}
