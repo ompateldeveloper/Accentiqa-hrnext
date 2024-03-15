@@ -14,41 +14,35 @@ const columns = [
     field: "name",
     headerName: "Name",
     width: 100,
-    editable: true,
   },
   {
     field: "doj",
     headerName: "Date of Joining",
     type: "text",
     width: 150,
-    editable: true,
   },
   {
     field: "salary",
     headerName: "Salary",
 
     width: 100,
-    editable: true,
   },
   {
     field: "project",
     headerName: "Allocated Project",
     type: "text",
     width: 100,
-    editable: true,
   },
   {
     field: "projectDate",
     headerName: "Project Allocation Date",
     type: "text",
     width: 170,
-    editable: true,
   },
   {
     field: "actions",
     headerName: "Actions",
     width: 100,
-    sortable: false,
     renderCell: (params) => <BasicMenu rowData={params.row}/>,
   },
   {
@@ -56,7 +50,6 @@ const columns = [
     headerName: "Project Type",
     type: "text",
     width: 100,
-    editable: true,
   },
 ];
 const rows = [

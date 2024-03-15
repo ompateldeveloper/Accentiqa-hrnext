@@ -147,10 +147,10 @@ export default function Employeeposition({ form }) {
                             { value: "audi", title: "Audi cars" },
                             { value: "merc", title: "Mercideez benz cars" },
                         ]}
-                        name="location"
-                        value={formData.location}
+                        name="locationId"
+                        value={formData.locationId}
                         onChange={changeHandle}
-                        error={errors.location}
+                        error={errors.locationId}
                     />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">

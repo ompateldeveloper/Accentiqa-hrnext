@@ -5,11 +5,14 @@ import * as FormElements from "../../components/ui/FormElements";
 import axios from "axios";
 import { getUrl } from "../../components/Url";
 import { useAuthContext } from "../../contexts/AuthContext";
-
+import { Edit } from "lucide-react";
+import EmpDialog from "./EmpDialog";
+import Button from "../../components/ui/Button";
 const EmployeeDetails = ({ form }) => {
     const { formData, errors, changeHandle, handleSubmit } = form
     const [reportingManager, setReportingManager] = useState([]);
     const [autoEmp, setAutoEmp] = useState('');
+    const [latch,setLatch] = useState(false)
     const url = getUrl();
     const {user} = useAuthContext();
 
@@ -45,13 +48,22 @@ const EmployeeDetails = ({ form }) => {
         fetchRepoMg()
         fetchAutoEmp()
     }, [])
-
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+    const [open, setOpen] = useState();
+    const [dialogUrl, setDialogUrl] = useState('')
+    const handleClose=()=>{
+        setOpen(false)
+        setDialogUrl('')
+    }
     return (
         <div className="container mx-auto px-2 employee-details ">
+            {dialogUrl&&<EmpDialog setLatch={setLatch} open={open} handleClose={handleClose} dialogUrl={dialogUrl} setDialogUrl={setDialogUrl} />}
             <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
                 Basic Information
             </p>
-            <form className="employee-form"  >
+            <div className="employee-form"  >
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
                         label="Employee Number Series *"
@@ -172,6 +184,9 @@ const EmployeeDetails = ({ form }) => {
                         value={formData.reportingMgId}
                         onChange={changeHandle}
                         error={errors.reportingMgId}
+                        edit={
+                            <Button secondary className='scale-[80%] p-1 mt-2' iconleft={<Edit />} onClick={() => { setDialogUrl(prev=>(url + '/api/v1/misc/reportingmanager')); setOpen(true); }} />
+                        }
                     />
                     <FormElements.Input
                         label="Father's Name *"
@@ -223,7 +238,7 @@ const EmployeeDetails = ({ form }) => {
                         Employee Onboarding Policy
                     </a>
                 </div>
-            </form>
+            </div>
         </div>
     );
 };
