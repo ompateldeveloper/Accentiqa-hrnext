@@ -129,7 +129,8 @@ export default function Employeeposition({ form }) {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
-                        label="Designation"
+                        
+                        label={<span>Designation <span className="text-red-500">*</span></span>}
                         optionsArray={[{ id: 0, name: "Select an Option" }, ...designation]}
                         name="designationId"
                         value={formData.designationId}
@@ -141,7 +142,8 @@ export default function Employeeposition({ form }) {
                         }
                     />
                     <FormElements.Select
-                        label="Location *"
+                        
+                        label={<span>Location <span className="text-red-500">*</span></span>}
                         optionsArray={[
                             { value: "", title: "Select an Option" },
                             { value: "audi", title: "Audi cars" },
@@ -155,7 +157,8 @@ export default function Employeeposition({ form }) {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
-                        label="Division"
+                       
+                        label={<span>Division <span className="text-red-500">*</span></span>}
                         optionsArray={[{ id: 0, name: "Select an Option" }, ...division]}
                         name="divisionId"
                         value={formData.divisionId}
@@ -167,7 +170,8 @@ export default function Employeeposition({ form }) {
                     />
 
                     <FormElements.Select
-                        label="Department"
+                        
+                        label={<span>Department <span className="text-red-500">*</span></span>}
                         optionsArray={[{ id: 0, name: "Select an Option" }, ...department]}
                         name="departmentId"
                         value={formData.departmentId}
@@ -183,7 +187,8 @@ export default function Employeeposition({ form }) {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
-                        label="Project"
+                        
+                        label={<span>Project <span className="text-red-500">*</span></span>}
                         optionsArray={[{ id: 0, name: "Select an Option" }, ...project]}
                         name="projectId"
                         value={formData.projectId}
@@ -195,7 +200,8 @@ export default function Employeeposition({ form }) {
                         }
                     />
                     <FormElements.Input
-                        label="Project Allocation Date"
+                        
+                        label={<span>Project Allocation Date <span className="text-red-500">*</span></span>}
                         type='date'
                         name="projectDate"
                         value={formData.projectDate}
@@ -205,7 +211,8 @@ export default function Employeeposition({ form }) {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
-                        label="Attendance Shift *"
+                        
+                        label={<span>Attendance Shift <span className="text-red-500">*</span></span>}
                         optionsArray={[
                             { value: "", title: "Select an Option" },
                             { value: "audi", title: "Audi cars" },

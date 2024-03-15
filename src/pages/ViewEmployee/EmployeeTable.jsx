@@ -1,57 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import * as FormElements from "../../components/ui/FormElements";
-// import { Select } from "../../components/ui/FormElements";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Edit } from "lucide-react";
 import { IconButton } from "@mui/material";
 import DialogBox from "./DialogBox";
+
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
-  {
-    field: "name",
-    headerName: "Name",
-    width: 100,
-  },
-  {
-    field: "doj",
-    headerName: "Date of Joining",
-    type: "text",
-    width: 150,
-  },
-  {
-    field: "salary",
-    headerName: "Salary",
-
-    width: 100,
-  },
-  {
-    field: "project",
-    headerName: "Allocated Project",
-    type: "text",
-    width: 100,
-  },
-  {
-    field: "projectDate",
-    headerName: "Project Allocation Date",
-    type: "text",
-    width: 170,
-  },
-  {
-    field: "actions",
-    headerName: "Actions",
-    width: 100,
-    renderCell: (params) => <BasicMenu rowData={params.row}/>,
-  },
-  {
-    field: "isbillable",
-    headerName: "Project Type",
-    type: "text",
-    width: 100,
-  },
+  { field: "name", headerName: "Name", width: 100 },
+  { field: "doj", headerName: "Date of Joining", type: "text", width: 150 },
+  { field: "salary", headerName: "Salary", width: 100 },
+  { field: "project", headerName: "Allocated Project", type: "text", width: 100 },
+  { field: "projectDate", headerName: "Project Allocation Date", type: "text", width: 170 },
+  { field: "isbillable", headerName: "Project Type", type: "text", width: 100 },
 ];
+
 const rows = [
   {
     id: 1,
@@ -60,7 +26,7 @@ const rows = [
     salary: 35000,
     project: "Project A",
     projectDate: "2022-01-01",
-    isbillable:true?"Billable":"Non-Billable"
+    isbillable:"Billable"
   },
   {
     id: 2,
@@ -69,7 +35,7 @@ const rows = [
     salary: 38000,
     project: "Project B",
     projectDate: "2022-01-01",
-    isbillable:false?"Billable":"Non-Billable"
+    isbillable:"Billable"
 
   },
   {
@@ -79,6 +45,7 @@ const rows = [
     salary: 33000,
     project: "Project C",
     projectDate: "2022-01-01",
+    isbillable:"nonBillable"
   },
   {
     id: 4,
@@ -87,6 +54,7 @@ const rows = [
     salary: 37000,
     project: "Project D",
     projectDate: "2022-01-01",
+    isbillable:"Billable"
   },
   {
     id: 5,
@@ -95,6 +63,7 @@ const rows = [
     salary: 32000,
     project: "Project E",
     projectDate: "2022-01-01",
+    isbillable:"nonBillable"
   },
   {
     id: 6,
@@ -103,6 +72,7 @@ const rows = [
     salary: 36000,
     project: "Project A",
     projectDate: "2022-01-01",
+    isbillable:"nonBillable"  
   },
   {
     id: 7,
@@ -111,6 +81,7 @@ const rows = [
     salary: 34000,
     project: "Project B",
     projectDate: "2022-01-01",
+    isbillable:"nonBillable"
   },
   {
     id: 8,
@@ -119,6 +90,8 @@ const rows = [
     salary: 39000,
     project: "Project C",
     projectDate: "2022-01-01",
+    isbillable:"nonBillable"
+
   },
   {
     id: 9,
@@ -127,6 +100,7 @@ const rows = [
     salary: 32000,
     project: "Project D",
     projectDate: "2022-01-01",
+    isbillable:"Billable"
   },
   {
     id: 10,
@@ -135,14 +109,36 @@ const rows = [
     salary: 37000,
     project: "Project E",
     projectDate: "2022-01-01",
+    isbillable:"Billable"
+
   },
 ];
 
+
 export default function EmployeeTable() {
-  const [projectType, setProjectType] = useState();
+  const [projectType, setProjectType] = useState("all");
+  const [filteredRows, setFilteredRows] = useState(rows);
+
   const changeHandle = (e) => {
     setProjectType(e.target.value);
+    filterRows(e.target.value);
   };
+
+  const filterRows = (type) => {
+    if (type === "billable") {
+      setFilteredRows(rows.filter((row) => row.isbillable === "Billable"));
+    } else if (type === "nonBillable") {
+      setFilteredRows(rows.filter((row) => row.isbillable === "nonBillable"));
+    } else {
+      setFilteredRows(rows);
+    }
+  };
+
+  const handleDelete = (id) => {
+    setFilteredRows(filteredRows.filter((row) => row.id !== id));
+  };
+  
+
   return (
     <div>
       EmployeeTable
@@ -160,15 +156,19 @@ export default function EmployeeTable() {
         />
       </div>
       <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 50,
-            },
+        rows={filteredRows}
+        columns={[
+          ...columns,
+          {
+            field: "actions",
+            headerName: "Actions",
+            width: 100,
+            sortable: false,
+            renderCell: (params) => (
+              <BasicMenu rowData={params.row} onDelete={() => handleDelete(params.row.id)} />
+            ),
           },
-        }}
+        ]}
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
@@ -177,22 +177,22 @@ export default function EmployeeTable() {
   );
 }
 
-export function BasicMenu({ rowData }) {
-  const [dialogOpen,setDialogOpen]= useState();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export function BasicMenu({ rowData, onDelete }) {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
-    setDialogOpen(true)
   };
 
   return (
     <div>
-      <DialogBox open={dialogOpen} rowData={rowData} setDialogOpen={setDialogOpen}/>  
-
+      <DialogBox open={dialogOpen} rowData={rowData} setDialogOpen={setDialogOpen} />
       <Button
         variant="text"
         id="basic-button"
@@ -212,12 +212,9 @@ export function BasicMenu({ rowData }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose} >
-            Edit
-        </MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={() => { handleClose(); setDialogOpen(true) }}>Edit</MenuItem>
+        <MenuItem onClick={() => { onDelete(); handleClose() }}>Delete</MenuItem>
       </Menu>
     </div>
   );
 }
-
