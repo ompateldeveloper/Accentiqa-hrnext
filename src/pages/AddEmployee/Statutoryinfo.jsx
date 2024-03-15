@@ -11,9 +11,8 @@ export default function Statutoryinfo({form}) {
       <form className="employee-form" onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
           <FormElements.Input 
-            label="PAN Number *" 
-            // className="required"
-           
+            label={<span>PAN Number <span className="text-red-500">*</span></span>}
+                    
             type="text"
             name="panNo"
             value={formData.panNo}
@@ -24,7 +23,7 @@ export default function Statutoryinfo({form}) {
             
           />
           <FormElements.Input
-            label="Aadhar Number *"
+            label={<span>Aadhar Number <span className="text-red-500">*</span></span>}
             type="text"
             name="aadharNo"
             value={formData.aadharNo}

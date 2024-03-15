@@ -81,7 +81,7 @@ const rows = [
     salary: 34000,
     project: "Project B",
     projectDate: "2022-01-01",
-    // isbillable:false?"Billable":"nonBillable"
+    isbillable:"nonBillable"
   },
   {
     id: 8,
@@ -100,6 +100,7 @@ const rows = [
     salary: 32000,
     project: "Project D",
     projectDate: "2022-01-01",
+    isbillable:"Billable"
   },
   {
     id: 10,
