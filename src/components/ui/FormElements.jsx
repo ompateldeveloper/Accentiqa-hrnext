@@ -56,7 +56,7 @@ export function Checkbox(props) {
             // {...props} 
             />
             {props.label && <label htmlFor={inputId} className="peer-checked:text-theme-1 text-gray-400 duration-300 select-none">{props.label}</label>}
-            {props.error && <p className="text-red-500 text-xs italic">{props.error}</p>}
+            {props.error && <p className="text-theme-danger text-xs italic">{props.error}</p>}
         </div>
     )
 }
