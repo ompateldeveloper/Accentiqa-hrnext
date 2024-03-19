@@ -17,21 +17,18 @@ export default function Signup() {
         password: ""
     }
     const onSubmit = async(values) => {
+        setIsLoading(true)
         await axios.post(url+'/api/v1/auth/signup',formData)
         .then((data)=>{
             localStorage.setItem('user', JSON.stringify(data.data))
             dispatch({ type: 'LOGIN', payload: data.data })
+            setIsLoading(false)
         })
         .catch((error)=>{
-            
             console.log(error);
-        })
-        .finally(()=>{
-            console.log('finally');
             setIsLoading(false)
         })
 
-        setIsLoading(true)
     }
     function validate(values) {
         const errors = {};
@@ -54,36 +51,6 @@ export default function Signup() {
     }
     const { formData, errors, changeHandle, handleSubmit, cleanup } = useFormValidation(initialState, onSubmit, validate)
 
-
-
-
-
-
-
-
-    // async function handleSubmit(e) {
-    //     e.preventDefault()
-    //     let { name, email, password } = details
-    //     setIsLoading(true)
-    //     setErr("")
-
-    //     const response = await fetch('/api/v1/auth/signup', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({ name, email, password })
-    //     })
-    //     const json = await response.json()
-
-    //     if (!response.ok) {
-    //         setIsLoading(false)
-    //         setErr(json.err)
-    //     }
-    //     if (response.ok) {
-    //         localStorage.setItem('user', JSON.stringify(json))
-    //         dispatch({ type: 'LOGIN', payload: json })
-    //         setIsLoading(false)
-    //     }
-    // }
     return (
         <div className=' grid grid-cols-2 md:flex overflow-hidden h-screen'>
 
