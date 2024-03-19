@@ -26,9 +26,6 @@ export default function EmpDialog({ open, handleClose, dialogUrl ,setLatch}) {
                     console.log(error);
                 });
         }
-        return()=>{
-            setData([])
-        }
     }, [dialogUrl])
 
     const handleCreate = (e) => {
