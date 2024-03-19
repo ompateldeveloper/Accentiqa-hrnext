@@ -179,7 +179,7 @@ const EmployeeDetails = ({ form }) => {
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
                         label={<span>Reporting Manager <span className="text-red-500">*</span></span>}
-                        optionsArray={[{ id: 0, name: "Select an Option" }, ...reportingManager]}
+                        optionsArray={[{ id: '', name: "Select an Option" }, ...reportingManager]}
                         name="reportingMgId"
                         value={formData.reportingMgId}
                         onChange={changeHandle}

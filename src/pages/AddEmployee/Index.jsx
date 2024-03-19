@@ -72,7 +72,7 @@ export default function AddEmployee() {
       grade: "",
       costCenter: "",
       designationId: "",
-      location: "",
+      locationId: "",
       divisionId: "",
       departmentId: "",
       projectId: "",

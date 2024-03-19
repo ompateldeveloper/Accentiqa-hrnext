@@ -68,12 +68,12 @@ export const validate1 = (values) => {
   if (!values.reportingMgId.trim()) {
     errors.reportingMgId = "Please select an option";
   }
-  // //Validation For fathersName
-  // if (!values.fathersName.trim()) {
-  //   errors.fathersName = "Name is required";
-  // } else if (values.fathersName.length < 3) {
-  //   errors.fathersName = "Name must be at least 3 characters long";
-  // }
+  //Validation For fathersName
+  if (!values.fathersName.trim()) {
+    errors.fathersName = "Name is required";
+  } else if (values.fathersName.length < 3) {
+    errors.fathersName = "Name must be at least 3 characters long";
+  }
   //Validation For status
   if (!values.status.trim()) {
     errors.status = "Please select an option";
@@ -95,18 +95,21 @@ export const validate1 = (values) => {
 
 export const validate2 = (values) => {
   const errors = {};
-  if (!values.grade.trim()) {
-    errors.grade = "Please select an option";
+  // if (!values.grade.trim()) {
+  //   errors.grade = "Please select an option";
+  // }
+  // if (!values.costCenter.trim()) {
+  //   errors.costCenter = "Please select an option";
+  // }
+  // console.log(values.locationId);
+  // if (!values.locationId.trim()) {
+  //   errors.locationId = "Please select an option";
+  // }
+  if (!values.locationId.trim()) {
+    errors.locationId = "Please select an option";
   }
-  if (!values.costCenter.trim()) {
-    errors.costCenter = "Please select an option";
-  }
-  console.log(values.designationId);
   if (!values.designationId.trim()) {
     errors.designationId = "Please select an option";
-  }
-  if (!values.location.trim()) {
-    errors.location = "Please select an option";
   }
   if (!values.divisionId.trim()) {
     errors.divisionId = "Please select an option";
@@ -116,6 +119,9 @@ export const validate2 = (values) => {
   }
   if (!values.projectId.trim()) {
     errors.projectId = "Please select an option";
+  }
+   if (!values.projectDate.trim()) {
+    errors.projectDate = "Project Allocation Date is required";
   }
   if (!values.shift.trim()) {
     errors.shift = "Please select an option";

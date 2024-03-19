@@ -16,6 +16,7 @@ export default function Employeeposition({ form }) {
     const [division, setDivision] = useState([]);
     const [designation, setDesignation] = useState([]);
     const [project, setProject] = useState([]);
+    const [locations, setLocations] = useState([]);
     const [latch,setLatch] = useState(false)
     const url = getUrl();
     const fetchDept = async () => {
@@ -74,11 +75,26 @@ export default function Employeeposition({ form }) {
                 console.log(error);
             });
     };
+    const fetchLocations = async () => {
+        axios
+            .get(url + '/api/v1/misc/locations', {
+                headers: {
+                    Authorization: `Bearer ${user?.token}`,
+                },
+            })
+            .then((response) => {
+                setLocations(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
     useEffect(() => {
         fetchDept()
         fetchDesig()
         fetchDiv()
         fetchProj()
+        fetchLocations()
     }, [latch])
     const onSubmit = (data) => {
         console.log(data);
@@ -112,7 +128,7 @@ export default function Employeeposition({ form }) {
                         name="grade"
                         value={formData.grade}
                         onChange={changeHandle}
-                        error={errors.grade}
+                        // error={errors.grade}
                     />
                     <FormElements.Select
                         label="Cost Center"
@@ -124,14 +140,14 @@ export default function Employeeposition({ form }) {
                         name="costCenter"
                         value={formData.costCenter}
                         onChange={changeHandle}
-                        error={errors.costCenter}
+                        // error={errors.costCenter}
                     />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
                         
                         label={<span>Designation <span className="text-red-500">*</span></span>}
-                        optionsArray={[{ id: 0, name: "Select an Option" }, ...designation]}
+                        optionsArray={[{ id: '', name: "Select an Option" }, ...designation]}
                         name="designationId"
                         value={formData.designationId}
 
@@ -144,22 +160,21 @@ export default function Employeeposition({ form }) {
                     <FormElements.Select
                         
                         label={<span>Location <span className="text-red-500">*</span></span>}
-                        optionsArray={[
-                            { value: "", title: "Select an Option" },
-                            { value: "audi", title: "Audi cars" },
-                            { value: "merc", title: "Mercideez benz cars" },
-                        ]}
+                        optionsArray={[{ id: '', name: "Select an Option" }, ...locations]}
                         name="locationId"
                         value={formData.locationId}
                         onChange={changeHandle}
                         error={errors.locationId}
+                        edit={
+                            <Button secondary className='scale-[80%] p-1 mt-2' iconleft={<Edit />} onClick={() => { setDialogUrl(prev=>(url + '/api/v1/misc/locations')); setOpen(true); }} />
+                        }
                     />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-1 gap-5 ">
                     <FormElements.Select
                        
                         label={<span>Division <span className="text-red-500">*</span></span>}
-                        optionsArray={[{ id: 0, name: "Select an Option" }, ...division]}
+                        optionsArray={[{ id: '', name: "Select an Option" }, ...division]}
                         name="divisionId"
                         value={formData.divisionId}
                         onChange={changeHandle}
@@ -172,7 +187,7 @@ export default function Employeeposition({ form }) {
                     <FormElements.Select
                         
                         label={<span>Department <span className="text-red-500">*</span></span>}
-                        optionsArray={[{ id: 0, name: "Select an Option" }, ...department]}
+                        optionsArray={[{ id: '', name: "Select an Option" }, ...department]}
                         name="departmentId"
                         value={formData.departmentId}
 
@@ -189,7 +204,7 @@ export default function Employeeposition({ form }) {
                     <FormElements.Select
                         
                         label={<span>Project <span className="text-red-500">*</span></span>}
-                        optionsArray={[{ id: 0, name: "Select an Option" }, ...project]}
+                        optionsArray={[{ id: '', name: "Select an Option" }, ...project]}
                         name="projectId"
                         value={formData.projectId}
 
