@@ -25,5 +25,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build
+    - run: | 
+        touch .env
+        echo "${{ secrets.PROD_ENV }}" > .env
     - run: sudo systemctl start hrnext-frontend.service
-
