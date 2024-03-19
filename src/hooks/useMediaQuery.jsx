@@ -15,7 +15,6 @@ export default function useMediaQuery(query) {
         mediaQuery.addEventListener('change',listener);
         return()=>{
             mediaQuery.removeEventListener('change',listener);
-
         }
 
     },[query])
