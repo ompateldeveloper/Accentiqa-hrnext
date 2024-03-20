@@ -144,7 +144,7 @@ export const validate3 = (values) => {
   }
   // Passport number validation
   if (!values.passportNo.trim()) {
-    errors.passportNo = "Passport number is required";
+     errors.passportNo = "Passport number is required";
   } else if (!/^[a-zA-Z0-9]{6,15}$/.test(values.passportNo)) {
     errors.passportNo = "Invalid passport number";
   }
