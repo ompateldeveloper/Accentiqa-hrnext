@@ -42,7 +42,7 @@ export default function Sidebar() {
                     </Link>
                 </TabsList>
             </div>
-            <div className="collapseble-panel w-64 border-r">
+            <div className="collapseble-panel w-48 border-r">
                 <TabsContent tab={tabs} tabIndex={'Home'} >
                     <div className="text-lg p-4 pb-0">Hello, There 😄</div>
                     <div className="p-4 pt-2 text-zinc-500">You can navigate between modules by setting different icons on left</div>
