@@ -135,10 +135,11 @@ export default function EmployeeTable() {
   };
 
   return (
-    <div >
-      <div className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
-      EmployeeTable
-      </div>
+    <div>
+      <p className="block tracking-wide text-zinc-800 text-2xl font-bold mr-2 mb-4">
+        Employee Table
+      </p>
+
       <div className="grid grid-cols-3 md:grid-cols-1 gap-5">
         <FormElements.Select
           label="Project Type"
