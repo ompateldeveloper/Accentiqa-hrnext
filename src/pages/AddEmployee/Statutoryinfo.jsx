@@ -38,7 +38,7 @@ export default function Statutoryinfo({form}) {
             name="passportNo"
             value={formData.passportNo}
             onChange={changeHandle}
-            error={errors.passportNo}
+             error={errors.passportNo}
           />
         </div>
       </form>
