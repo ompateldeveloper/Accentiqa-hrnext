@@ -8,6 +8,8 @@ COPY package.json /accentiqa-hrnext
 
 RUN npm install
 
+RUN npm run dev
+
 EXPOSE 3001
 
 CMD ["npm", "start"]
