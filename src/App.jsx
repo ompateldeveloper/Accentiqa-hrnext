@@ -15,7 +15,7 @@ function App() {
         return <Loading/>
     }
     return (
-        <div className="">
+        <div className="bg-zinc-50">
             <Routes>
                 <Route path={'/'} element={<Landing/>}/>
 

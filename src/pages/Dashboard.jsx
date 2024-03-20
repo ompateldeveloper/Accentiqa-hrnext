@@ -20,7 +20,7 @@ export default function Dashboard() {
 
             <div className="flex ">
                 <Sidebar />
-                <div className={cn("routeswrapper mt-20 p-4 w-full",!isLargeScreen&&"ml-80")}>
+                <div className={cn("routeswrapper m-4 mt-24 p-4 rounded-2xl shadow-xl bg-white w-full",!isLargeScreen&&"ml-[280px]")}>
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
                         <Route path='/' element={<Welcome/>} />
