@@ -210,7 +210,7 @@ export default function PaySlip() {
           This is system generated payslip and does not require signature.
         </p>
       </div>
-      <Button iconleft={<Download className="mr-2"/>} className=" py-2 px-4 my-10 " onClick={handleConvertToPDF}>Down Load PDF</Button>
+      <Button iconleft={<Download className="mr-2"/>} className=" py-2 px-4 my-10 " onClick={handleConvertToPDF}>Download PDF</Button>
     </div>
   );
 }
