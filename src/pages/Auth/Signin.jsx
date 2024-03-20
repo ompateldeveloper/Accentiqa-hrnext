@@ -16,21 +16,18 @@ export default function Signin() {
         password: ""
     }
     const onSubmit = async(values) => {
+        setIsLoading(true)
         await axios.post(url+'/api/v1/auth/signin',formData)
         .then((data)=>{
             localStorage.setItem('user', JSON.stringify(data.data))
             dispatch({ type: 'LOGIN', payload: data.data })
+            setIsLoading(false)
         })
         .catch((error)=>{
             
             console.log(error);
-        })
-        .finally(()=>{
-            console.log('finally');
             setIsLoading(false)
         })
-
-        setIsLoading(true)
     }
     function validate(values) {
         const errors = {};
