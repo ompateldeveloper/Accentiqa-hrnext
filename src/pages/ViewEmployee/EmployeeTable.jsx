@@ -13,8 +13,18 @@ const columns = [
   { field: "name", headerName: "Name", width: 100 },
   { field: "doj", headerName: "Date of Joining", type: "text", width: 150 },
   { field: "salary", headerName: "Salary", width: 100 },
-  { field: "project", headerName: "Allocated Project", type: "text", width: 100 },
-  { field: "projectDate", headerName: "Project Allocation Date", type: "text", width: 170 },
+  {
+    field: "project",
+    headerName: "Allocated Project",
+    type: "text",
+    width: 100,
+  },
+  {
+    field: "projectDate",
+    headerName: "Project Allocation Date",
+    type: "text",
+    width: 170,
+  },
   { field: "isbillable", headerName: "Project Type", type: "text", width: 100 },
 ];
 
@@ -26,7 +36,7 @@ const rows = [
     salary: 35000,
     project: "Project A",
     projectDate: "2022-01-01",
-    isbillable:"Billable"
+    isbillable: "Billable",
   },
   {
     id: 2,
@@ -35,8 +45,7 @@ const rows = [
     salary: 38000,
     project: "Project B",
     projectDate: "2022-01-01",
-    isbillable:"Billable"
-
+    isbillable: "Billable",
   },
   {
     id: 3,
@@ -45,7 +54,7 @@ const rows = [
     salary: 33000,
     project: "Project C",
     projectDate: "2022-01-01",
-    isbillable:"nonBillable"
+    isbillable: "nonBillable",
   },
   {
     id: 4,
@@ -54,7 +63,7 @@ const rows = [
     salary: 37000,
     project: "Project D",
     projectDate: "2022-01-01",
-    isbillable:"Billable"
+    isbillable: "Billable",
   },
   {
     id: 5,
@@ -63,7 +72,7 @@ const rows = [
     salary: 32000,
     project: "Project E",
     projectDate: "2022-01-01",
-    isbillable:"nonBillable"
+    isbillable: "nonBillable",
   },
   {
     id: 6,
@@ -72,7 +81,7 @@ const rows = [
     salary: 36000,
     project: "Project A",
     projectDate: "2022-01-01",
-    isbillable:"nonBillable"  
+    isbillable: "nonBillable",
   },
   {
     id: 7,
@@ -81,7 +90,7 @@ const rows = [
     salary: 34000,
     project: "Project B",
     projectDate: "2022-01-01",
-    isbillable:"nonBillable"
+    isbillable: "nonBillable",
   },
   {
     id: 8,
@@ -90,8 +99,7 @@ const rows = [
     salary: 39000,
     project: "Project C",
     projectDate: "2022-01-01",
-    isbillable:"nonBillable"
-
+    isbillable: "nonBillable",
   },
   {
     id: 9,
@@ -100,7 +108,7 @@ const rows = [
     salary: 32000,
     project: "Project D",
     projectDate: "2022-01-01",
-    isbillable:"Billable"
+    isbillable: "Billable",
   },
   {
     id: 10,
@@ -109,11 +117,9 @@ const rows = [
     salary: 37000,
     project: "Project E",
     projectDate: "2022-01-01",
-    isbillable:"Billable"
-
+    isbillable: "Billable",
   },
 ];
-
 
 export default function EmployeeTable() {
   const [projectType, setProjectType] = useState("all");
@@ -137,11 +143,12 @@ export default function EmployeeTable() {
   const handleDelete = (id) => {
     setFilteredRows(filteredRows.filter((row) => row.id !== id));
   };
-  
 
   return (
     <div>
-      EmployeeTable
+      <p className="block tracking-wide text-zinc-800 text-2xl font-bold mr-2 mb-4">
+        Employee Table
+      </p>
       <div className="grid grid-cols-3 md:grid-cols-1 gap-5">
         <FormElements.Select
           label="Project Type"
@@ -166,7 +173,10 @@ export default function EmployeeTable() {
             width: 100,
             sortable: false,
             renderCell: (params) => (
-              <BasicMenu rowData={params.row} onDelete={() => handleDelete(params.row.id)} />
+              <BasicMenu
+                rowData={params.row}
+                onDelete={() => handleDelete(params.row.id)}
+              />
             ),
           },
         ]}
@@ -193,7 +203,11 @@ export function BasicMenu({ rowData, onDelete }) {
 
   return (
     <div>
-      <DialogBox open={dialogOpen} rowData={rowData} setDialogOpen={setDialogOpen} />
+      <DialogBox
+        open={dialogOpen}
+        rowData={rowData}
+        setDialogOpen={setDialogOpen}
+      />
       <Button
         variant="text"
         id="basic-button"
@@ -213,8 +227,22 @@ export function BasicMenu({ rowData, onDelete }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => { handleClose(); setDialogOpen(true) }}>Edit</MenuItem>
-        <MenuItem onClick={() => { onDelete(); handleClose() }}>Delete</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            setDialogOpen(true);
+          }}
+        >
+          Edit
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            onDelete();
+            handleClose();
+          }}
+        >
+          Delete
+        </MenuItem>
       </Menu>
     </div>
   );

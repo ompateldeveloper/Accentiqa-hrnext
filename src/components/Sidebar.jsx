@@ -3,12 +3,26 @@ import useMediaQuery from '../hooks/useMediaQuery'
 import { cn } from "../lib/utils"
 import { Eye, HandCoins, Home, UserPlus } from 'lucide-react';
 import { useGlobalContext } from '../contexts/GlobalContext';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 export default function Sidebar() {
 
     const { tabs, setTabs, sidebar, setSidebar } = useGlobalContext();
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+    const queryParamValue = queryParams.get('tab');
 
-
+    useEffect(() => {
+        setTabs(queryParamValue)
+    },[])
+    
+  useEffect(() => {
+    if (!queryParamValue) {
+      // If query param doesn't exist, update query param with current state value
+      const updatedSearchParams = new URLSearchParams();
+      updatedSearchParams.append('tab', tabs);
+      window.history.replaceState(null, '', `?${updatedSearchParams.toString()}`);
+    }
+  }, [queryParamValue, tabs]);
     // breakpoint sidebar fix
     const isLargeScreen = useMediaQuery('(min-width:1023px)')
     useEffect(() => {
