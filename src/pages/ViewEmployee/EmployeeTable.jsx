@@ -146,9 +146,10 @@ export default function EmployeeTable() {
         <FormElements.Select
           label="Project Type"
           optionsArray={[
-            { value: "all", title: "All" },
-            { value: "billable", title: "Billable" },
-            { value: "nonBillable", title: "Non Billable" },
+            { id: "", name: "Select An Option" },
+            { id: "all", name: "All" },
+            { id: "billable", name: "Billable" },
+            { id: "nonBillable", name: "Non Billable" },
           ]}
           name="projectType"
           value={projectType}

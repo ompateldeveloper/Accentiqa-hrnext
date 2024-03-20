@@ -143,11 +143,11 @@ export const validate3 = (values) => {
     errors.aadharNo = "Invalid Aadhar number";
   }
   // Passport number validation
-  if (!values.passportNo.trim()) {
-    errors.passportNo = "Passport number is required";
-  } else if (!/^[a-zA-Z0-9]{6,15}$/.test(values.passportNo)) {
-    errors.passportNo = "Invalid passport number";
-  }
+  // if (!values.passportNo.trim()) {
+  //   errors.passportNo = "Passport number is required";
+  // } else if (!/^[a-zA-Z0-9]{6,15}$/.test(values.passportNo)) {
+  //   errors.passportNo = "Invalid passport number";
+  // }
   return errors;
 };
 
