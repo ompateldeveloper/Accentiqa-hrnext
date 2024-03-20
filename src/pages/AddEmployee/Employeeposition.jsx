@@ -121,9 +121,9 @@ export default function Employeeposition({ form }) {
                     <FormElements.Select
                         label="Grade"
                         optionsArray={[
-                            { value: "", title: "Select an Option" },
-                            { value: "audi", title: "Audi cars" },
-                            { value: "merc", title: "Mercideez benz cars" },
+                            { id: "", name: "Select an Option" },
+                            { id: "audi", name: "Audi cars" },
+                            { id: "merc", name: "Mercideez benz cars" },
                         ]}
                         name="grade"
                         value={formData.grade}
@@ -133,9 +133,9 @@ export default function Employeeposition({ form }) {
                     <FormElements.Select
                         label="Cost Center"
                         optionsArray={[
-                            { value: "", title: "Select an Option" },
-                            { value: "audi", title: "Audi cars" },
-                            { value: "merc", title: "Mercideez benz cars" },
+                            { id: "", name: "Select an Option" },
+                            { id: "audi", name: "Audi cars" },
+                            { id: "merc", name: "Mercideez benz cars" },
                         ]}
                         name="costCenter"
                         value={formData.costCenter}
@@ -229,9 +229,9 @@ export default function Employeeposition({ form }) {
                         
                         label={<span>Attendance Shift <span className="text-red-500">*</span></span>}
                         optionsArray={[
-                            { value: "", title: "Select an Option" },
-                            { value: "audi", title: "Audi cars" },
-                            { value: "merc", title: "Mercideez benz cars" },
+                            { id: "", name: "Select an Option" },
+                            { id: "audi", name: "Audi cars" },
+                            { id: "merc", name: "Mercideez benz cars" },
                         ]}
                         name="shift"
                         value={formData.shift}
