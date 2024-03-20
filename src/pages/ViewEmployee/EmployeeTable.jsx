@@ -9,22 +9,12 @@ import { IconButton } from "@mui/material";
 import DialogBox from "./DialogBox";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "id", headerName: "ID", width: 50 },
   { field: "name", headerName: "Name", width: 100 },
-  { field: "doj", headerName: "Date of Joining", type: "text", width: 150 },
-  { field: "salary", headerName: "Salary", width: 100 },
-  {
-    field: "project",
-    headerName: "Allocated Project",
-    type: "text",
-    width: 100,
-  },
-  {
-    field: "projectDate",
-    headerName: "Project Allocation Date",
-    type: "text",
-    width: 170,
-  },
+  { field: "doj", headerName: "DOJ", type: "text", width: 100 },
+  { field: "salary", headerName: "Salary", width: 80 },
+  { field: "project", headerName: "Allocated Project", type: "text", width: 150 },
+  { field: "projectDate", headerName: "Project Allocation Date", type: "text", width: 170 },
   { field: "isbillable", headerName: "Project Type", type: "text", width: 100 },
 ];
 
@@ -145,10 +135,10 @@ export default function EmployeeTable() {
   };
 
   return (
-    <div>
-      <p className="block tracking-wide text-zinc-800 text-2xl font-bold mr-2 mb-4">
-        Employee Table
-      </p>
+    <div >
+      <div className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
+      EmployeeTable
+      </div>
       <div className="grid grid-cols-3 md:grid-cols-1 gap-5">
         <FormElements.Select
           label="Project Type"
@@ -170,7 +160,7 @@ export default function EmployeeTable() {
           {
             field: "actions",
             headerName: "Actions",
-            width: 100,
+            width: 80,
             sortable: false,
             renderCell: (params) => (
               <BasicMenu
