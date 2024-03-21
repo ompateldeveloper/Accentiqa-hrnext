@@ -2,8 +2,9 @@ import { createContext, useContext, useState } from "react"
 
 const GlobalContext = createContext(); 
 export default function GlobalContextProvider({children}) {
-    const [tabs, setTabs] = useState('Home');
+    const [tabs, setTabs] = useState('Home')
     const [sidebar,setSidebar] = useState(false);
+
 
     const values = {
         tabs,

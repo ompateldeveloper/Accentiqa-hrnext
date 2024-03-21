@@ -3,7 +3,6 @@ import { validateBreakUp } from "./validateBreakUp";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import * as FormElements from "../../components/ui/FormElements";
 import { useNavigate } from "react-router-dom";
-import { number } from "prop-types";
 import YearsRange from "./YearsRange";
 export default function BreakUp() {
   const navigate = useNavigate();
@@ -397,15 +396,15 @@ export default function BreakUp() {
             readOnly={readonly}
           />
         </div>
-        <button
-          onClick={() => {
-            handleSubmit();
-            navigateTo();
-          }}
-          className="bg-theme-1 hover:bg-theme-1 text-white font-bold py-2 px-4 my-10 rounded"
-        >
-          Generate Pay Slip
-        </button>
+          <button
+            onClick={() => {
+              handleSubmit();
+              navigateTo();
+            }}
+            className="bg-theme-1 hover:bg-theme-1 text-white font-bold py-2 px-4 my-10 rounded"
+          >
+            Generate Pay Slip
+          </button>
       </form>
     </div>
   );
