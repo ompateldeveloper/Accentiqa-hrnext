@@ -136,7 +136,7 @@ export default function EmployeeTable() {
 
   return (
     <div>
-      <p className="block tracking-wide text-zinc-800 text-2xl font-bold mr-2 mb-4">
+      <p className="block tracking-wide text-zinc-600 text-2xl font-bold mr-2 mb-4">
         Employee Table
       </p>
 
