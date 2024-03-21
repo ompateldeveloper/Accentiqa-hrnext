@@ -7,7 +7,7 @@ export default function Welcome() {
         <div>
             <div className="hero flex justify-between w-full h-64 rounded-lg overflow-hidden bg-zinc-100 relative">
                 <div className="self-center m-4 ml-12 z-10">
-                    <div className="text-3xl font-semibold text-theme-1 truncate">Howdy, {user?.name}</div>
+                    <div className="text-3xl font-semibold text-theme-1 truncate"><span title="Hello, How Do you Do? ">Howdy</span>, {user?.name}</div>
                     <div className="span truncate">Lets do Something Awesome 🚀</div>
                 </div>
                 <div className="self-end absolute inset-0 opacity-30">

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import AddEmployee from './AddEmployee/Index'
 import useMediaQuery from '../hooks/useMediaQuery'
 import { cn } from '../lib/utils'
@@ -23,7 +23,9 @@ export default function Dashboard() {
                 <div className={cn("routeswrapper m-4 mt-24 p-4 rounded-2xl shadow-xl bg-white w-full",!isLargeScreen&&"ml-[280px]")}>
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
-                        <Route path='/' element={<Welcome/>} />
+                        {/* <Route path='/' element={<Navigate to='/home' />} /> */}
+                        <Route path="/" element={<Navigate to='home' />} />
+                        <Route path="/home" element={<Welcome/>} />
                         <Route path='/add-employee' element={<AddEmployee/>} />
                         <Route path='/view-employee' element={<ViewEmployee/>} />
                         <Route path='/break-up' element={<BreakUp/>} />
