@@ -356,7 +356,7 @@ const EmployeeSalaryCalculator = () => {
         className=" py-2 px-4 my-10 "
         onClick={handleConvertToPDF}
       >
-        Down Load PDF
+        Download PDF
       </Button>
     </div>
   );
