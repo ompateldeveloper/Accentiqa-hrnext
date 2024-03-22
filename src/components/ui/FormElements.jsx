@@ -30,9 +30,10 @@ export function Select(props) {
                     id={selectId}
                     className={cn("w-full bg-theme-1 font-semibold text-theme-text text-opacity-50 focus:text-opacity-100  h-12 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none transition duration-300", props.className)}
                 >
-                    {optionsArray?.map((data, index) => (
-                        <option key={index} disabled={index===0?"true":''} className="outline-none border-none text-theme-text hover:bg-theme-2 font-semibold" value={data.value || data.id}>{data.title || data.name}</option>
-                    ))}
+                    {optionsArray?.map((data, index) => {
+                        const isDefault = (data.id==="" || data.value==="")?"true":''
+                        return <option key={index} disabled={isDefault} className="outline-none border-none text-theme-text hover:bg-theme-2 font-semibold" value={data.value || data.id}>{data.title || data.name}</option>
+                    })}
                 </select>
                 {props.label && <label htmlFor={selectId} className="peer-focus:text-theme-1 text-gray-400 duration-300 select-none">{props.label}</label>}
             </div>
