@@ -63,7 +63,7 @@ export default function EmpDialog({ open, handleClose, dialogUrl ,setLatch}) {
                     margin: "0 auto",
                 }}
             >
-                <div className="">
+                <div className="max-h-96 overflow-y-auto overflow-x-hidden">
                     {
                         data?.map((d, i) => (
                             <Item d={d} dialogUrl={dialogUrl} data={data} setData={setData} setLatch={setLatch} />
