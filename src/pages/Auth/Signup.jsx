@@ -8,9 +8,10 @@ import Button from '../../components/ui/Button';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import {getUrl} from '../../components/Url'
 export default function Signup() {
-    const [isLoading, setIsLoading] = useState(false)
-    const { dispatch } = useAuthContext()
-    const url = getUrl()
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
+    const { dispatch } = useAuthContext();
+    const url = getUrl();
     const initialState = {
         name: "",
         email: "",
@@ -25,7 +26,8 @@ export default function Signup() {
             setIsLoading(false)
         })
         .catch((error)=>{
-            console.log(error);
+            console.log(error.response.data.message);
+            setError(error)
             setIsLoading(false)
         })
 
@@ -62,7 +64,7 @@ export default function Signup() {
                 <FormElements.Input value={formData.email} onChange={changeHandle} error={errors.email} className='m-2 my-4' label='Email' type='email' name='email' />
                 <FormElements.Input value={formData.password} onChange={changeHandle} error={errors.password} className='m-2 my-4' label='Password' type='password' name='password' />
 
-               
+                {error&&<div className='m-2 text-white padding bg-theme-danger bg-opacity-80 p-2 rounded'>{error?.response?.data?.message}</div>}
                 <Button className='m-2' disabled={isLoading} onClick={handleSubmit}>Sign Up</Button>
                 <div className="not-user text-gray-400 m-2 my-3 text-sm">
                     Already a User? &nbsp;
