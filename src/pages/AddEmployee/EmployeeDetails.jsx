@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import { ChevronDown } from "lucide-react";
 import * as FormElements from "../../components/ui/FormElements";
@@ -11,11 +11,18 @@ import Button from "../../components/ui/Button";
 const EmployeeDetails = ({ form }) => {
     const { formData, errors, changeHandle, handleSubmit } = form
     const [reportingManager, setReportingManager] = useState([]);
-    const [autoEmp, setAutoEmp] = useState('');
+    // const [autoEmp, setAutoEmp] = useState('');
+    const autoemp = useRef();
     const [latch,setLatch] = useState(false)
     const url = getUrl();
+    // if(user){}
     const {user} = useAuthContext();
-
+    autoemp.current = axios.get(url + '/api/v1/misc/empnogen', {
+        headers: {
+            Authorization: `Bearer ${user?.token}`,
+        },
+    })
+    
     const fetchRepoMg = async () => {
         axios
             .get(url + '/api/v1/misc/reportingmanager', {
@@ -38,16 +45,20 @@ const EmployeeDetails = ({ form }) => {
                 },
             })
             .then((response) => {
-                setAutoEmp(response.data);
+                autoemp.current=response.data
             })
             .catch((error) => {
                 console.log(error);
             });
     };
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetchRepoMg()
-        fetchAutoEmp()
+        // fetchAutoEmp()
     }, [])
+    useEffect(() => {
+        formData.empNo = (formData.empSeries==='manual'?formData.empNo:autoemp.current.uuid)
+    },[])
+
     const onSubmit = (data) => {
         console.log(data);
     };
@@ -93,7 +104,7 @@ const EmployeeDetails = ({ form }) => {
                         label={<span>Employee No <span className="text-red-500">*</span></span>}
                         type="text"
                         name="empNo"
-                        value={formData.empSeries==='manual'?formData.empNo:autoEmp.uuid}
+                        value={formData.empNo}
                         onChange={changeHandle}
                         error={errors.empNo}
                         readOnly={formData.empSeries==='manual'?false:true}
