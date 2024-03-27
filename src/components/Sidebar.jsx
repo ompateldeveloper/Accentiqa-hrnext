@@ -1,13 +1,15 @@
-import React, { startTransition, useCallback, useEffect } from "react";
+import React, { startTransition, useCallback, useEffect, useLayoutEffect } from "react";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { cn } from "../lib/utils";
-import { Eye, HandCoins, Home, UserPlus } from "lucide-react";
+import { Eye, HandCoins, Home, Link2, Link2Icon, LinkIcon, UserPlus } from "lucide-react";
 import { useGlobalContext } from "../contexts/GlobalContext";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import useQueryParam from "../hooks/useQueryParams";
+import useLoacationArray from "../hooks/useLoacationArray";
 export default function Sidebar() {
   const { tabs, setTabs, sidebar, setSidebar } = useGlobalContext();
   const isLargeScreen = useMediaQuery("(min-width:1023px)");
+  const locArray = useLoacationArray()
   useEffect(() => {
     if (!isLargeScreen) setSidebar(false);
   }, [isLargeScreen]);
@@ -17,6 +19,17 @@ export default function Sidebar() {
       setTabs(nextTab);
     });
   });
+
+  useLayoutEffect(() => {
+    const linkMap = {
+      "home": "Home",
+      "add-employee": "Add Employee",
+      "break-up": "Payroll",
+      "view-employee": "View"
+    }
+    setTabs(linkMap[locArray[1]])
+  }, [locArray]);
+
 
   return (
     <>
@@ -108,11 +121,15 @@ export default function Sidebar() {
             </div>
           </TabsContent>
           <TabsContent tab={tabs} tabIndex={"Add Employee"}>
-            add
+            <div className="p-4 pt-2 text-zinc-500">
+              Please Fill the details to Add employee.
+            </div>
           </TabsContent>
-          <TabsContent tab={tabs} tabIndex={"payroll"}></TabsContent>
+          <TabsContent tab={tabs} tabIndex={"Payroll"}>
+            <NavLink to={'/dashboard/pay-slip'} className='nav-link text-theme-text border-2 border-theme-text border-opacity-10 bg-theme-text bg-opacity-5 rounded m-2 truncate px-2 py-px flex items-center  gap-1' activeClassName={""}  > <LinkIcon className="h-4" /> Pay slip </NavLink>
+          </TabsContent>
           <TabsContent tab={tabs} tabIndex={"View"}>
-            tabs
+            <NavLink to={'/dashboard/employee-salary'} className='nav-link text-theme-text border-2 border-theme-text border-opacity-10 bg-theme-text bg-opacity-5 rounded m-2 truncate px-2 py-px flex items-center  gap-1' activeClassName={""}  > <LinkIcon className="h-4" /> Employee Hikes </NavLink>
           </TabsContent>
         </div>
       </div>

@@ -7,3 +7,7 @@
     color: red;
     font-size: 20px;
 } */
+
+.nav-link.active{
+    @apply bg-theme-1 font-semibold border-transparent text-white ;
+}

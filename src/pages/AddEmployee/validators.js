@@ -1,15 +1,12 @@
 export const validate1 = (values) => {
   const errors = {};
   //Validation For empSeries
-  if (!values.empSeries.trim()) {
-    errors.empSeries = "Please select an option";
-  }
   //Validation For empSeries
   if (!values.probationPeriod.trim()) {
     errors.probationPeriod = "Number is required";
   }
   //Validation For empNo
-  if (!values.empNo.trim()) {
+  if (!values.empNo) {
     errors.empNo = "Number is required";
   }
   //Validation For confirmDate
