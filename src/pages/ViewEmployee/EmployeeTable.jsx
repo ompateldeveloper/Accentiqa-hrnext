@@ -7,6 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Edit } from "lucide-react";
 import { IconButton } from "@mui/material";
 import DialogBox from "./DialogBox";
+import StatusDialog from "./StatusDialog";
 
 const columns = [
   { field: "id", headerName: "ID", width: 50 },
@@ -114,11 +115,18 @@ const rows = [
 export default function EmployeeTable() {
   const [projectType, setProjectType] = useState("all");
   const [filteredRows, setFilteredRows] = useState(rows);
+  const [filterdata, setFilterdata]= useState(filteredRows); 
 
   const changeHandle = (e) => {
     setProjectType(e.target.value);
     filterRows(e.target.value);
   };
+
+  const handlesearch =(e)=>{
+    console.log(e.target.value);
+    setFilterdata(filteredRows.filter(item =>item.name.toLowerCase().includes(e.target.value.toLowerCase())))
+    
+}
 
   const filterRows = (type) => {
     if (type === "billable") {
@@ -133,6 +141,7 @@ export default function EmployeeTable() {
   const handleDelete = (id) => {
     setFilteredRows(filteredRows.filter((row) => row.id !== id));
   };
+  
 
   return (
     <div>
@@ -152,9 +161,22 @@ export default function EmployeeTable() {
           value={projectType}
           onChange={changeHandle}
         />
+         <FormElements.Input
+                        label="Search Name"
+                        type="text"
+                        className="w-56"
+                        name="search"
+                        onChange={handlesearch}
+                       placeholder="Search..."
+                    />
       </div>
+      <div >              
+                <input  type="text" name='name'  onChange={handlesearch} placeholder='Search...' />
+                     
+        </div>
+       
       <DataGrid
-        rows={filteredRows}
+        rows={filterdata}
         columns={[
           ...columns,
           {
@@ -180,6 +202,7 @@ export default function EmployeeTable() {
 
 export function BasicMenu({ rowData, onDelete }) {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [statusdialogOpen, setStatusDialogOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -197,6 +220,11 @@ export function BasicMenu({ rowData, onDelete }) {
         open={dialogOpen}
         rowData={rowData}
         setDialogOpen={setDialogOpen}
+      />
+      <StatusDialog
+      open={statusdialogOpen}
+      rowData={rowData}
+      setDialogOpen={setStatusDialogOpen}
       />
       <Button
         variant="text"
@@ -232,6 +260,18 @@ export function BasicMenu({ rowData, onDelete }) {
           }}
         >
           Delete
+        </MenuItem>
+        <hr className="my-1" />
+        <MenuItem
+          onClick={() => {
+            setStatusDialogOpen(true);
+            handleClose();
+
+          }}
+          className="text-theme-danger"
+          style={{color:'rgb(185 28 28)'}}
+        >
+          Status
         </MenuItem>
       </Menu>
     </div>
