@@ -16,6 +16,7 @@ const columns = [
   { field: "project", headerName: "Allocated Project", type: "text", width: 150 },
   { field: "projectDate", headerName: "Project Allocation Date", type: "text", width: 170 },
   { field: "isbillable", headerName: "Project Type", type: "text", width: 100 },
+  { field: "status", headerName: "Status", type: "text", width: 100 },
 ];
 
 const rows = [
@@ -27,6 +28,7 @@ const rows = [
     project: "Project A",
     projectDate: "2022-01-01",
     isbillable: "Billable",
+    status:"active"
   },
   {
     id: 2,
@@ -36,6 +38,7 @@ const rows = [
     project: "Project B",
     projectDate: "2022-01-01",
     isbillable: "Billable",
+    status:"active"
   },
   {
     id: 3,
@@ -45,6 +48,7 @@ const rows = [
     project: "Project C",
     projectDate: "2022-01-01",
     isbillable: "nonBillable",
+    status:"active"
   },
   {
     id: 4,
@@ -54,6 +58,7 @@ const rows = [
     project: "Project D",
     projectDate: "2022-01-01",
     isbillable: "Billable",
+    status:"active"
   },
   {
     id: 5,
@@ -63,6 +68,7 @@ const rows = [
     project: "Project E",
     projectDate: "2022-01-01",
     isbillable: "nonBillable",
+    status:"active"
   },
   {
     id: 6,
@@ -72,6 +78,7 @@ const rows = [
     project: "Project A",
     projectDate: "2022-01-01",
     isbillable: "nonBillable",
+    status:"active"
   },
   {
     id: 7,
@@ -81,6 +88,7 @@ const rows = [
     project: "Project B",
     projectDate: "2022-01-01",
     isbillable: "nonBillable",
+    status:"active"
   },
   {
     id: 8,
@@ -90,6 +98,7 @@ const rows = [
     project: "Project C",
     projectDate: "2022-01-01",
     isbillable: "nonBillable",
+    status:"active"
   },
   {
     id: 9,
@@ -99,6 +108,7 @@ const rows = [
     project: "Project D",
     projectDate: "2022-01-01",
     isbillable: "Billable",
+    status:"active"
   },
   {
     id: 10,
@@ -108,6 +118,7 @@ const rows = [
     project: "Project E",
     projectDate: "2022-01-01",
     isbillable: "Billable",
+    status:"active"
   },
 ];
 
