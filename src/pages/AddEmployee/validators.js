@@ -139,6 +139,13 @@ export const validate3 = (values) => {
   } else if (!/^\d{12}$/.test(values.aadharNo)) {
     errors.aadharNo = "Invalid Aadhar number";
   }
+ // validation For uanNo
+  if (!values.uanNo.trim()) {
+    errors.uanNo = "UAN number is required";
+  } else if (!/^\d{12}$/.test(values.uanNo)) {
+    errors.uanNo = "Invalid UAN number";
+  }
+
   // Passport number validation
   // if (!values.passportNo.trim()) {
   //   errors.passportNo = "Passport number is required";
@@ -153,5 +160,37 @@ export const validate4 = (values) => {
   if (!values.paymentType.trim()) {
     errors.paymentType = "Please select an option";
   }
+
+
+   // validation For bankName
+   if (!values.bankName.trim()) {
+    errors.bankName = "Bank Name is required";
+  } 
+
+
+   // validation For bankAccountNo
+   if (!values.accountNumber.trim()) {
+    errors.accountNumber = "Bank Account Number is required";
+  } else if (!/^\d{9,12}$/.test(values.accountNumber)) {
+    errors.accountNumber = "Invalid Bank Account Number";
+  }
+
+   // validation For accHolderName
+   if (!values.accHolderName.trim()) {
+    errors.accHolderName = "Account Holder Name is required";
+  } 
+
+   // validation For ifscCode
+   if (!values.ifscCode.trim()) {
+    errors.ifscCode = "IFSC Code is required";
+  } else if (!/^[A-Za-z]{4}[0][A-Za-z0-9]{6}$/.test(values.ifscCode)) {
+    errors.ifscCode = "Invalid IFSC Code";
+  }
+
+    // validation For branchName
+    if (!values.branchName.trim()) {
+      errors.branchName = "branch Name is required";
+    } 
+
   return errors;
 };

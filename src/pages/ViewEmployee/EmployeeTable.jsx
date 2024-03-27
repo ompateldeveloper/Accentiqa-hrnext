@@ -181,11 +181,7 @@ export default function EmployeeTable() {
                        placeholder="Search..."
                     />
       </div>
-      <div >              
-                <input  type="text" name='name'  onChange={handlesearch} placeholder='Search...' />
-                     
-        </div>
-       
+    
       <DataGrid
         rows={filterdata}
         columns={[
