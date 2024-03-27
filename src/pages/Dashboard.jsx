@@ -10,6 +10,7 @@ import BreakUp from './Payroll/BreakUp'
 import PaySlip from './Payroll/PaySlip'
 import Welcome from './Welcome'
 import EmployeeSalaryCalculator from './ViewEmployee/EmployeeSalaryCalculator'
+import EmployeeStatus from './ViewEmployee/EmployeeStatus'
 
 export default function Dashboard() {
     const isLargeScreen = useMediaQuery('(max-width: 1024px)');
@@ -31,6 +32,7 @@ export default function Dashboard() {
                         <Route path='/break-up' element={<BreakUp/>} />
                         <Route path='/pay-slip' element={<PaySlip/>} />
                         <Route path='/employee-salary' element={<EmployeeSalaryCalculator/>} />
+                        <Route path='/employee-status' element={<EmployeeStatus/>} />
                     </Routes>
                 </div>
 
