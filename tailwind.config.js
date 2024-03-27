@@ -7,12 +7,16 @@ export default {
   theme: {
     extend: {
       colors:{
-        'theme-1':'#5872E3',
-        'theme-2':'#DDE3FF',
+        'theme-1':'#225FB1',
+        'theme-2':'#B6EA5F',
+        'theme-3':'#DADADA',
         'theme-success':'#16A34A',
         'theme-danger':'#b91c1c',
         'theme-text':'#282828',
       },
+      fontSize: {
+        '2xs': '0.625rem',
+      }
     },
     screens: {
 			'2xl': { max: "1536px" },
