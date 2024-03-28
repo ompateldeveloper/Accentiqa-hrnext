@@ -36,7 +36,7 @@ export default function Sidebar() {
     <>
       <div
         className={cn(
-          "fixed inset-0 backdrop-blur-sm z-10 duration-200",
+          "fixed inset-0 backdrop-blur-sm z-25 duration-200",
           sidebar
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -45,7 +45,7 @@ export default function Sidebar() {
       ></div>
       <div
         className={cn(
-          "h-[calc(100vh)] fixed flex bg-white z-20 duration-100 lg:-translate-x-full",
+          "h-[calc(100vh)] fixed flex bg-white z-30 duration-100 lg:-translate-x-full",
           sidebar && "lg:translate-x-0"
         )}
       >

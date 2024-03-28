@@ -10,7 +10,7 @@ export function Input(props) {
                 {...props}
                 id={inputId}
                 type={props.type || 'text'}
-                className={cn("w-full h-12 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300")}
+                className={cn("w-full h-10 p-2 peer bg-transparent border-2 border-gray-200 rounded-lg focus:border-theme-1 outline-none text-gray-900 transition duration-300")}
             />
             {props.label && <label htmlFor={inputId} className="peer-focus:text-theme-1 text-sm text-gray-400 duration-300 select-none">{props.label}</label>}
 
