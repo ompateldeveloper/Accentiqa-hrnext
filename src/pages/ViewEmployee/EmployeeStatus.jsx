@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Button from "../../components/ui/Button";
 import { Download } from "lucide-react";
 import EmployeeRow from "./EmployeeRow";
+import * as FormElements from "../../components/ui/FormElements";
 const employees = [
   {
     id: 1,
@@ -78,7 +79,15 @@ const employees = [
   },
 ];
 export default function EmployeeStatus() {
+  const[filterdata,setFilterdata]= useState(employees);
+  const [filterRow, setFilterRow]= useState(filterdata); 
+
   const contentRef = useRef(null);
+
+  
+  const handlesearch =(e)=>{
+    setFilterRow(filterdata.filter(item =>item.name.toLowerCase().includes(e.target.value.toLowerCase())))
+  }
 
   const handleConvertToPDF = () => {
     const input = document.getElementById("content-convert");
@@ -99,6 +108,14 @@ export default function EmployeeStatus() {
         <p className="block tracking-wide text-zinc-800 text-2xl font-bold mr-2 mb-4">
           Resigned-Employee-Salaries
         </p>
+        <FormElements.Input
+                        label={<span className="text-md">Search Name</span>}
+                        type="text"
+                        className="w-56 h-8 " 
+                        name="search"
+                        onChange={handlesearch}
+                       placeholder="Search..."
+                    />
         <table className="text-sm min-w-full text-zinc-800 border-spacing-0 border-collapse border border-slate-400">
           <thead>
             <tr>
@@ -114,7 +131,7 @@ export default function EmployeeStatus() {
             </tr>
           </thead>
           <tbody>
-            {employees.map((employee) => (
+            {filterRow.map((employee) => (
               <EmployeeRow key={employee.id} employee={employee} />
             ))}
           </tbody>

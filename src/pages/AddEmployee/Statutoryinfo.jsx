@@ -18,9 +18,7 @@ export default function Statutoryinfo({form}) {
             value={formData.panNo}
             onChange={changeHandle}
             error={errors.panNo}
-            
-            
-            
+                       
           />
           <FormElements.Input
             label={<span>Aadhar Number <span className="text-red-500">*</span></span>}
@@ -39,6 +37,14 @@ export default function Statutoryinfo({form}) {
             value={formData.passportNo}
             onChange={changeHandle}
              error={errors.passportNo}
+          />
+          <FormElements.Input
+            label={<span>UAN Number <span className="text-red-500">*</span></span>}
+            type="text"
+            name="uanNo"
+            value={formData.uanNo}
+            onChange={changeHandle}
+            error={errors.uanNo}
           />
         </div>
       </form>

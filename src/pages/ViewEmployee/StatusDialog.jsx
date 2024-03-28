@@ -1,11 +1,13 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
-import { Grid, TextField, Button, Card, CardContent, Box } from "@mui/material";
+import { Grid, TextField, Card, CardContent, Box } from "@mui/material";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
-import { validateDialog } from "./validators";
+import { statusValidate } from "./StatusValidator";
 import { useNavigate
  } from "react-router-dom";
+import { X } from "lucide-react";
+import Button from "../../components/ui/Button";
 export default function StatusDialog({ open, rowData, setDialogOpen }) {
     const navigate = useNavigate();
 
@@ -20,20 +22,17 @@ export default function StatusDialog({ open, rowData, setDialogOpen }) {
     (values) => {
       setDialogOpen(false);
       cleanup()
-
+      navigate("/dashboard/employee-status",{
+        state: {data : {...formData}}
+    })
     },
-    validateDialog
+    statusValidate
   );
   const closeDialog = () => {
     setDialogOpen(false);
     cleanup()
   };
   
-  const navigateTo = () =>[
-    navigate("/employee-status",{
-        state: {data : {...formData}}
-    })
-]
   return (
     <Dialog
       open={open}
@@ -51,6 +50,8 @@ export default function StatusDialog({ open, rowData, setDialogOpen }) {
             }}
           >
             <CardContent>
+                
+                <X className="ml-auto" onClick={closeDialog}/>
               <form>
                 <Grid container spacing={0}>
                 <Grid item xs={12}>
@@ -90,23 +91,15 @@ export default function StatusDialog({ open, rowData, setDialogOpen }) {
                     />
                   </Grid>
                   
-                  <Grid item container rowSpacing={1} className='flex items-center justify-between'>
                       <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={()=>{handleSubmit; navigateTo}}
+                       className="m-2 ml-auto "
+                        onClick={()=>{ handleSubmit()}}
                 
                       >
                         Update
                       </Button>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={closeDialog}
-                      >
-                        Cancel
-                      </Button>
-                  </Grid>
+                     
+                 
                 </Grid>
               </form>
             </CardContent>

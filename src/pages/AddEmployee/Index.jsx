@@ -102,6 +102,7 @@ export default function AddEmployee() {
       panNo: "",
       aadharNo: "",
       passportNo: "",
+      uanNo:"",
     },
     (values) => {
       const endpoint = "/api/v1/emp/addemployee/form3";
@@ -124,6 +125,11 @@ export default function AddEmployee() {
     {
       empNo: "",
       paymentType: "",
+      bankName:"",
+      accountNumber:"",
+      accHolderName:"",
+      ifscCode:"",
+      branchName:"",
     },
     (values) => {
       const endpoint = "/api/v1/emp/addemployee/laststep";

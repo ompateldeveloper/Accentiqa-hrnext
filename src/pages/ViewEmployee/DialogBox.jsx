@@ -1,9 +1,11 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
-import { Grid, TextField, Button, Card, CardContent, Box } from "@mui/material";
+import { Grid, TextField, Card, CardContent, Box } from "@mui/material";
 import * as FormElements from "../../components/ui/FormElements";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import { validateDialog } from "./validators";
+import { X } from "lucide-react";
+import Button from "../../components/ui/Button";
 export default function DialogBox({ open, rowData, setDialogOpen }) {
   const { formData, errors, changeHandle, handleSubmit,cleanup } = useFormValidation(
     {
@@ -32,6 +34,7 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
       aria-describedby="alert-dialog-description"
     >
       <div className="flex justify-center ">
+        
         <Grid>
           <Card
             style={{
@@ -40,6 +43,7 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
               margin: "0 auto",
             }}
           >
+            <X className=" ml-auto" onClick={closeDialog}/>
             <CardContent>
               <form>
                 <Grid container spacing={0}>
@@ -104,19 +108,12 @@ export default function DialogBox({ open, rowData, setDialogOpen }) {
 
                   <Grid item container rowSpacing={1} className='flex items-center justify-between'>
                       <Button
-                        variant="contained"
-                        color="primary"
+                        className="ml-auto"
                         onClick={handleSubmit}
                       >
                         Update
                       </Button>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={closeDialog}
-                      >
-                        Cancel
-                      </Button>
+                      
                   </Grid>
                 </Grid>
               </form>

@@ -29,7 +29,7 @@ const rows = [
     project: "Project A",
     projectDate: "2022-01-01",
     isbillable: "Billable",
-    status:"active"
+    status:"On-Role"
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ const rows = [
     project: "Project B",
     projectDate: "2022-01-01",
     isbillable: "Billable",
-    status:"active"
+    status:"Resignation"
   },
   {
     id: 3,
@@ -48,8 +48,8 @@ const rows = [
     salary: 33000,
     project: "Project C",
     projectDate: "2022-01-01",
-    isbillable: "nonBillable",
-    status:"active"
+    isbillable: "NonBillable",
+    status:"Resignation"
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ const rows = [
     project: "Project D",
     projectDate: "2022-01-01",
     isbillable: "Billable",
-    status:"active"
+    status:"Resignation"
   },
   {
     id: 5,
@@ -68,8 +68,8 @@ const rows = [
     salary: 32000,
     project: "Project E",
     projectDate: "2022-01-01",
-    isbillable: "nonBillable",
-    status:"active"
+    isbillable: "NonBillable",
+    status:"On-Role"
   },
   {
     id: 6,
@@ -78,8 +78,8 @@ const rows = [
     salary: 36000,
     project: "Project A",
     projectDate: "2022-01-01",
-    isbillable: "nonBillable",
-    status:"active"
+    isbillable: "NonBillable",
+    status:"On-Role"
   },
   {
     id: 7,
@@ -88,8 +88,8 @@ const rows = [
     salary: 34000,
     project: "Project B",
     projectDate: "2022-01-01",
-    isbillable: "nonBillable",
-    status:"active"
+    isbillable: "NonBillable",
+    status:"On-Role"
   },
   {
     id: 8,
@@ -98,8 +98,8 @@ const rows = [
     salary: 39000,
     project: "Project C",
     projectDate: "2022-01-01",
-    isbillable: "nonBillable",
-    status:"active"
+    isbillable: "NonBillable",
+    status:"On-Role"
   },
   {
     id: 9,
@@ -109,7 +109,7 @@ const rows = [
     project: "Project D",
     projectDate: "2022-01-01",
     isbillable: "Billable",
-    status:"active"
+    status:"On-Role"
   },
   {
     id: 10,
@@ -119,40 +119,41 @@ const rows = [
     project: "Project E",
     projectDate: "2022-01-01",
     isbillable: "Billable",
-    status:"active"
+    status:"On-Role"
   },
 ];
 
 export default function EmployeeTable() {
-  const [projectType, setProjectType] = useState("all");
-  const [filteredRows, setFilteredRows] = useState(rows);
-  const [filterdata, setFilterdata]= useState(filteredRows); 
+  const [projectTypeFilter, setProjectTypeFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState(rows);
 
-  const changeHandle = (e) => {
-    setProjectType(e.target.value);
-    filterRows(e.target.value);
+  useMemo(() => {
+    let filteredRows = rows.filter(row => {
+      const matchesProjectType = projectTypeFilter === "all" || row.isbillable === projectTypeFilter;
+      const matchesStatus = statusFilter === "all" || row.status === statusFilter;
+      const matchesSearch = row.name.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesProjectType && matchesStatus && matchesSearch;
+    });
+    setFilteredData(filteredRows);
+  }, [projectTypeFilter, statusFilter, searchQuery]);
+
+  const handleProjectTypeChange = (e) => {
+    setProjectTypeFilter(e.target.value);
   };
 
-  const handlesearch =(e)=>{
-    console.log(e.target.value);
-    setFilterdata(filteredRows.filter(item =>item.name.toLowerCase().includes(e.target.value.toLowerCase())))
-    
-}
+  const handleStatusChange = (e) => {
+    setStatusFilter(e.target.value);
+  };
 
-  const filterRows = (type) => {
-    if (type === "billable") {
-      setFilteredRows(rows.filter((row) => row.isbillable === "Billable"));
-    } else if (type === "nonBillable") {
-      setFilteredRows(rows.filter((row) => row.isbillable === "nonBillable"));
-    } else {
-      setFilteredRows(rows);
-    }
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const handleDelete = (id) => {
-    setFilteredRows(filteredRows.filter((row) => row.id !== id));
+    setFilteredData(filteredData.filter((row) => row.id !== id));
   };
-  
 
   return (
     <div>
@@ -160,34 +161,44 @@ export default function EmployeeTable() {
         Employee Table
       </p>
 
-      <div className="grid grid-cols-3 md:grid-cols-1 gap-5">
+      <div className="flex justify-start gap-2">
         <FormElements.Select
           label="Project Type"
+          className="w-56"
           optionsArray={[
             { id: "all", name: "All" },
-            { id: "billable", name: "Billable" },
-            { id: "nonBillable", name: "Non Billable" },
+            { id: "Billable", name: "Billable" },
+            { id: "NonBillable", name: "Non Billable" },
           ]}
           name="projectType"
-          value={projectType}
-          onChange={changeHandle}
+          value={projectTypeFilter}
+          onChange={handleProjectTypeChange}
         />
          <FormElements.Input
                         label="Search Name"
                         type="text"
                         className="w-56"
-                        name="search"
-                        onChange={handlesearch}
+                        name="searchQuery"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
                        placeholder="Search..."
-                    />
+          />
+           <FormElements.Select
+          label="Employee Status"
+          className="w-56"
+          optionsArray={[
+            { id: "all", name: "All" },
+            { id: "On-Role", name: "On-Role" },
+            { id: "Resignation", name: "Resignation" },
+          ]}
+          name="statusFilter"
+          value={statusFilter}
+          onChange={handleStatusChange}
+        />
       </div>
-      <div >              
-                <input  type="text" name='name'  onChange={handlesearch} placeholder='Search...' />
-                     
-        </div>
        
       <DataGrid
-        rows={filterdata}
+        rows={filteredData}
         columns={[
           ...columns,
           {
