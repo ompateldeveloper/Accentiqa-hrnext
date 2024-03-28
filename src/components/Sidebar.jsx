@@ -1,9 +1,10 @@
 import React, { startTransition, useCallback, useEffect, useLayoutEffect } from "react";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { cn } from "../lib/utils";
-import { Eye, HandCoins, Home, Link2, Link2Icon, LinkIcon, UserPlus } from "lucide-react";
+import { ChevronRight, Eye, HandCoins, Home, Link2, Link2Icon, LinkIcon, MenuIcon, UserPlus } from "lucide-react";
 import { useGlobalContext } from "../contexts/GlobalContext";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
+import acqlogo from "../assets/logo.svg"
 import useQueryParam from "../hooks/useQueryParams";
 import useLoacationArray from "../hooks/useLoacationArray";
 export default function Sidebar() {
@@ -44,11 +45,16 @@ export default function Sidebar() {
       ></div>
       <div
         className={cn(
-          "h-[calc(100vh-80px)] fixed flex mt-20 bg-white z-20 duration-100 lg:-translate-x-full",
+          "h-[calc(100vh)] fixed flex bg-white z-20 duration-100 lg:-translate-x-full",
           sidebar && "lg:translate-x-0"
         )}
       >
-        <div className="fixed-panel w-16  bg-theme-1 text-white">
+        <div className="fixed-panel w-60  bg-theme-1 text-white">
+            <div className=' grid place-items-center my-8 mb-5  logo select-none' >
+                <img className='h-10 text-start  ' src={acqlogo} alt='' />
+                <div className="">Accentiqa</div>
+
+            </div>
           <TabsList>
             <Link
               to="/dashboard"
@@ -63,7 +69,7 @@ export default function Sidebar() {
                 tabIndex={"Home"}
                 selectTab={selectTab}
                 icon={<Home />}
-              ></TabsTrigger>
+              >Home</TabsTrigger>
             </Link>
             <Link
               to="/dashboard/add-employee"
@@ -78,7 +84,7 @@ export default function Sidebar() {
                 tabIndex={"Add Employee"}
                 selectTab={selectTab}
                 icon={<UserPlus />}
-              ></TabsTrigger>
+              >Add Employee</TabsTrigger>
             </Link>
             <Link
               to="/dashboard/break-up"
@@ -93,7 +99,7 @@ export default function Sidebar() {
                 tabIndex={"Payroll"}
                 selectTab={selectTab}
                 icon={<HandCoins />}
-              ></TabsTrigger>
+              >Payroll</TabsTrigger>
             </Link>
             <Link
               to="/dashboard/view-employee"
@@ -108,11 +114,11 @@ export default function Sidebar() {
                 tabIndex={"View"}
                 selectTab={selectTab}
                 icon={<Eye />}
-              ></TabsTrigger>
+              >View Employees</TabsTrigger>
             </Link>
           </TabsList>
         </div>
-        <div className="collapseble-panel w-48 border-r">
+        {/* <div className="collapseble-panel w-48 border-r">
           <TabsContent tab={tabs} tabIndex={"Home"}>
             <div className="text-lg p-4 pb-0">Hello, There 😄</div>
             <div className="p-4 pt-2 text-zinc-500">
@@ -131,7 +137,7 @@ export default function Sidebar() {
           <TabsContent tab={tabs} tabIndex={"View"}>
             <NavLink to={'/dashboard/employee-salary'} className='nav-link text-theme-text border-2 border-theme-text border-opacity-10 bg-theme-text bg-opacity-5 rounded m-2 truncate px-2 py-px flex items-center  gap-1' activeClassName={""}  > <LinkIcon className="h-4" /> Employee Hikes </NavLink>
           </TabsContent>
-        </div>
+        </div> */}
       </div>
     </>
   );
@@ -153,13 +159,15 @@ function TabsTrigger(props) {
     <button
       onClick={() => selectTab(tabIndex)}
       className={cn(
-        "p-2 flex items-center justify-center duration-200",
+        "p-2 flex items-start justify-start duration-200",
         props.className,
         tab === tabIndex && (active || "border-b-blue-500")
       )}
     >
       {icon && icon}
-      {props.children}
+      <span className="pl-4">
+        {props.children}
+      </span>
     </button>
   );
 }
