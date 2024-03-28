@@ -22,6 +22,7 @@ export default function Dashboard() {
                 <Sidebar />
                 <div className={cn("routeswrapper rounded-2xl shadow-xl bg-white w-full px-4",!isLargeScreen&&"ml-[240px]")}>
                     <Navbar />
+                    <div className="mt-[100px]">
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
                         {/* <Route path='/' element={<Navigate to='/home' />} /> */}
@@ -34,6 +35,7 @@ export default function Dashboard() {
                         <Route path='/employee-salary' element={<EmployeeSalaryCalculator/>} />
                         <Route path='/employee-status' element={<EmployeeStatus/>} />
                     </Routes>
+                    </div>
                 </div>
 
             </div>

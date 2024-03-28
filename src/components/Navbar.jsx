@@ -19,14 +19,14 @@ export default function Navbar() {
         setAnchorEl(null);
     };
     return (
-        <div className='w-full h-20 flex justify-between  items-center z-20  bg-white bg-opacity-90 backdrop-blur-sm font-medium py-4  border-b'>
-            <div className='flex items-center  mx-2 lg:ml-1 logo select-none' >
+        <div className='fixed left-15rem lg:left-0 h-20 flex justify-between w-[calc(100%-15rem-32px)] lg:w-full  items-center z-20  bg-white bg-opacity-90 backdrop-blur-sm font-medium py-4  border-b'>
+            <div className='flex items-center  mx-2 lg:ml-1 logo select-none box-border' >
                 <MenuIcon className='hidden lg:grid min-w-6 mx-4 ' onClick={() => { setSidebar(!sidebar) }} />
                 <div className='text-theme-1 text-xl capitalize flex items-center'>
                 {tabs}
                 </div>
             </div>
-            <div className='flex items-center gap-4 text-2xl text-zinc-700  mr-2'>
+            <div className='flex items-center gap-4 text-2xl text-zinc-700 box-border mr-2'>
                 <FormElements.Input className='rounded-md text-xl pb-0 md:hidden' placeholder='Search' type='search' />
 
                 <Bell />
