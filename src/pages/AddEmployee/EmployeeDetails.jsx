@@ -88,7 +88,7 @@ const EmployeeDetails = ({ form }) => {
                         error={errors.empSeries}
                     />
                     <FormElements.Input
-                        label={<span>Probation Period<span className="text-red-500">*</span></span>}
+                        label={<span>Probation Period&nbsp;<span className="text-red-500">*</span></span>}
                         type="number"
                         className="w-32"
                         name="probationPeriod"
