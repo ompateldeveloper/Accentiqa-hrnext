@@ -19,12 +19,11 @@ export default function Navbar() {
         setAnchorEl(null);
     };
     return (
-        <div className='fixed w-full h-20 flex justify-between  items-center z-20  bg-white bg-opacity-90 backdrop-blur-sm font-medium py-4  border-b'>
-            <div className='flex items-center  mx-4 lg:ml-1 logo select-none' >
+        <div className='w-full h-20 flex justify-between  items-center z-20  bg-white bg-opacity-90 backdrop-blur-sm font-medium py-4  border-b'>
+            <div className='flex items-center  mx-2 lg:ml-1 logo select-none' >
                 <MenuIcon className='hidden lg:grid min-w-6 mx-4 ' onClick={() => { setSidebar(!sidebar) }} />
-                <img className='h-10 text-start  ' src={acqlogo} alt='' />
-                <div className='text-zinc-500 capitalize flex items-center'>
-                   &nbsp; <ChevronRight/> {tabs}
+                <div className='text-theme-1 text-xl capitalize flex items-center'>
+                {tabs}
                 </div>
             </div>
             <div className='flex items-center gap-4 text-2xl text-zinc-700  mr-2'>

@@ -17,11 +17,11 @@ export default function Dashboard() {
 
     return (
         <div>
-            <Navbar />
-
+           
             <div className="flex ">
                 <Sidebar />
-                <div className={cn("routeswrapper m-4 mt-24 p-4 rounded-2xl shadow-xl bg-white w-full",!isLargeScreen&&"ml-[280px]")}>
+                <div className={cn("routeswrapper rounded-2xl shadow-xl bg-white w-full px-4",!isLargeScreen&&"ml-[240px]")}>
+                    <Navbar />
                     <Routes>
                         <Route path='*' element={<Dashboard404/>} />
                         {/* <Route path='/' element={<Navigate to='/home' />} /> */}
